@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Mid-race pace calculator for runners. Log your mile splits and see exactly what pace you need to hit your goal finish time.">
+<title>Average Pace — Run1%</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap');
+
+  :root {
+    --bg:       #0a0a0a;
+    --surface:  #111111;
+    --surface2: #181818;
+    --border:   #262626;
+    --red:      #e8000d;
+    --red-dim:  #7a0007;
+    --text:     #f0f0f0;
+    --muted:    #555555;
+    --muted2:   #333333;
+    --green:    #22c55e;
+    --yellow:   #eab308;
+    --item-h:   44px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  .app {
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 0 0 80px 0;
+    min-height: 100dvh;
+  }
+
+  /* ── Header ── */
+  .header {
+    padding: 48px 16px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(to bottom, var(--bg) 82%, transparent);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+
+  .site-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+
+  .tool-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .tool-subtitle {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  /* ── Target Pace ── */
+  .target-section { padding: 14px 16px 12px; }
+
+  .target-row {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+
+  .target-label { font-size: 11px; color: var(--muted); flex: 1; }
+
+  .pace-inputs { display: flex; align-items: center; gap: 5px; }
+
+  .pace-input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--red);
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    width: 48px;
+    padding: 6px 2px;
+    -webkit-appearance: none; appearance: none; outline: none;
+  }
+  .pace-input:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 2px rgba(232,0,13,.15);
+  }
+
+  .pace-sep { color: var(--red); font-size: 22px; font-weight: 500; }
+  .pace-unit { font-size: 10px; color: var(--muted); margin-left: 2px; }
+
+  /* ── Miles section ── */
+  .miles-section { padding: 0 16px 12px; }
+  .miles-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+
+  .clear-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: none; border: none; cursor: pointer;
+    padding: 3px 6px; border-radius: 4px;
+  }
+  .clear-btn:active { color: var(--red); }
+
+  .mile-rows { display: flex; flex-direction: column; gap: 6px; }
+
+  /* ── Mile card ── */
+  .mile-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    animation: slideIn .15s ease;
+  }
+  @keyframes slideIn { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }
+
+  .mile-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .mile-card-header:active { background: var(--surface2); }
+
+  .mile-num {
+    font-size: 9px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .1em;
+    min-width: 44px;
+  }
+
+  .mile-pace-preview {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: .04em;
+    color: var(--text);
+  }
+
+  .mile-del {
+    background: none; border: none; color: var(--muted);
+    font-size: 20px; cursor: pointer;
+    padding: 1px 5px; border-radius: 4px; line-height: 1;
+  }
+  .mile-del:active { color: var(--red); }
+
+  /* ── Drum picker ── */
+  .drum-wrap {
+    display: none;
+    padding: 6px 14px 12px;
+    border-top: 1px solid var(--border);
+    background: var(--surface2);
+    justify-content: center;
+    align-items: center;
+  }
+  .drum-wrap.open { display: flex; }
+
+  .drum-label {
+    font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); text-align: center; margin-bottom: 5px;
+  }
+
+  .drum-outer {
+    position: relative;
+    width: 84px;
+    height: calc(var(--item-h) * 3);
+    overflow: hidden;
+    cursor: grab;
+    border-radius: 6px;
+  }
+  .drum-outer:active { cursor: grabbing; }
+  .drum-outer::before, .drum-outer::after {
+    content: ''; position: absolute; left: 0; right: 0; z-index: 2; pointer-events: none;
+    height: var(--item-h);
+  }
+  .drum-outer::before { top: 0; background: linear-gradient(to bottom, var(--surface2) 5%, transparent); }
+  .drum-outer::after  { bottom: 0; background: linear-gradient(to top, var(--surface2) 5%, transparent); }
+
+  .drum-selector {
+    position: absolute; top: var(--item-h); left: 6px; right: 6px; height: var(--item-h);
+    border-top: 1px solid rgba(232,0,13,.4);
+    border-bottom: 1px solid rgba(232,0,13,.4);
+    background: rgba(232,0,13,.06);
+    border-radius: 5px; pointer-events: none; z-index: 1;
+  }
+
+  .drum-list { display: flex; flex-direction: column; will-change: transform; }
+
+  .drum-item {
+    height: var(--item-h); display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: .04em;
+    color: var(--muted2);
+    flex-shrink: 0; user-select: none;
+    transition: color .08s, transform .08s;
+  }
+  .drum-item.selected { color: var(--text); transform: scale(1.1); }
+
+  .drum-colon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--muted);
+    padding: 0 2px;
+    align-self: center;
+    margin-top: 18px;
+  }
+
+  .drum-col { display: flex; flex-direction: column; align-items: center; }
+
+  /* ── Confirm button ── */
+  .confirm-btn {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    width: calc(100% - 28px); margin: 0 14px 12px;
+    padding: 11px;
+    background: var(--red);
+    border: none; border-radius: 6px;
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    cursor: pointer; letter-spacing: .06em;
+    text-transform: uppercase;
+    -webkit-appearance: none; appearance: none; outline: none;
+  }
+  .confirm-btn:active { background: var(--red-dim); }
+
+  /* ── Add mile ── */
+  .add-mile-btn {
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    width: 100%; padding: 11px;
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    cursor: pointer; margin-top: 6px;
+    -webkit-appearance: none; appearance: none; outline: none;
+    transition: border-color .15s, color .15s;
+  }
+  .add-mile-btn:active { border-color: var(--red); color: var(--red); }
+
+  /* ── Results ── */
+  .results-section { padding: 0 16px; }
+
+  .results-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .results-header {
+    padding: 9px 14px 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .results-title {
+    font-size: 9px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  .avg-badge { font-size: 11px; color: var(--muted); }
+  .avg-badge .avg-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px; letter-spacing: .04em;
+    color: var(--text);
+  }
+
+  /* ── Distance rows ── */
+  .dist-row {
+    display: flex; align-items: center;
+    padding: 7px 14px;
+    border-bottom: 1px solid var(--border);
+    gap: 8px;
+  }
+  .dist-row:last-child { border-bottom: none; }
+  .dist-row.dimmed { opacity: 0.3; }
+
+  .dist-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px; letter-spacing: .04em;
+    color: var(--text); min-width: 38px;
+  }
+
+  .dist-req {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px; letter-spacing: .03em;
+    min-width: 60px;
+  }
+  .dist-req.good    { color: var(--green); }
+  .dist-req.warn    { color: var(--yellow); }
+  .dist-req.bad     { color: var(--red); }
+  .dist-req.neutral { color: var(--muted); }
+
+  .dist-spacer { flex: 1; }
+
+  .progress-bar-wrap {
+    height: 2px; background: var(--surface2);
+    flex-shrink: 0; width: 36px;
+    border-radius: 2px; overflow: hidden; align-self: center;
+  }
+  .progress-bar-fill { height: 100%; border-radius: 2px; }
+
+  .dist-proj { font-size: 10px; color: var(--muted); text-align: right; white-space: nowrap; }
+  .dist-proj span { color: var(--text); }
+
+  .dist-done {
+    font-size: 9px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--green);
+    background: rgba(34,197,94,.08);
+    border: 1px solid rgba(34,197,94,.2);
+    border-radius: 20px; padding: 2px 7px;
+  }
+
+  .no-data {
+    padding: 24px 14px; text-align: center;
+    color: var(--muted); font-size: 11px; line-height: 2;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    padding: 28px 16px 0;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: .1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .footer a { color: var(--red); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="header">
+    <div class="site-eyebrow">Run1% · Tools</div>
+    <div class="tool-title">Average Pace</div>
+    <div class="tool-subtitle">Log your splits · see what you need to run</div>
+  </div>
+
+  <div class="target-section">
+    <div class="section-label">Goal pace</div>
+    <div class="target-row">
+      <div class="target-label">Target min / mile</div>
+      <div class="pace-inputs">
+        <input class="pace-input" id="tgt-min" type="number" min="4" max="20" value="9" inputmode="numeric">
+        <span class="pace-sep">:</span>
+        <input class="pace-input" id="tgt-sec" type="number" min="0" max="59" value="00" inputmode="numeric">
+        <span class="pace-unit">/mi</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="miles-section">
+    <div class="miles-header">
+      <div class="section-label">Miles completed</div>
+      <button class="clear-btn" onclick="clearAll()">Clear all</button>
+    </div>
+    <div class="mile-rows" id="mile-rows"></div>
+    <button class="add-mile-btn" onclick="addMile()">
+      <span style="font-size:15px;line-height:1">+</span> Log mile
+    </button>
+  </div>
+
+  <div class="results-section">
+    <div class="section-label" style="margin-bottom:8px">Required pace by distance</div>
+    <div class="results-card" id="results-card">
+      <div class="no-data">Save your first mile<br>to see required pace</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    A free tool by <a href="https://run1percent.com">run1percent.com</a>
+  </div>
+
+</div>
+<script>
+// ─── Config ──────────────────────────────────────────────────────────────────
+const DISTANCES = Array.from({length: 12}, (_, i) => i + 2); // 2–13
+const MINS = Array.from({length: 17}, (_, i) => i + 4);      // 4–20
+const SECS = Array.from({length: 60}, (_, i) => i);          // 0–59
+
+let miles = [];
+let openCardIdx = null;
+let pending = null;
+
+// ─── Drum builder ────────────────────────────────────────────────────────────
+function buildDrum(values, initialVal, onChange) {
+  const ITEM_H = 44;
+  const pad2 = v => String(v).padStart(2, '0');
+
+  const outer = document.createElement('div');
+  outer.className = 'drum-outer';
+
+  const selBand = document.createElement('div');
+  selBand.className = 'drum-selector';
+  outer.appendChild(selBand);
+
+  const list = document.createElement('div');
+  list.className = 'drum-list';
+  list.style.transform = 'translateY(0px)';
+
+  list.appendChild(Object.assign(document.createElement('div'), {className:'drum-item'}));
+
+  const items = values.map(v => {
+    const el = document.createElement('div');
+    el.className = 'drum-item';
+    el.textContent = pad2(v);
+    list.appendChild(el);
+    return { el, v };
+  });
+
+  list.appendChild(Object.assign(document.createElement('div'), {className:'drum-item'}));
+  outer.appendChild(list);
+
+  let currentIdx = Math.max(0, values.indexOf(initialVal));
+
+  function snapTo(idx, animate) {
+    idx = Math.max(0, Math.min(values.length - 1, idx));
+    currentIdx = idx;
+    list.style.transition = animate ? 'transform .15s cubic-bezier(.25,.46,.45,.94)' : 'none';
+    list.style.transform = `translateY(${-idx * ITEM_H}px)`;
+    if (!animate) list.getBoundingClientRect();
+    items.forEach((it, i) => it.el.classList.toggle('selected', i === idx));
+    onChange(values[idx]);
+  }
+
+  let dragStartY = 0, dragStartIdx = 0, dragging = false;
+  let lastY = 0, lastT = 0, velY = 0;
+
+  function startDrag(y) {
+    dragging = true; dragStartY = y; dragStartIdx = currentIdx;
+    lastY = y; lastT = performance.now(); velY = 0;
+    list.style.transition = 'none';
+  }
+  function moveDrag(y) {
+    if (!dragging) return;
+    const now = performance.now(), dt = now - lastT;
+    if (dt > 0) velY = (y - lastY) / dt;
+    lastY = y; lastT = now;
+    const idx = Math.max(0, Math.min(values.length - 1,
+      Math.round(dragStartIdx + (dragStartY - y) / ITEM_H)));
+    if (idx !== currentIdx) {
+      currentIdx = idx;
+      list.style.transform = `translateY(${-idx * ITEM_H}px)`;
+      items.forEach((it, i) => it.el.classList.toggle('selected', i === idx));
+      onChange(values[idx]);
+      try { if (navigator.vibrate) navigator.vibrate(3); } catch(e) {}
+    }
+  }
+  function endDrag() {
+    if (!dragging) return;
+    dragging = false;
+    snapTo(Math.round(currentIdx + (-velY * 120) / ITEM_H), true);
+  }
+
+  outer.addEventListener('touchstart',  e => startDrag(e.touches[0].clientY), {passive:true});
+  outer.addEventListener('touchmove',   e => { e.preventDefault(); moveDrag(e.touches[0].clientY); }, {passive:false});
+  outer.addEventListener('touchend',    endDrag, {passive:true});
+  outer.addEventListener('touchcancel', endDrag, {passive:true});
+  outer.addEventListener('mousedown',   e => { e.preventDefault(); startDrag(e.clientY); });
+  window.addEventListener('mousemove',  e => moveDrag(e.clientY));
+  window.addEventListener('mouseup',    endDrag);
+  outer.addEventListener('wheel', e => {
+    e.preventDefault();
+    snapTo(currentIdx + (e.deltaY > 0 ? 1 : -1), true);
+  }, {passive:false});
+
+  snapTo(currentIdx, false);
+  return outer;
+}
+
+// ─── Mile cards ──────────────────────────────────────────────────────────────
+function previewStr(m) {
+  return `${m.min}:${String(m.sec).padStart(2,'0')}`;
+}
+
+function confirmMile(idx) {
+  if (!pending) return;
+  miles[idx] = { ...pending };
+  pending = null;
+  openCardIdx = null;
+  renderMiles();
+  renderResults();
+}
+
+function renderMiles() {
+  const container = document.getElementById('mile-rows');
+  container.innerHTML = '';
+
+  miles.forEach((m, i) => {
+    const isOpen = openCardIdx === i;
+
+    const card = document.createElement('div');
+    card.className = 'mile-card';
+
+    // header
+    const header = document.createElement('div');
+    header.className = 'mile-card-header';
+
+    const numEl = document.createElement('div');
+    numEl.className = 'mile-num';
+    numEl.textContent = `Mile ${i + 1}`;
+
+    const preview = document.createElement('div');
+    preview.className = 'mile-pace-preview';
+    preview.textContent = `${previewStr(m)} /mi`;
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'mile-del';
+    delBtn.textContent = '×';
+    delBtn.addEventListener('click', e => { e.stopPropagation(); deleteMile(i); });
+
+    header.appendChild(numEl);
+    header.appendChild(preview);
+    header.appendChild(delBtn);
+    card.appendChild(header);
+
+    // drum
+    const drumWrap = document.createElement('div');
+    drumWrap.className = 'drum-wrap' + (isOpen ? ' open' : '');
+
+    if (isOpen) {
+      if (!pending) pending = { ...m };
+
+      const minCol = document.createElement('div');
+      minCol.className = 'drum-col';
+      minCol.appendChild(Object.assign(document.createElement('div'), {className:'drum-label', textContent:'min'}));
+      minCol.appendChild(buildDrum(MINS, pending.min, val => { pending.min = val; }));
+
+      const colon = document.createElement('div');
+      colon.className = 'drum-colon';
+      colon.textContent = ':';
+
+      const secCol = document.createElement('div');
+      secCol.className = 'drum-col';
+      secCol.appendChild(Object.assign(document.createElement('div'), {className:'drum-label', textContent:'sec'}));
+      secCol.appendChild(buildDrum(SECS, pending.sec, val => { pending.sec = val; }));
+
+      drumWrap.appendChild(minCol);
+      drumWrap.appendChild(colon);
+      drumWrap.appendChild(secCol);
+
+      const confirmBtn = document.createElement('button');
+      confirmBtn.className = 'confirm-btn';
+      confirmBtn.textContent = `✓  Save Mile ${i + 1}`;
+      confirmBtn.addEventListener('click', e => { e.stopPropagation(); confirmMile(i); });
+
+      card.appendChild(drumWrap);
+      card.appendChild(confirmBtn);
+    } else {
+      card.appendChild(drumWrap);
+    }
+
+    header.addEventListener('click', () => {
+      if (openCardIdx === i) {
+        openCardIdx = null; pending = null;
+      } else {
+        openCardIdx = i; pending = { ...miles[i] };
+      }
+      renderMiles();
+    });
+
+    container.appendChild(card);
+  });
+
+  renderResults();
+}
+
+// ─── CRUD ────────────────────────────────────────────────────────────────────
+function addMile() {
+  const tMin = parseInt(document.getElementById('tgt-min').value) || 9;
+  const tSec = parseInt(document.getElementById('tgt-sec').value) || 0;
+  miles.push({ min: tMin, sec: tSec });
+  openCardIdx = miles.length - 1;
+  pending = { min: tMin, sec: tSec };
+  renderMiles();
+}
+function deleteMile(idx) {
+  miles.splice(idx, 1);
+  if (openCardIdx === idx) { openCardIdx = null; pending = null; }
+  else if (openCardIdx > idx) openCardIdx--;
+  renderMiles();
+}
+function clearAll() {
+  miles = []; openCardIdx = null; pending = null; renderMiles();
+}
+
+// ─── Pace math ───────────────────────────────────────────────────────────────
+function paceToSecs(min, sec) { return (parseInt(min)||0)*60 + (parseInt(sec)||0); }
+function secsToStr(s) {
+  if (!isFinite(s) || s <= 0) return '--:--';
+  return `${Math.floor(s/60)}:${String(Math.round(s%60)).padStart(2,'0')}`;
+}
+function getTargetSecs() {
+  return paceToSecs(
+    document.getElementById('tgt-min').value,
+    document.getElementById('tgt-sec').value
+  );
+}
+
+function calcForDist(dist) {
+  const valid = miles.filter(m => paceToSecs(m.min, m.sec) > 0);
+  if (!valid.length) return null;
+  const elapsed = valid.reduce((s,m) => s + paceToSecs(m.min, m.sec), 0);
+  const avg = elapsed / valid.length;
+  const rem = dist - valid.length;
+  const tgt = getTargetSecs();
+  const req = rem > 0 ? (tgt * dist - elapsed) / rem : null;
+  return {
+    avg, req,
+    rem: Math.max(rem, 0),
+    proj: elapsed + avg * Math.max(rem, 0),
+    pct: Math.min((valid.length / dist) * 100, 100),
+    done: valid.length >= dist,
+  };
+}
+
+function statusClass(req, tgt) {
+  if (req === null) return 'neutral';
+  const d = req - tgt;
+  if (d <= -30) return 'bad';
+  if (d < -5)   return 'warn';
+  return 'good';
+}
+
+// ─── Results ─────────────────────────────────────────────────────────────────
+function renderResults() {
+  const card = document.getElementById('results-card');
+  const valid = miles.filter(m => paceToSecs(m.min, m.sec) > 0);
+
+  if (!valid.length) {
+    card.innerHTML = '<div class="no-data">Save your first mile<br>to see required pace</div>';
+    return;
+  }
+
+  const totalSecs = valid.reduce((s,m) => s + paceToSecs(m.min,m.sec), 0);
+  const avgStr = secsToStr(totalSecs / valid.length);
+
+  let html = `
+    <div class="results-header">
+      <div class="results-title">Req. pace / distance</div>
+      <div class="avg-badge">avg <span class="avg-val">${avgStr}/mi</span></div>
+    </div>`;
+
+  DISTANCES.forEach(dist => {
+    const res = calcForDist(dist);
+    if (!res) return;
+
+    const tgt = getTargetSecs();
+    const sc = statusClass(res.req, tgt);
+    const barColor = sc === 'good' ? 'var(--green)' : sc === 'warn' ? 'var(--yellow)' : sc === 'bad' ? 'var(--red)' : 'var(--muted)';
+    const dimClass = res.done ? ' dimmed' : '';
+    const reqDisplay = res.done ? '✓' : secsToStr(res.req);
+    const reqClass = res.done ? 'good' : sc;
+
+    html += `
+      <div class="dist-row${dimClass}">
+        <div class="dist-label">${dist} mi</div>
+        <div class="dist-req ${reqClass}">${reqDisplay}</div>
+        <div class="dist-spacer"></div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" style="width:${res.pct}%;background:${barColor}"></div>
+        </div>
+        <div class="dist-proj">
+          ${res.done
+            ? `<span class="dist-done">done</span>`
+            : `proj <span>${secsToStr(res.proj)}</span>`}
+        </div>
+      </div>`;
+  });
+
+  card.innerHTML = html;
+}
+
+// ─── Init ────────────────────────────────────────────────────────────────────
+['tgt-min', 'tgt-sec'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('input', renderResults);
+  el.addEventListener('focus', function() { this.select(); });
+  el.addEventListener('touchstart', function() { setTimeout(() => this.select(), 0); }, {passive:true});
+});
+addMile();
+</script>
+</body>
+</html>
