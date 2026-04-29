@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Run1% — Tools for the 1%</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ed;
+    --red: #e63022;
+    --red-dim: #c02518;
+    --gray: #1a1a1a;
+    --gray-mid: #2e2e2e;
+    --gray-light: #888;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --display: 'Bebas Neue', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--sans);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2.5rem;
+    border-bottom: 1px solid var(--gray-mid);
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+  }
+  .logo span {
+    color: var(--red);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-links a {
+    color: var(--gray-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: var(--white);
+    padding: 0.55rem 1.2rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--red-dim); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    padding: 5rem 2.5rem 4rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--red);
+  }
+
+  .hero-headline {
+    font-family: var(--display);
+    font-size: clamp(4rem, 8vw, 7.5rem);
+    line-height: 0.93;
+    letter-spacing: 0.01em;
+    margin-bottom: 2rem;
+  }
+  .hero-headline .accent { color: var(--red); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #aaa;
+    max-width: 38ch;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+  .hero-sub strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--red-dim); transform: translateY(-1px); }
+
+  .btn-ghost {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--gray-light);
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--gray-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); border-color: #555; }
+
+  .hero-stat {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-mid);
+    display: flex;
+    gap: 3rem;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: var(--display);
+    font-size: 2.2rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--red); }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    margin-top: 0.3rem;
+  }
+
+  /* ── HERO RIGHT — TOOL PREVIEW ── */
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem 3rem 1rem;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10%; bottom: 10%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gray-mid) 30%, var(--gray-mid) 70%, transparent);
+  }
+
+  /* Large background % */
+  .bg-percent {
+    position: absolute;
+    font-family: var(--display);
+    font-size: 28rem;
+    color: rgba(255,255,255,0.02);
+    line-height: 1;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .tool-card {
+    background: var(--gray);
+    border: 1px solid var(--gray-mid);
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .tool-card-header {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--gray-mid);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .tool-card-title {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+  }
+  .tool-card-badge {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(230,48,34,0.15);
+    color: var(--red);
+    padding: 0.25rem 0.6rem;
+    border: 1px solid rgba(230,48,34,0.3);
+  }
+
+  .tool-card-body { padding: 1.5rem; }
+
+  .input-row {
+    margin-bottom: 1.2rem;
+  }
+  .input-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .input-field {
+    width: 100%;
+    background: var(--black);
+    border: 1px solid var(--gray-mid);
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    padding: 0.7rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .input-field:focus { border-color: var(--red); }
+  .input-field.filled { color: var(--white); }
+
+  .input-row-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .calc-btn {
+    width: 100%;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: var(--white);
+    padding: 0.9rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+  .calc-btn:hover { background: var(--red-dim); }
+
+  .result-row {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--gray-mid);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .result-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+  }
+  .result-value {
+    font-family: var(--display);
+    font-size: 2.2rem;
+    color: var(--red);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── TOOLS SECTION ── */
+  .section {
+    padding: 6rem 2.5rem;
+  }
+
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--red);
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: #888;
+    font-weight: 300;
+    max-width: 50ch;
+    line-height: 1.6;
+    margin-bottom: 3.5rem;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--gray-mid);
+    border: 1px solid var(--gray-mid);
+  }
+
+  .tool-item {
+    background: var(--black);
+    padding: 2rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .tool-item:hover { background: var(--gray); }
+  .tool-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .tool-item:hover::after { transform: scaleX(1); }
+
+  .tool-item.featured {
+    background: var(--gray);
+    grid-column: span 1;
+  }
+
+  .tool-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .tool-name {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: var(--white);
+  }
+
+  .tool-desc {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  .tool-status {
+    margin-top: 1.2rem;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .tool-status.coming { color: #555; }
+  .tool-status::before {
+    content: '';
+    display: block;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* ── EMAIL CAPTURE ── */
+  .email-section {
+    margin: 0 2.5rem 6rem;
+    background: var(--gray);
+    border: 1px solid var(--gray-mid);
+    padding: 3.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .email-section::before {
+    content: '1%';
+    position: absolute;
+    right: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--display);
+    font-size: 14rem;
+    color: rgba(230,48,34,0.06);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .email-title {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+  }
+  .email-title .accent { color: var(--red); }
+
+  .email-body {
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .email-form { display: flex; gap: 0; }
+  .email-input {
+    flex: 1;
+    background: var(--black);
+    border: 1px solid var(--gray-mid);
+    border-right: none;
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    padding: 0.9rem 1.2rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .email-input::placeholder { color: #444; }
+  .email-input:focus { border-color: var(--red); }
+  .email-submit {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: var(--white);
+    padding: 0.9rem 1.5rem;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .email-submit:hover { background: var(--red-dim); }
+
+  .email-note {
+    margin-top: 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #444;
+  }
+
+  /* ── BLOG SECTION ── */
+  .blog-section {
+    padding: 6rem 2.5rem;
+    border-top: 1px solid var(--gray-mid);
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 1px;
+    background: var(--gray-mid);
+    border: 1px solid var(--gray-mid);
+  }
+
+  .blog-card {
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-card:hover { background: var(--gray); }
+
+  .blog-card-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(30%) brightness(0.8);
+    transition: filter 0.3s, transform 0.4s;
+  }
+  .blog-card:hover .blog-card-img {
+    filter: grayscale(0%) brightness(0.9);
+    transform: scale(1.02);
+  }
+
+  .blog-card-img-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* placeholder gradient for cards without images */
+  .blog-card-img-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  .blog-card:nth-child(1) .blog-card-img-placeholder {
+    background: linear-gradient(135deg, #1a0a08 0%, #2e1510 100%);
+  }
+  .blog-card:nth-child(2) .blog-card-img-placeholder {
+    background: linear-gradient(135deg, #080d1a 0%, #101828 100%);
+  }
+  .blog-card:nth-child(3) .blog-card-img-placeholder {
+    background: linear-gradient(135deg, #0a100a 0%, #141e14 100%);
+  }
+
+  .blog-card-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+  }
+  .blog-tag {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    background: rgba(230,48,34,0.1);
+    border: 1px solid rgba(230,48,34,0.25);
+    padding: 0.2rem 0.55rem;
+  }
+  .blog-date {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #444;
+  }
+
+  .blog-title {
+    font-family: var(--display);
+    font-size: 1.35rem;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 0.65rem;
+    transition: color 0.2s;
+  }
+  .blog-card:hover .blog-title { color: #fff; }
+
+  .blog-excerpt {
+    font-size: 0.82rem;
+    color: #666;
+    line-height: 1.6;
+    font-weight: 300;
+    flex: 1;
+  }
+
+  .blog-read-more {
+    margin-top: 1.2rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .blog-card:hover .blog-read-more { gap: 0.7rem; }
+
+  .blog-featured-label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: var(--white);
+    padding: 0.25rem 0.6rem;
+    z-index: 2;
+  }
+
+  .blog-cta-row {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--gray-mid);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    color: #444;
+    letter-spacing: 0.04em;
+  }
+  .footer-logo span { color: var(--red); }
+  .footer-note {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag { animation: slideUp 0.6s ease forwards; }
+  .hero-headline { animation: slideUp 0.6s 0.1s ease both; }
+  .hero-sub { animation: slideUp 0.6s 0.2s ease both; }
+  .hero-actions { animation: slideUp 0.6s 0.3s ease both; }
+  .hero-stat { animation: slideUp 0.6s 0.4s ease both; }
+  .tool-card { animation: slideUp 0.6s 0.35s ease both, float 6s 0.35s ease-in-out infinite; }
+
+  /* divider line */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gray-mid) 20%, var(--gray-mid) 80%, transparent);
+    margin: 0 2.5rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">RUN<span>1%</span></a>
+  <ul class="nav-links">
+    <li><a href="#">Tools</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Training</a></li>
+    <li><a href="#">Field Notes</a></li>
+  </ul>
+  <button class="nav-cta">Get Updates</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Free Tools for Serious Runners</div>
+    <h1 class="hero-headline">
+      BUILT FOR<br>THE <span class="accent">1%</span><br>WHO FINISH
+    </h1>
+    <p class="hero-sub">
+      Only <strong>~1% of the population</strong> has finished a half marathon or marathon. These tools are built for people who actually show up on race day.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Explore Tools</button>
+      <button class="btn-ghost">My Story</button>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-item">
+        <div class="stat-num">6<span>+</span></div>
+        <div class="stat-label">Free Tools</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1<span>%</span></div>
+        <div class="stat-label">Club You're In</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$0</div>
+        <div class="stat-label">To Get Started</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="bg-percent">%</div>
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <span class="tool-card-title">Race Predictor</span>
+        <span class="tool-card-badge">Live Tool</span>
+      </div>
+      <div class="tool-card-body">
+        <div class="input-row">
+          <label class="input-label">Recent Race Distance</label>
+          <select class="input-field filled" style="appearance:none; cursor:pointer;">
+            <option>5K</option>
+            <option>10K</option>
+            <option selected>Half Marathon</option>
+          </select>
+        </div>
+        <div class="input-row-2col">
+          <div>
+            <label class="input-label">Hours</label>
+            <input class="input-field filled" value="1" type="number" min="0">
+          </div>
+          <div>
+            <label class="input-label">Minutes</label>
+            <input class="input-field filled" value="52" type="number" min="0" max="59">
+          </div>
+        </div>
+        <button class="calc-btn" onclick="predict()">Calculate Finish Time →</button>
+        <div class="result-row" id="result-row" style="display:none;">
+          <span class="result-label">Predicted Marathon</span>
+          <span class="result-value" id="result-val">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TOOLS GRID -->
+<section class="section" id="tools">
+  <div class="section-tag">The Toolbox</div>
+  <h2 class="section-title">EVERYTHING YOU NEED.<br>NOTHING YOU DON'T.</h2>
+  <p class="section-sub">No subscriptions. No paywalls on the basics. Built by a runner, for runners who want to train smarter.</p>
+
+  <div class="tools-grid">
+    <a href="average-pace.html" class="tool-item featured" style="text-decoration:none;">
+      <span class="tool-icon">⚡</span>
+      <div class="tool-name">Pace Calculator</div>
+      <div class="tool-desc">Per-mile splits, average pace across any distance. The original tool — rebuilt properly.</div>
+      <div class="tool-status">Live</div>
+    </a>
+    <div class="tool-item featured">
+      <span class="tool-icon">🎯</span>
+      <div class="tool-name">Race Predictor</div>
+      <div class="tool-desc">Plug in a 5K or 10K time. Get a projected half or full marathon finish using the Riegel formula.</div>
+      <div class="tool-status">Live</div>
+    </div>
+    <div class="tool-item featured">
+      <span class="tool-icon">📅</span>
+      <div class="tool-name">Training Plan Generator</div>
+      <div class="tool-desc">Tell us your goal race, current mileage, and weeks out. Get a week-by-week custom plan.</div>
+      <div class="tool-status">Live</div>
+    </div>
+    <a href="taper-calculator.html" class="tool-item" style="text-decoration:none;">
+      <span class="tool-icon">📉</span>
+      <div class="tool-name">Taper Calculator</div>
+      <div class="tool-desc">Know exactly when to cut mileage and by how much in your final weeks before race day.</div>
+      <div class="tool-status">Live</div>
+    </a>
+    <div class="tool-item">
+      <span class="tool-icon">❤️</span>
+      <div class="tool-name">HR Zone Calculator</div>
+      <div class="tool-desc">Five-zone training based on your max heart rate. Stop guessing your easy pace.</div>
+      <div class="tool-status coming">Coming Soon</div>
+    </div>
+    <div class="tool-item">
+      <span class="tool-icon">📈</span>
+      <div class="tool-name">Mileage Ramp Tracker</div>
+      <div class="tool-desc">Visualize your 10% weekly increase rule. Catch overtraining before it catches you.</div>
+      <div class="tool-status coming">Coming Soon</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BLOG / FIELD NOTES -->
+<section class="blog-section">
+  <div class="section-tag">Field Notes</div>
+  <h2 class="section-title">FROM THE ROAD</h2>
+  <p class="section-sub">Race reports, training experiments, and hard-won lessons from someone who's been there — not a sponsored influencer.</p>
+
+  <div class="blog-grid">
+
+    <!-- Featured post (wider) -->
+    <div class="blog-card">
+      <div class="blog-card-img-wrap">
+        <div class="blog-card-img-placeholder">🏅</div>
+        <span class="blog-featured-label">Featured</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta">
+          <span class="blog-tag">Race Report</span>
+          <span class="blog-date">Apr 2026</span>
+        </div>
+        <div class="blog-title">RUNNING MY 4TH HALF: WHAT ACTUALLY CHANGES (AND WHAT DOESN'T)</div>
+        <p class="blog-excerpt">Four half marathons in. I still get nervous at the start line. But somewhere between mile 8 and 10 this time, something clicked — here's what I've learned that no training plan tells you.</p>
+        <div class="blog-read-more">Read More →</div>
+      </div>
+    </div>
+
+    <!-- Post 2 -->
+    <div class="blog-card">
+      <div class="blog-card-img-wrap">
+        <div class="blog-card-img-placeholder">👶</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta">
+          <span class="blog-tag">Training</span>
+          <span class="blog-date">Mar 2026</span>
+        </div>
+        <div class="blog-title">RUNNING ON NO SLEEP: TRAINING WITH A NEWBORN</div>
+        <p class="blog-excerpt">My daughter arrived in March. My running schedule did not survive the first week. Here's how I'm rebuilding — 20 minutes at a time.</p>
+        <div class="blog-read-more">Read More →</div>
+      </div>
+    </div>
+
+    <!-- Post 3 -->
+    <div class="blog-card">
+      <div class="blog-card-img-wrap">
+        <div class="blog-card-img-placeholder">📊</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-meta">
+          <span class="blog-tag">Tools</span>
+          <span class="blog-date">Feb 2026</span>
+        </div>
+        <div class="blog-title">THE RIEGEL FORMULA: HOW ACCURATE IS IT REALLY?</div>
+        <p class="blog-excerpt">I ran the numbers on my last four races. The Riegel race predictor was within 4 minutes every time. Here's what it gets right — and where it falls apart.</p>
+        <div class="blog-read-more">Read More →</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="blog-cta-row">
+    <button class="btn-ghost">View All Posts →</button>
+  </div>
+</section>
+
+<div class="divider"></div>
+<div class="email-section">
+  <div>
+    <h2 class="email-title">JOIN THE<br><span class="accent">1%.</span></h2>
+    <p class="email-body">New tools, training tips, and race-day content — straight to your inbox. No fluff. Unsubscribe anytime.</p>
+  </div>
+  <div>
+    <div class="email-form">
+      <input type="email" class="email-input" placeholder="your@email.com">
+      <button class="email-submit">Subscribe →</button>
+    </div>
+    <div class="email-note">No spam. Ever. Just tools that make you faster.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">RUN<span>1%</span></div>
+  <div class="footer-note">Built in Eugene, OR · Run1Percent.com</div>
+</footer>
+
+<script>
+  function predict() {
+    const hrs = parseFloat(document.querySelector('input[type=number]').value) || 0;
+    const mins = parseFloat(document.querySelectorAll('input[type=number]')[1].value) || 0;
+    const totalMins = hrs * 60 + mins;
+    if (!totalMins) return;
+
+    // Riegel formula: T2 = T1 * (D2/D1)^1.06
+    // Half = 13.1094 miles, Full = 26.2188 miles
+    const halfMins = totalMins;
+    const fullMins = halfMins * Math.pow(26.2188 / 13.1094, 1.06);
+
+    const fh = Math.floor(fullMins / 60);
+    const fm = Math.floor(fullMins % 60);
+    const fs = Math.round((fullMins * 60) % 60);
+
+    const pad = n => String(n).padStart(2, '0');
+    document.getElementById('result-val').textContent = `${fh}:${pad(fm)}:${pad(fs)}`;
+    document.getElementById('result-row').style.display = 'flex';
+  }
+
+  // Make the race predictor card interactive
+  document.querySelector('.calc-btn').addEventListener('click', predict);
+</script>
+</body>
+</html>
