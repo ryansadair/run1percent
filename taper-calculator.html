@@ -672,7 +672,11 @@
     justify-content: space-between;
     max-width: 100%;
   }
-  footer img { height: 20px; opacity: 0.4; transition: opacity 0.2s; }
+  footer img {
+  height: 40px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
   footer img:hover { opacity: 1; }
   .footer-links {
     display: flex;
@@ -702,7 +706,16 @@
     .main { grid-template-columns: 1fr; }
     .panel-left { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 20px; }
     .panel-right { padding: 24px 20px; }
-    footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+    footer {
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
+}
+
+.footer-links {
+  flex-wrap: wrap;
+  justify-content: center;
+}
     nav { display: none; }
   }
 
@@ -1144,5 +1157,18 @@
   }
 </script>
 
+  <!-- FOOTER -->
+<footer>
+  <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
+
+  <ul class="footer-links">
+    <li><a href="index.html#tools">Tools</a></li>
+    <li><a href="index.html#notes">Field Notes</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+
+  <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR</div>
+</footer>
+  
 </body>
 </html>
