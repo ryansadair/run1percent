@@ -258,6 +258,254 @@
     .panel-right { padding: 24px 20px; }
     footer { flex-direction: column; gap: 24px; text-align: center; }
   }
+
+  /* RESULTS EMPTY STATE */
+  .results-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 300px;
+    color: var(--text-dim);
+    text-align: center;
+    gap: 12px;
+  }
+  .results-empty-icon {
+    font-size: 48px;
+    opacity: 0.2;
+    line-height: 1;
+  }
+  .results-empty p {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .results-content { display: none; }
+  .results-content.visible { display: block; }
+  .results-empty.hidden { display: none; }
+
+  /* RACE INFO BAR */
+  .race-info-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .race-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .race-info-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .race-info-value {
+    font-size: 16px;
+    color: var(--white);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.06em;
+  }
+  .race-info-value.red { color: var(--red); }
+
+  /* WEEK SCHEDULE */
+  .weeks-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .week-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 60px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(42,42,42,0.6);
+    animation: fadeIn 0.4s ease both;
+  }
+  .week-row:last-child { border-bottom: none; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(8px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .week-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .week-label .week-num {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--text-mid);
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+  .week-label .week-num.current-week { color: var(--red); }
+  .week-type {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 1px;
+  }
+  .week-type.race-week { color: var(--red); }
+  .week-type.taper { color: #e5941a; }
+  .bar-track {
+    height: 6px;
+    background: var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--red);
+    transform-origin: left;
+    animation: barGrow 0.6s ease both;
+  }
+  .bar-fill.dim { background: var(--muted); }
+  .bar-fill.bright { background: var(--red); }
+  @keyframes barGrow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+  .week-miles {
+    font-size: 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    text-align: right;
+  }
+  .week-miles .unit {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    display: block;
+    text-align: right;
+  }
+
+  /* TAPER MADNESS METER */
+  .madness-section {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .madness-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+  .madness-title {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .madness-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--red);
+    letter-spacing: 0.04em;
+  }
+  .madness-bar-track {
+    height: 3px;
+    background: var(--border);
+    margin-bottom: 8px;
+  }
+  .madness-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--red-dim), var(--red));
+    transition: width 0.8s ease;
+  }
+  .madness-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* RACE WEEK TIPS */
+  .tips-section {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .tip-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(42,42,42,0.5);
+    animation: fadeIn 0.4s ease both;
+  }
+  .tip-item:last-child { border-bottom: none; }
+  .tip-marker {
+    color: var(--red);
+    font-size: 10px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+  .tip-text {
+    font-size: 11px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .tip-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* FIELD NOTES LINK */
+  .field-notes-link {
+    margin-top: 32px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    background: transparent;
+  }
+  .field-notes-link:hover {
+    border-color: var(--red);
+    background: var(--red-glow);
+  }
+  .field-notes-left {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .field-notes-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  .field-notes-title {
+    font-size: 12px;
+    color: var(--text);
+  }
+  .field-notes-arrow {
+    color: var(--red);
+    font-size: 18px;
+  }
+
 </style>
 </head>
 <body>
