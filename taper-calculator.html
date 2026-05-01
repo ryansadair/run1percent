@@ -663,29 +663,35 @@
     font-size: 18px;
   }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
     border-top: 1px solid var(--border);
-    padding: 24px 40px;
+    padding: 40px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 100%;
   }
-
-  .footer-left {
-    font-size: 11px;
-    color: var(--text-dim);
+  footer img { height: 20px; opacity: 0.4; transition: opacity 0.2s; }
+  footer img:hover { opacity: 1; }
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
   }
-
-  .footer-left strong {
-    color: var(--text-mid);
-    font-weight: 400;
+  .footer-links a {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
   }
-
-  .footer-right {
-    font-size: 10px;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
+  .footer-links a:hover { color: var(--white); }
+  .footer-copy {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #2a2a2a;
   }
 
   /* RESPONSIVE */
