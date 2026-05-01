@@ -420,7 +420,7 @@
   </div>
 </section>
 
-<!-- FIELD NOTES - Dynamic -->
+<!-- FIELD NOTES -->
 <div class="section-divider"></div>
 <section id="notes">
   <div class="section-label">From the road</div>
@@ -428,8 +428,8 @@
   
   <div class="notes-grid" id="notesGrid"></div>
 
-  <div style="text-align:center; margin-top: 60px;">
-    <button id="loadMoreBtn" class="btn-primary" style="min-width: 200px; padding: 16px 32px;">
+  <div style="text-align: center; margin-top: 60px;">
+    <button id="loadMoreBtn" class="btn-primary" style="min-width: 200px; padding: 16px 40px; font-size: 11px;">
       Load More Notes
     </button>
   </div>
@@ -482,7 +482,7 @@
 
 <script>
 // ==================== FIELD NOTES DATA ====================
-// Add new notes here. Put newest notes at the TOP of the array.
+// Add new notes here. Put **newest** notes at the TOP of the array.
 const fieldNotes = [
   {
     url: "field-note-first-mile.html",
@@ -511,41 +511,51 @@ function renderNotes() {
   const grid = document.getElementById('notesGrid');
   const loadMoreBtn = document.getElementById('loadMoreBtn');
 
+  if (!grid) return;
+
+  // Clear current cards
   grid.innerHTML = '';
 
   const notesToShow = fieldNotes.slice(0, currentlyShown + notesPerLoad);
 
   notesToShow.forEach(note => {
-    const card = document.createElement('a');
-    card.href = note.url;
-    card.className = 'note-card';
-    card.style.textDecoration = 'none';
-    card.style.color = 'inherit';
-    card.innerHTML = `
-      <div class="note-date">${note.date}</div>
-      <div class="note-title">${note.title}</div>
-      <div class="note-excerpt">${note.excerpt}</div>
-      <span class="note-arrow">Read →</span>
+    const cardHTML = `
+      <a href="${note.url}" class="note-card" style="text-decoration:none; color:inherit; display:block;">
+        <div class="note-date">${note.date}</div>
+        <div class="note-title">${note.title}</div>
+        <div class="note-excerpt">${note.excerpt}</div>
+        <span class="note-arrow">Read →</span>
+      </a>
     `;
-    grid.appendChild(card);
+    grid.innerHTML += cardHTML;
   });
 
   currentlyShown = notesToShow.length;
 
+  // Show/hide Load More button
   if (currentlyShown >= fieldNotes.length) {
     loadMoreBtn.style.display = 'none';
+  } else {
+    loadMoreBtn.style.display = 'inline-block';
   }
 }
 
-document.getElementById('loadMoreBtn').addEventListener('click', renderNotes);
+// Load More button
+const loadMoreBtn = document.getElementById('loadMoreBtn');
+if (loadMoreBtn) {
+  loadMoreBtn.addEventListener('click', renderNotes);
+}
 
-// Initial render + nav scroll behavior
+// Initial render
 renderNotes();
 
+// Nav scroll effect
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-});
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+}
 </script>
 
 </body>
