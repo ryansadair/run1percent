@@ -825,14 +825,12 @@ function updateResults() {
   const targetSecs = paceToSecs(tgtMin, tgtSec);
 
   // Logged total time
-
   const totalLoggedSecs = miles.reduce(
     (sum, m) => sum + paceToSecs(m.min, m.sec),
     0
   );
 
-  // Current average
-
+  // Current average pace
   const avgSecs =
     miles.length > 0
       ? totalLoggedSecs / miles.length
@@ -841,8 +839,7 @@ function updateResults() {
   document.getElementById('avgPaceDisplay').textContent =
     secsToPace(avgSecs) + " /mi";
 
-  // Results
-
+  // Results container
   const container =
     document.getElementById('results-rows');
 
@@ -850,17 +847,12 @@ function updateResults() {
 
   const totalMiles = Math.ceil(goalDistance);
 
-  const goalTotalSecs =
-    targetSecs * goalDistance;
-
   for (let mile = 1; mile <= totalMiles; mile++) {
 
     const row = document.createElement('div');
-
     row.className = 'dist-row';
 
-    // Already completed
-
+    // Already completed miles
     if (mile <= miles.length) {
 
       row.innerHTML = `
@@ -876,20 +868,21 @@ function updateResults() {
 
     } else {
 
-      // Remaining miles INCLUDING this mile
+      // Total allowed time to hit target pace by THIS mile
+      const allowedTotalTime =
+        targetSecs * mile;
 
-      const remainingMiles =
-        totalMiles - mile + 1;
+      // Miles remaining until this checkpoint
+      const remainingMilesNeeded =
+        mile - miles.length;
 
-      // Remaining total time allowed
+      // Time left available
+      const remainingTimeAllowed =
+        allowedTotalTime - totalLoggedSecs;
 
-      const remainingSecsAllowed =
-        goalTotalSecs - totalLoggedSecs;
-
-      // Required pace from here forward
-
+      // Required pace over remaining miles
       const requiredPace =
-        remainingSecsAllowed / remainingMiles;
+        remainingTimeAllowed / remainingMilesNeeded;
 
       let paceColor = 'var(--text)';
 
