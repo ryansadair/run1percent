@@ -411,23 +411,25 @@ select option {
   }
 
 
-@media (max-width: 768px) {
-  .main {
-    grid-template-columns: 1fr;
-  }
-  .panel-left {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-
-    padding: 24px 20px;
-  }
-  .panel-right {
-    padding: 24px 20px;
-  }
-  .r1-nav-links {
-    display: none;
-  }
+  @media (max-width: 768px) {
+    header { padding: 0 20px; }
+    .logo-tagline { display: none; }
+    .hero { padding: 40px 20px 32px; }
+    .main { grid-template-columns: 1fr; }
+    .panel-left { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 20px; }
+    .panel-right { padding: 24px 20px; }
+    footer {
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
 }
+
+.footer-links {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+    nav { display: none; }
+  }
 
 </style>
 </head>
