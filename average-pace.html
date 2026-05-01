@@ -13,21 +13,17 @@
     --deep: #111111;
     --surface: #181818;
     --border: #2a2a2a;
-    --muted: #3a3a3a;
+    --muted: #3a3a2a;
     --text-dim: #666666;
     --text-mid: #999999;
     --text: #e8e8e8;
     --white: #f5f5f5;
     --red: #e5281a;
     --red-dim: #8a1a10;
-    --red-glow: rgba(229,40,26,0.15);
     --green: #22c55e;
-    --yellow: #eab308;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
 
   body {
     background: var(--black);
@@ -39,7 +35,6 @@
     overflow-x: hidden;
   }
 
-  /* NOISE OVERLAY */
   body::before {
     content: '';
     position: fixed;
@@ -50,270 +45,92 @@
     opacity: 0.5;
   }
 
-  /* HEADER & NAV (matched to Taper) */
-  .r1-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 40px;
-    background: rgba(8,8,8,0.97);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(10px);
-  }
-  .r1-nav-logo img { height: 35px; display: block; }
-  .r1-nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-  .r1-nav-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .r1-nav-links a:hover { color: var(--text); }
-  .r1-back {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-decoration: none;
-    border: 1px solid var(--border);
-    padding: 9px 18px;
-    transition: all 0.2s;
-  }
-  .r1-back:hover { color: var(--text); border-color: var(--red); }
-  .r1-spacer { height: 64px; }
+  /* NAV & HERO (matched to Taper) */
+  .r1-nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:18px 40px; background:rgba(8,8,8,0.97); border-bottom:1px solid var(--border); backdrop-filter:blur(10px); }
+  .r1-nav-logo img { height:35px; }
+  .r1-nav-links { display:flex; gap:28px; list-style:none; }
+  .r1-nav-links a { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); text-decoration:none; }
+  .r1-nav-links a:hover { color:var(--text); }
+  .r1-back { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); border:1px solid var(--border); padding:9px 18px; text-decoration:none; }
+  .r1-spacer { height:64px; }
 
-  /* HERO */
-  .hero {
-    padding: 64px 40px 48px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
+  .hero { padding:64px 40px 48px; border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
   .hero::after {
-    content: 'PACE';
-    position: absolute;
-    right: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(100px, 18vw, 220px);
-    color: rgba(229,40,26,0.04);
-    line-height: 1;
-    pointer-events: none;
-    letter-spacing: -0.02em;
-    user-select: none;
+    content:'PACE'; position:absolute; right:-20px; top:50%; transform:translateY(-50%);
+    font-family:'Bebas Neue',sans-serif; font-size:clamp(100px,18vw,220px); color:rgba(229,40,26,0.04);
+    pointer-events:none; user-select:none;
   }
-  .hero-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .hero-label::before {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 1px;
-    background: var(--red);
-  }
-  h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(42px, 7vw, 80px);
-    letter-spacing: 0.04em;
-    line-height: 0.95;
-    color: var(--white);
-    margin-bottom: 16px;
-  }
-  .hero-sub {
-    color: var(--text-mid);
-    font-size: 12px;
-    max-width: 480px;
-    line-height: 1.7;
-  }
+  .hero-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .hero-label::before { content:''; display:inline-block; width:20px; height:1px; background:var(--red); }
+  h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(42px,7vw,80px); letter-spacing:0.04em; line-height:0.95; color:var(--white); margin-bottom:16px; }
 
-  /* MAIN LAYOUT - Two column like Taper */
-  .main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: calc(100vh - 200px);
-  }
-  .panel-left {
-    border-right: 1px solid var(--border);
-    padding: 40px;
-  }
-  .panel-right {
-    padding: 40px;
-    background: var(--deep);
-  }
+  .main { display:grid; grid-template-columns:1fr 1fr; min-height:calc(100vh - 200px); }
+  .panel-left { border-right:1px solid var(--border); padding:40px; }
+  .panel-right { padding:40px; background:var(--deep); }
 
   .section-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
+    font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim);
+    margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid var(--border);
   }
 
-  .field {
-    margin-bottom: 28px;
-  }
+  .field { margin-bottom:28px; }
   .field label {
-    display: block;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 8px;
+    display:block; font-size:10px; letter-spacing:0.15em; text-transform:uppercase;
+    color:var(--text-dim); margin-bottom:8px;
   }
 
   input[type="number"], select {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'DM Mono', monospace;
-    font-size: 14px;
-    padding: 10px 14px;
-    outline: none;
-    border-radius: 0;
+    width:100%; background:var(--surface); border:1px solid var(--border); color:var(--text);
+    font-family:'DM Mono',monospace; font-size:14px; padding:10px 14px; outline:none;
   }
-  input[type="number"]:focus, select:focus {
-    border-color: var(--red);
-    background: rgba(229,40,26,0.04);
-  }
+  input:focus, select:focus { border-color:var(--red); background:rgba(229,40,26,0.04); }
 
-  /* Goal Pace Row */
+  /* Goal Pace */
   .pace-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 12px 14px;
+    display:flex; align-items:center; gap:12px; background:var(--surface);
+    border:1px solid var(--border); padding:12px 14px;
   }
   .pace-input {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--red);
-    font-family: 'DM Mono', monospace;
-    font-size: 24px;
-    text-align: center;
-    width: 60px;
-    padding: 8px;
+    background:var(--surface); border:1px solid var(--border); color:var(--red);
+    font-size:24px; text-align:center; width:68px; padding:8px;
   }
 
   /* Mile Cards */
   .mile-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    margin-bottom: 12px;
-    padding: 12px 14px;
+    background:var(--surface); border:1px solid var(--border); padding:12px 14px;
+    margin-bottom:12px; cursor:pointer;
   }
+  .mile-card:hover { border-color:var(--red); }
 
   .btn-calculate {
-    width: 100%;
-    background: var(--red);
-    color: var(--white);
-    border: none;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.1em;
-    padding: 16px;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 16px;
+    width:100%; background:var(--red); color:var(--white); border:none;
+    font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.1em;
+    padding:16px; cursor:pointer; margin-top:16px;
   }
-  .btn-calculate:hover { background: #cc2418; }
+  .btn-calculate:hover { background:#cc2418; }
 
-  /* Results */
   .results-header {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 14px 18px;
-    margin-bottom: 24px;
+    background:var(--surface); border:1px solid var(--border); padding:14px 18px; margin-bottom:24px;
   }
-  .avg-pace {
-    font-size: 28px;
-    font-family: 'Bebas Neue', sans-serif;
-    color: var(--red);
-  }
+  .avg-pace { font-size:28px; font-family:'Bebas Neue',sans-serif; color:var(--red); }
 
   .dist-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
+    display:flex; justify-content:space-between; padding:12px 0;
+    border-bottom:1px solid var(--border); font-size:14px;
   }
-  .dist-row:last-child { border-bottom: none; }
-
-  /* Footer */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  footer img {
-    height: 40px;
-    opacity: 0.4;
-    transition: opacity 0.2s;
-  }
-  footer img:hover { opacity: 1; }
-  .footer-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-  }
-  .footer-links a {
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: var(--muted);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--text); }
-  .footer-copy {
-    font-size: 9px;
-    letter-spacing: 1px;
-    color: #2a2a2a;
-  }
+  .dist-row:last-child { border-bottom:none; }
 
   @media (max-width: 768px) {
-    .main { grid-template-columns: 1fr; }
-    .panel-left { border-right: none; border-bottom: 1px solid var(--border); }
-    footer {
-      flex-direction: column;
-      gap: 24px;
-      text-align: center;
-      padding: 32px 20px;
-    }
-    .footer-links { flex-wrap: wrap; justify-content: center; }
-    .r1-nav { padding: 14px 20px; }
-    .r1-nav-links { display: none; }
+    .main { grid-template-columns:1fr; }
+    .panel-left { border-right:none; border-bottom:1px solid var(--border); padding:24px 20px; }
+    .panel-right { padding:24px 20px; }
   }
 </style>
 </head>
 <body>
 
 <nav class="r1-nav">
-  <a class="r1-nav-logo" href="index.html">
-    <img src="logo-white.png" alt="RUN1%">
-  </a>
+  <a class="r1-nav-logo" href="index.html"><img src="logo-white.png" alt="RUN1%"></a>
   <ul class="r1-nav-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
@@ -331,7 +148,7 @@
 
 <div class="main">
 
-  <!-- LEFT PANEL: INPUTS -->
+  <!-- LEFT: INPUTS -->
   <div class="panel-left">
     <div class="section-label">Race Info</div>
 
@@ -347,7 +164,7 @@
       </select>
     </div>
 
-    <div id="customDistContainer" class="field" style="display: none;">
+    <div id="customDistContainer" class="field" style="display:none;">
       <label>Custom Distance (miles)</label>
       <input type="number" id="customDistance" placeholder="e.g. 15.5" step="0.1" min="1">
     </div>
@@ -374,21 +191,18 @@
     <button class="btn-calculate" onclick="updateResults()">Update Projections →</button>
   </div>
 
-  <!-- RIGHT PANEL: RESULTS -->
+  <!-- RIGHT: RESULTS -->
   <div class="panel-right">
-    <div id="resultsContent">
-      <div class="results-header">
-        <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim);">Current Average Pace</div>
-        <div id="avgPaceDisplay" class="avg-pace">--:-- /mi</div>
-      </div>
-
-      <div class="section-label">Required Pace by Remaining Distance</div>
-      <div id="results-rows"></div>
+    <div class="results-header">
+      <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim);">Current Average Pace</div>
+      <div id="avgPaceDisplay" class="avg-pace">--:-- /mi</div>
     </div>
+
+    <div class="section-label">Required Pace by Remaining Distance</div>
+    <div id="results-rows"></div>
   </div>
 </div>
 
-<!-- FOOTER (matched to Taper) -->
 <footer>
   <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
   <ul class="footer-links">
@@ -400,56 +214,58 @@
 </footer>
 
 <script>
-// ====================== CONFIG & STATE ======================
+// State
 let miles = [];
 let goalDistance = 13.1;
 
-// ====================== DISTANCE SELECTOR ======================
+// Distance selector
 document.getElementById('goalDistance').addEventListener('change', function() {
-  if (this.value === 'custom') {
-    document.getElementById('customDistContainer').style.display = 'block';
-  } else {
-    document.getElementById('customDistContainer').style.display = 'none';
-    goalDistance = parseFloat(this.value);
-  }
+  document.getElementById('customDistContainer').style.display = (this.value === 'custom') ? 'block' : 'none';
+  if (this.value !== 'custom') goalDistance = parseFloat(this.value);
   updateResults();
 });
 
-document.getElementById('customDistance').addEventListener('input', function() {
-  goalDistance = parseFloat(this.value) || 13.1;
+document.getElementById('customDistance').addEventListener('input', () => {
+  goalDistance = parseFloat(document.getElementById('customDistance').value) || 13.1;
   updateResults();
 });
 
-// ====================== PACE HELPERS ======================
-function paceToSecs(min, sec) {
-  return (parseInt(min) || 0) * 60 + (parseInt(sec) || 0);
-}
-
+// Pace helpers
+function paceToSecs(min, sec) { return (parseInt(min)||0)*60 + (parseInt(sec)||0); }
 function secsToPace(s) {
   if (!isFinite(s) || s <= 0) return '--:--';
-  const min = Math.floor(s / 60);
+  const m = Math.floor(s/60);
   const sec = Math.round(s % 60);
-  return `${min}:${sec.toString().padStart(2, '0')}`;
+  return `${m}:${sec.toString().padStart(2,'0')}`;
 }
 
-// ====================== MILE MANAGEMENT ======================
+// Add mile
 function addMile() {
-  const tgtMin = parseInt(document.getElementById('tgt-min').value) || 9;
-  const tgtSec = parseInt(document.getElementById('tgt-sec').value) || 0;
-  miles.push({ min: tgtMin, sec: tgtSec });
+  const min = parseInt(document.getElementById('tgt-min').value) || 9;
+  const sec = parseInt(document.getElementById('tgt-sec').value) || 0;
+  miles.push({min, sec});
   renderMiles();
 }
 
+// Delete mile
 function deleteMile(idx) {
   miles.splice(idx, 1);
   renderMiles();
 }
 
-function clearAll() {
-  miles = [];
+// Edit mile (click to edit)
+function editMile(idx) {
+  const m = miles[idx];
+  const newMin = prompt("Minutes for Mile " + (idx+1), m.min);
+  const newSec = prompt("Seconds for Mile " + (idx+1), m.sec);
+  
+  if (newMin !== null) m.min = parseInt(newMin) || m.min;
+  if (newSec !== null) m.sec = parseInt(newSec) || m.sec;
+  
   renderMiles();
 }
 
+// Render logged miles
 function renderMiles() {
   const container = document.getElementById('mile-rows');
   container.innerHTML = '';
@@ -458,55 +274,58 @@ function renderMiles() {
     const card = document.createElement('div');
     card.className = 'mile-card';
     card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div><strong>Mile ${i+1}</strong></div>
-        <div style="font-family:Bebas Neue,sans-serif;font-size:22px;">${m.min}:${String(m.sec).padStart(2,'0')}</div>
-        <button onclick="deleteMile(${i})" style="background:none;border:none;color:var(--red);font-size:20px;cursor:pointer;">×</button>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div onclick="editMile(${i})" style="cursor:pointer; flex:1;">
+          <strong>Mile ${i+1}</strong><br>
+          <span style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--red);">${m.min}:${String(m.sec).padStart(2,'0')}</span>
+        </div>
+        <button onclick="event.stopImmediatePropagation(); deleteMile(${i});" style="background:none;border:none;color:var(--red);font-size:22px;">×</button>
       </div>
     `;
     container.appendChild(card);
   });
-
   updateResults();
 }
 
-// ====================== CALCULATIONS & RENDER RESULTS ======================
+// Clear all
+function clearAll() {
+  if (confirm("Clear all logged splits?")) {
+    miles = [];
+    renderMiles();
+  }
+}
+
+// Main calculation & render
 function updateResults() {
   const tgtMin = parseInt(document.getElementById('tgt-min').value) || 9;
   const tgtSec = parseInt(document.getElementById('tgt-sec').value) || 0;
   const targetSecs = paceToSecs(tgtMin, tgtSec);
 
-  // Calculate current average
-  let totalSecs = 0;
-  if (miles.length > 0) {
-    totalSecs = miles.reduce((sum, m) => sum + paceToSecs(m.min, m.sec), 0);
-  }
+  // Current average
+  let totalSecs = miles.reduce((sum, m) => sum + paceToSecs(m.min, m.sec), 0);
   const avgSecs = miles.length > 0 ? totalSecs / miles.length : targetSecs;
   document.getElementById('avgPaceDisplay').textContent = secsToPace(avgSecs) + " /mi";
 
-  // Render required paces
+  // Results
   const container = document.getElementById('results-rows');
   container.innerHTML = '';
 
   const milesDone = miles.length;
-  const milesRemaining = Math.max(0, Math.ceil(goalDistance) - milesDone);
+  const totalMiles = Math.ceil(goalDistance);
 
-  for (let remaining = milesRemaining; remaining >= 0; remaining--) {
-    const totalMilesSoFar = goalDistance - remaining;
-    if (totalMilesSoFar <= 0) continue;
+  for (let done = milesDone; done <= totalMiles; done++) {
+    const remaining = totalMiles - done;
+    let required = targetSecs;
 
-    let required = null;
     if (miles.length > 0 && remaining > 0) {
       required = (targetSecs * goalDistance - totalSecs) / remaining;
-    } else if (remaining === 0) {
-      required = avgSecs;
     }
 
     const row = document.createElement('div');
     row.className = 'dist-row';
     row.innerHTML = `
-      <div>${Math.round(totalMilesSoFar)} mi completed</div>
-      <div style="font-family:Bebas Neue,sans-serif;font-size:20px;color:${required && required < targetSecs - 10 ? 'var(--green)' : 'var(--text)'}">
+      <div>${done} mi completed</div>
+      <div style="font-family:Bebas Neue,sans-serif; font-size:20px; color:${required < targetSecs - 15 ? 'var(--green)' : 'var(--text)'}">
         ${secsToPace(required)} /mi
       </div>
     `;
@@ -514,8 +333,8 @@ function updateResults() {
   }
 }
 
-// Init
-addMile(); // start with one mile
+// Initialize
+addMile();
 updateResults();
 
 </script>
