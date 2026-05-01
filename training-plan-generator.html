@@ -3,77 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Training Plan Generator — RUN1%</title>
+<title>Why Your First Mile Is Lying to You — RUN1%</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-body {
-  background:#080808;
-  color:#ffffff;
-  font-family:Arial,sans-serif;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:100vh;
-  margin:0;
-  text-align:center;
-  padding:40px;
-}
-.container {
-  max-width:700px;
-}
-h1 {
-  font-size:48px;
-  margin-bottom:20px;
-}
-p {
-  color:#aaaaaa;
-  line-height:1.7;
-}
-a {
-  color:#e02020;
-  text-decoration:none;
-}
-</style>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  /* ── INJECTED NAV ── */
-  *{box-sizing:border-box;margin:0;padding:0;}
-  :root{--red:#e02020;--black:#080808;--border:#1e1e1e;--muted:#555;}
-  body{background:#080808;color:#fff;font-family:'DM Mono',monospace;}
-  .r1-nav{
-    position:fixed;top:0;left:0;right:0;z-index:200;
-    display:flex;align-items:center;justify-content:space-between;
+  :root {
+    --black: #0a0a0a;
+    --deep: #111111;
+    --surface: #181818;
+    --border: #2a2a2a;
+    --muted: #3a3a3a;
+    --text-dim: #666666;
+    --text-mid: #999999;
+    --text: #e8e8e8;
+    --white: #f5f5f5;
+    --red: #e5281a;
+    --red-dim: #8a1a10;
+    --red-glow: rgba(229,40,26,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  .r1-nav {
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    display:flex; align-items:center; justify-content:space-between;
     padding:18px 40px;
     background:rgba(8,8,8,0.97);
     border-bottom:1px solid var(--border);
     backdrop-filter:blur(10px);
   }
-  .r1-nav-logo img{
-    height:35px;
-    display:block;
-    background:transparent;
+  .r1-nav-logo img { height:35px; display:block; }
+  .r1-nav-links {
+    display: flex; align-items: center; gap: 28px; list-style: none;
   }
-  .r1-nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
-  .r1-nav-links a{
-    font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;
-    text-transform:uppercase;color:var(--muted);text-decoration:none;
-    transition:color 0.2s;
+  @media (max-width: 640px) {
+    .r1-nav-links { display: none; }
   }
-  .r1-nav-links a:hover{color:#fff;}
-  .r1-back{
-    font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;
-    text-transform:uppercase;color:var(--muted);text-decoration:none;
-    border:1px solid var(--border);padding:9px 18px;
-    transition:color 0.2s,border-color 0.2s;
+  .r1-nav-links a {
+    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    color:var(--text-dim); text-decoration:none;
   }
-  .r1-back:hover{color:#fff;border-color:#444;}
-  .r1-spacer{height:64px;}
-  @media(max-width:640px){
-    .r1-nav{padding:14px 20px;}
-    .r1-nav-links{display:none;}
+  .r1-nav-links a:hover { color:var(--text); }
+  .r1-back {
+    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    color:var(--text-dim); border:1px solid var(--border); 
+    padding:9px 18px; text-decoration:none;
+  }
+  .r1-back:hover { color:var(--text); border-color:var(--red); }
+  .r1-spacer { height:64px; }
+
+  /* MAIN CONTENT AREA */
+  .blog-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 40px 120px;
+  }
+
+  .blog-header {
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+  }
+
+  .blog-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .blog-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--red);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 7vw, 72px);
+    letter-spacing: 0.02em;
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .blog-meta {
+    color: var(--text-mid);
+    font-size: 12px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .blog-content {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text);
+  }
+
+  .blog-content h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin: 60px 0 24px;
+  }
+
+  .blog-content h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--white);
+    margin: 48px 0 20px;
+  }
+
+  .blog-content p {
+    margin-bottom: 28px;
+  }
+
+  .blog-content a {
+    color: var(--red);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 60px 40px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
+  footer img:hover { opacity: 1; }
+  .footer-links {
+    display: flex; gap: 28px; list-style: none;
+  }
+  .footer-links a {
+    font-size: 9px; letter-spacing: 2px; color: var(--muted);
+    text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+  .footer-copy {
+    font-size: 9px; letter-spacing: 1px; color: #2a2a2a;
+  }
+
+  @media (max-width: 768px) {
+    .blog-container {
+      padding: 40px 20px 80px;
+    }
+    footer {
+      flex-direction: column;
+      text-align: center;
+      gap: 32px;
+    }
   }
 </style>
 </head>
 <body>
+
 <nav class="r1-nav">
   <a class="r1-nav-logo" href="index.html">
     <img src="logo-white.png" alt="RUN1%">
@@ -87,9 +204,30 @@ a {
 </nav>
 <div class="r1-spacer"></div>
 
-<div class="container">
-  <h1>Training Plan Generator</h1>
-  <p><a href="index.html">← Back to homepage</a></p>
+<div class="blog-container">
+
+  <div class="blog-header">
+    <div class="blog-label">Field Notes</div>
+    <h1>Training Plan Generator</h1>
+    <div class="blog-meta">
+
+    </div>
+  </div>
+
+  <div class="blog-content">
+    
+
 </div>
+
+<footer>
+  <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
+  <ul class="footer-links">
+    <li><a href="index.html#tools">Tools</a></li>
+    <li><a href="index.html#notes">Field Notes</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR</div>
+</footer>
+
 </body>
 </html>
