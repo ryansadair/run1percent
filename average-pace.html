@@ -410,24 +410,26 @@ select option {
     color: #2a2a2a;
   }
 
-
-@media (max-width: 768px) {
-  .main {
-    grid-template-columns: 1fr;
-  }
-  .panel-left {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-
-    padding: 24px 20px;
-  }
-  .panel-right {
-    padding: 24px 20px;
-  }
-  .r1-nav-links {
-    display: none;
-  }
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    header { padding: 0 20px; }
+    .logo-tagline { display: none; }
+    .hero { padding: 40px 20px 32px; }
+    .main { grid-template-columns: 1fr; }
+    .panel-left { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 20px; }
+    .panel-right { padding: 24px 20px; }
+    footer {
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
 }
+
+.footer-links {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+    nav { display: none; }
+  }
 
 </style>
 </head>
@@ -624,18 +626,7 @@ select option {
 
 </div>
 
-  <!-- FOOTER -->
-<footer>
-  <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
 
-  <ul class="footer-links">
-    <li><a href="index.html#tools">Tools</a></li>
-    <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="index.html#about">About</a></li>
-  </ul>
-
-  <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR</div>
-</footer>
 
 <script>
 
