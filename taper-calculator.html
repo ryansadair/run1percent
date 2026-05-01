@@ -5,42 +5,128 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taper Calculator — Run1%</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-/* KEEPING YOUR ORIGINAL STYLES UNCHANGED FOR BREVITY */
-/* (all your CSS remains exactly the same) */
-</style>
+:root {
+  --black:#0a0a0a;
+  --deep:#111;
+  --surface:#181818;
+  --border:#2a2a2a;
+  --text:#e8e8e8;
+  --text-dim:#666;
+  --text-mid:#999;
+  --white:#f5f5f5;
+  --red:#e5281a;
+}
 
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  background:var(--black);
+  color:var(--text);
+  font-family:'DM Mono',monospace;
+  font-size:13px;
+}
+
+.hero{padding:60px 40px;border-bottom:1px solid var(--border);}
+h1{font-family:'Bebas Neue';font-size:72px;color:var(--white);line-height:1;}
+
+.main{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}
+
+.panel-left{padding:40px;border-right:1px solid var(--border);}
+.panel-right{padding:40px;background:var(--deep);}
+
+.section-label{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:var(--text-dim);
+  margin-bottom:18px;
+  border-bottom:1px solid var(--border);
+  padding-bottom:8px;
+}
+
+.field{margin-bottom:24px;}
+
+label{
+  display:block;
+  font-size:10px;
+  color:var(--text-dim);
+  margin-bottom:6px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+}
+
+input,select{
+  width:100%;
+  padding:10px 12px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-family:inherit;
+  outline:none;
+}
+
+select{cursor:pointer;}
+
+.btn{
+  width:100%;
+  padding:14px;
+  background:var(--red);
+  color:#fff;
+  border:none;
+  font-family:'Bebas Neue';
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* custom distance box */
+#customDistanceBox{
+  display:none;
+  margin-top:10px;
+}
+
+.race-info{
+  background:var(--surface);
+  padding:14px;
+  border:1px solid var(--border);
+  margin-bottom:20px;
+}
+
+.week{
+  display:grid;
+  grid-template-columns:80px 1fr 80px;
+  padding:12px 0;
+  border-bottom:1px solid #222;
+}
+
+.week:last-child{border-bottom:none;}
+
+.bar{
+  height:6px;
+  background:#222;
+  position:relative;
+}
+
+.bar > div{
+  height:100%;
+  background:var(--red);
+}
+
+.tip{
+  padding:10px 0;
+  border-bottom:1px solid #222;
+  font-size:11px;
+  color:var(--text-mid);
+}
+</style>
 </head>
 
 <body>
 
-<!-- NAV (unchanged) -->
-<nav class="r1-nav">
-  <a class="r1-nav-logo" href="index.html">
-    <img src="logo-white.png" alt="RUN1%">
-  </a>
-
-  <ul class="r1-nav-links">
-    <li><a href="index.html#tools">Tools</a></li>
-    <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="index.html#about">About</a></li>
-  </ul>
-
-  <a class="r1-back" href="index.html">Back</a>
-</nav>
-
-<div class="r1-spacer"></div>
-
 <section class="hero">
-  <div class="hero-label">Tool No. 04</div>
   <h1>Taper<br>Calculator</h1>
-  <p class="hero-sub">
-    Enter your peak mileage and race date. Get a science-backed taper schedule.
-  </p>
 </section>
 
 <div class="main">
@@ -48,72 +134,35 @@
 <!-- LEFT -->
 <div class="panel-left">
 
-  <div class="section-label">Your Race Info</div>
+<div class="section-label">Race Setup</div>
 
-  <div class="field">
-    <label>Race Distance</label>
-    <select id="raceDistance">
-      <option value="half">Half Marathon (13.1 mi)</option>
-      <option value="marathon">Marathon (26.2 mi)</option>
-      <option value="custom">Custom Distance</option>
-    </select>
-  </div>
+<div class="field">
+<label>Race Distance</label>
+<select id="raceDistance" onchange="handleDistanceChange()">
+  <option value="half">Half Marathon (13.1)</option>
+  <option value="marathon">Marathon (26.2)</option>
+  <option value="custom">Custom</option>
+</select>
 
-  <!-- ✅ CUSTOM DISTANCE (NEW) -->
-  <div class="field" id="customDistanceField" style="display:none;">
-    <label>Custom Distance (miles)</label>
-    <input type="number" id="customDistance" placeholder="e.g. 18" step="0.1" min="1">
-  </div>
+<div id="customDistanceBox">
+  <label>Custom Distance (miles)</label>
+  <input type="number" id="customDistance" placeholder="e.g. 18">
+</div>
+</div>
 
-  <div class="field">
-    <label>Race Date</label>
-    <input type="date" id="raceDate">
-  </div>
+<div class="field">
+<label>Peak Weekly Mileage</label>
+<input type="number" id="peakMiles" placeholder="e.g. 45">
+</div>
 
-  <div class="field">
-    <label>Peak Weekly Mileage</label>
-    <input type="number" id="peakMiles" placeholder="e.g. 42">
-  </div>
-
-  <div class="field">
-    <label>Taper Style</label>
-    <select id="taperStyle">
-      <option value="standard">Standard</option>
-      <option value="aggressive">Aggressive</option>
-      <option value="conservative">Conservative</option>
-    </select>
-  </div>
-
-  <div class="field">
-    <label>Experience Level</label>
-    <select id="level">
-      <option value="intermediate">Intermediate</option>
-      <option value="advanced">Advanced</option>
-    </select>
-  </div>
-
-  <button class="btn-calculate" onclick="calculate()">Calculate Taper</button>
+<button class="btn" onclick="calculate()">Generate Taper</button>
 
 </div>
 
 <!-- RIGHT -->
 <div class="panel-right">
 
-  <div id="resultsEmpty">
-    <p>Enter race info to generate taper plan</p>
-  </div>
-
-  <div id="resultsContent" style="display:none;">
-
-    <div class="race-info-bar" id="raceInfoBar"></div>
-
-    <div class="weeks-label">Weekly Mileage Schedule</div>
-    <div id="weeksContainer"></div>
-
-    <div class="weeks-label">Race Week Field Notes</div>
-    <div id="tipsContainer"></div>
-
-  </div>
+<div id="results"></div>
 
 </div>
 
@@ -121,152 +170,103 @@
 
 <script>
 
-let unit = 'miles';
-
-/* =========================
-   CUSTOM DISTANCE TOGGLE
-========================= */
-document.getElementById('raceDistance').addEventListener('change', function () {
-  document.getElementById('customDistanceField').style.display =
-    this.value === 'custom' ? 'block' : 'none';
-});
-
-/* =========================
-   TAPERS
-========================= */
-
-function getTaperWeeks(distance, style) {
-  const base = {
-    half: { standard: 2, aggressive: 2, conservative: 3 },
-    marathon: { standard: 3, aggressive: 2, conservative: 4 }
-  };
-  return base[distance][style];
+function handleDistanceChange(){
+  const val = document.getElementById('raceDistance').value;
+  document.getElementById('customDistanceBox').style.display =
+    val === 'custom' ? 'block' : 'none';
 }
 
-function getTaperMultipliers(weeks, style, level) {
-  const adv = level === 'advanced';
-
-  if (weeks === 2) {
-    return style === 'aggressive'
-      ? [adv ? 0.6 : 0.55, adv ? 0.35 : 0.3]
-      : style === 'conservative'
-        ? [adv ? 0.75 : 0.7, adv ? 0.5 : 0.45]
-        : [adv ? 0.7 : 0.65, adv ? 0.4 : 0.35];
+function getDistance(){
+  const type = document.getElementById('raceDistance').value;
+  if(type === 'custom'){
+    return parseFloat(document.getElementById('customDistance').value || 0);
   }
-
-  if (weeks === 3) {
-    return style === 'aggressive'
-      ? [0.65, 0.45, 0.3]
-      : style === 'conservative'
-        ? [0.8, 0.6, 0.4]
-        : [0.75, 0.5, 0.3];
-  }
-
-  return [0.7, 0.4];
+  if(type === 'half') return 13.1;
+  if(type === 'marathon') return 26.2;
+  return 13.1;
 }
 
-/* =========================
-   MAIN CALCULATION
-========================= */
+function getTaper(distance){
+  if(distance <= 13.1) return 2;
+  if(distance <= 26.2) return 3;
+  return 4;
+}
 
-function calculate() {
+function calculate(){
 
-  const peakMiles = parseFloat(document.getElementById('peakMiles').value);
-  const style = document.getElementById('taperStyle').value;
-  const level = document.getElementById('level').value;
+  const peak = parseFloat(document.getElementById('peakMiles').value || 0);
+  const distance = getDistance();
+  const weeks = getTaper(distance);
 
-  let distance = document.getElementById('raceDistance').value;
-
-  // ✅ CUSTOM DISTANCE FIX
-  if (distance === 'custom') {
-    const custom = parseFloat(document.getElementById('customDistance').value);
-    if (!custom || custom <= 0) {
-      alert('Enter valid custom distance');
-      return;
-    }
-    distance = custom;
-  }
-
-  const raceDate = new Date(document.getElementById('raceDate').value);
-  const today = new Date();
-
-  const taperWeeks =
-    typeof distance === 'number'
-      ? 3
-      : getTaperWeeks(distance, style);
-
-  const multipliers =
-    typeof distance === 'number'
-      ? getTaperMultipliers(3, style, level)
-      : getTaperMultipliers(taperWeeks, style, level);
-
-  /* =========================
-     DISPLAY NAME FIX
-  ========================= */
-
-  const names = {
-    half: 'Half Marathon',
-    marathon: 'Marathon'
-  };
-
-  const displayDistance =
-    typeof distance === 'number'
-      ? `${distance.toFixed(1)} mi`
-      : names[distance];
-
-  document.getElementById('raceInfoBar').innerHTML = `
-    <div>${displayDistance}</div>
-    <div>${peakMiles} mi peak</div>
-    <div>${taperWeeks} week taper</div>
-  `;
-
-  /* =========================
-     WEEK BUILD
-  ========================= */
-
-  const container = document.getElementById('weeksContainer');
+  const container = document.getElementById('results');
   container.innerHTML = '';
 
-  multipliers.forEach((m, i) => {
-    const div = document.createElement('div');
-    div.className = 'week-row';
+  // header
+  container.innerHTML += `
+    <div class="race-info">
+      <div><strong>Distance:</strong> ${distance} mi</div>
+      <div><strong>Peak:</strong> ${peak} mi/week</div>
+      <div><strong>Taper Length:</strong> ${weeks} weeks</div>
+    </div>
+  `;
 
-    div.innerHTML = `
-      <div>Week ${i + 1}</div>
-      <div>
-        <div class="bar-track">
-          <div class="bar-fill" style="width:${m * 100}%"></div>
+  // taper curve
+  for(let i=weeks;i>=0;i--){
+
+    const pct = i === 0 ? 0.2 : (1 - (weeks - i + 1) * (0.25));
+    const miles = peak * Math.max(pct, 0.2);
+
+    container.innerHTML += `
+      <div class="week">
+        <div>Week ${weeks - i + 1}</div>
+        <div>
+          <div class="bar"><div style="width:${Math.max(pct*100,20)}%"></div></div>
         </div>
+        <div>${miles.toFixed(0)} mi</div>
       </div>
-      <div>${Math.round(peakMiles * m)} mi</div>
     `;
+  }
 
-    container.appendChild(div);
+  // race week notes (now properly tied to distance)
+  const tips = getTips(distance);
+
+  container.innerHTML += `<div style="margin-top:20px"></div>`;
+
+  tips.forEach(t=>{
+    container.innerHTML += `
+      <div class="tip"><strong>${t.h}</strong> ${t.t}</div>
+    `;
   });
+}
 
-  /* =========================
-     RACE WEEK NOTES (FIXED)
-  ========================= */
+function getTips(distance){
 
-  const tips = [
-    { strong: "Mon–Tue:", text: "Easy 30–40 min runs. No intensity." },
-    { strong: "Wed:", text: "Short strides + relaxed running. Optional 2×1 mi at race pace." },
-    { strong: "Thu:", text: "Easy or rest. Let fatigue fully drop." },
-    { strong: "Fri:", text: "Rest + prep gear." },
-    { strong: "Race Day:", text: "Controlled start. Commit after midpoint." }
+  if(distance <= 13.1){
+    return [
+      {h:"Mon–Tue:",t:"Easy 3–4 mile shakeouts."},
+      {h:"Wed:",t:"Strides + light activation."},
+      {h:"Thu:",t:"Rest or 2 miles easy."},
+      {h:"Fri:",t:"Full rest."},
+      {h:"Race:",t:"Controlled start, build late."}
+    ];
+  }
+
+  if(distance <= 26.2){
+    return [
+      {h:"Mon–Wed:",t:"Easy running only."},
+      {h:"Thu:",t:"Short tune-up w/ strides."},
+      {h:"Fri:",t:"Rest + carb load."},
+      {h:"Sat:",t:"Shakeout only."},
+      {h:"Race:",t:"Run disciplined first half."}
+    ];
+  }
+
+  return [
+    {h:"Week:",t:"Reduce volume aggressively but keep frequency."},
+    {h:"Midweek:",t:"Short intensity to stay sharp."},
+    {h:"Pre-race:",t:"Rest, fuel, sleep heavily."},
+    {h:"Race:",t:"Start conservative. Survive early miles."}
   ];
-
-  const tipContainer = document.getElementById('tipsContainer');
-  tipContainer.innerHTML = '';
-
-  tips.forEach(t => {
-    const el = document.createElement('div');
-    el.innerHTML = `<strong>${t.strong}</strong> ${t.text}`;
-    tipContainer.appendChild(el);
-  });
-
-  document.getElementById('resultsEmpty').style.display = 'none';
-  document.getElementById('resultsContent').style.display = 'block';
 }
 
 </script>
