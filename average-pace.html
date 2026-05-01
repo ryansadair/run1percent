@@ -54,7 +54,19 @@
     backdrop-filter:blur(10px);
   }
   .r1-nav-logo img { height:35px; }
-  .r1-nav-links { display:flex; gap:28px; list-style:none; }
+  .r1-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+/* Hide nav links on mobile */
+@media (max-width: 640px) {
+  .r1-nav-links {
+    display: none;
+  }
+}
   .r1-nav-links a { 
     font-size:10px; letter-spacing:2px; text-transform:uppercase; 
     color:var(--text-dim); text-decoration:none; 
