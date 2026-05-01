@@ -4,378 +4,236 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Average Pace — Run1%</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
-
 <style>
-
-:root {
-  --black: #0a0a0a;
-  --deep: #111111;
-  --surface: #181818;
-  --border: #2a2a2a;
-  --text-dim: #666666;
-  --text-mid: #999999;
-  --text: #e8e8e8;
-  --white: #f5f5f5;
-  --red: #e5281a;
-  --green: #22c55e;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: var(--black);
-  color: var(--text);
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
-  line-height: 1.6;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-
-  pointer-events: none;
-  z-index: 1000;
-  opacity: 0.5;
-}
-
-/* NAV */
-
-.r1-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 200;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 18px 40px;
-
-  background: rgba(8,8,8,0.97);
-
-  border-bottom: 1px solid var(--border);
-
-  backdrop-filter: blur(10px);
-}
-
-.r1-nav-logo img {
-  height: 35px;
-}
-
-.r1-nav-links {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-}
-
-.r1-nav-links a {
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  text-decoration: none;
-}
-
-.r1-nav-links a:hover {
-  color: var(--text);
-}
-
-.r1-back {
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-
-  color: var(--text-dim);
-
-  border: 1px solid var(--border);
-
-  padding: 9px 18px;
-
-  text-decoration: none;
-}
-
-.r1-back:hover {
-  color: var(--text);
-  border-color: var(--red);
-}
-
-.r1-spacer {
-  height: 64px;
-}
-
-/* HERO */
-
-.hero {
-  padding: 64px 40px 48px;
-  border-bottom: 1px solid var(--border);
-
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::after {
-  content: 'PACE';
-
-  position: absolute;
-  right: -20px;
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(100px,18vw,220px);
-
-  color: rgba(229,40,26,0.04);
-
-  pointer-events: none;
-  user-select: none;
-}
-
-.hero-label {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-
-  color: var(--red);
-
-  margin-bottom: 12px;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.hero-label::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--red);
-}
-
-h1 {
-  font-family: 'Bebas Neue', sans-serif;
-
-  font-size: clamp(42px,7vw,80px);
-
-  letter-spacing: 0.04em;
-  line-height: 0.95;
-
-  color: var(--white);
-
-  margin-bottom: 16px;
-}
-
-.hero-sub {
-  color: var(--text-mid);
-  max-width: 700px;
-}
-
-/* MAIN */
-
-.main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: calc(100vh - 200px);
-}
-
-.panel-left {
-  border-right: 1px solid var(--border);
-  padding: 40px;
-}
-
-.panel-right {
-  padding: 40px;
-  background: var(--deep);
-}
-
-.section-label {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-
-  color: var(--text-dim);
-
-  margin-bottom: 16px;
-
-  padding-bottom: 8px;
-
-  border-bottom: 1px solid var(--border);
-}
-
-.field {
-  margin-bottom: 28px;
-}
-
-.field label {
-  display: block;
-
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-
-  color: var(--text-dim);
-
-  margin-bottom: 8px;
-}
-
-input[type="number"],
-select {
-  width: 100%;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-
-  color: var(--text);
-
-  font-family: 'DM Mono', monospace;
-  font-size: 14px;
-
-  padding: 10px 14px;
-
-  outline: none;
-
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 6L11 1' fill='none' stroke='%23666' stroke-width='2'/%3E%3C/svg%3E");
-
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-
-  padding-right: 36px;
-}
-
-select:focus,
-input:focus {
-  border-color: var(--red);
-  background: rgba(229,40,26,0.04);
-}
-
-select option {
-  background: var(--surface);
-  color: var(--text);
-}
-
-.pace-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-
-  padding: 12px 14px;
-}
-
-.pace-input {
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-
-  color: var(--red);
-
-  font-size: 24px;
-
-  text-align: center;
-
-  width: 68px;
-
-  padding: 8px;
-}
-
-.mile-card {
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-
-  padding: 12px 14px;
-
-  margin-bottom: 12px;
-
-  cursor: pointer;
-}
-
-.mile-card:hover {
-  border-color: var(--red);
-}
-
-.btn-calculate {
-  width: 100%;
-
-  background: var(--red);
-
-  color: var(--white);
-
-  border: none;
-
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.1em;
-
-  padding: 16px;
-
-  cursor: pointer;
-
-  margin-top: 16px;
-}
-
-.btn-calculate:hover {
-  background: #cc2418;
-}
-
-.results-header {
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-
-  padding: 14px 18px;
-
-  margin-bottom: 24px;
-}
-
-.avg-pace {
-  font-size: 28px;
-  font-family: 'Bebas Neue', sans-serif;
-  color: var(--red);
-}
-
-.dist-row {
-  display: flex;
-  justify-content: space-between;
-
-  padding: 12px 0;
-
-  border-bottom: 1px solid var(--border);
-
-  font-size: 14px;
-}
-
-.dist-row:last-child {
-  border-bottom: none;
-}
-
-  /* ── FOOTER ── */
+  :root {
+    --black: #0a0a0a;
+    --deep: #111111;
+    --surface: #181818;
+    --border: #2a2a2a;
+    --muted: #3a3a3a;
+    --text-dim: #666666;
+    --text-mid: #999999;
+    --text: #e8e8e8;
+    --white: #f5f5f5;
+    --red: #e5281a;
+    --green: #22c55e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  /* NAV & HERO */
+  .r1-nav {
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 40px;
+    background:rgba(8,8,8,0.97);
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(10px);
+  }
+  .r1-nav-logo img { height:35px; }
+  .r1-nav-links { display:flex; gap:28px; list-style:none; }
+  .r1-nav-links a { 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    color:var(--text-dim); text-decoration:none; 
+  }
+  .r1-nav-links a:hover { color:var(--text); }
+  .r1-back { 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    color:var(--text-dim); border:1px solid var(--border); 
+    padding:9px 18px; text-decoration:none; 
+  }
+  .r1-back:hover { color:var(--text); border-color:var(--red); }
+  .r1-spacer { height:64px; }
+
+  .hero {
+    padding: 64px 40px 48px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: 'PACE';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(100px,18vw,220px);
+    color: rgba(229,40,26,0.04);
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--red);
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px,7vw,80px);
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .hero-sub {
+    color: var(--text-mid);
+    font-size: 12px;
+    max-width: 480px;
+    line-height: 1.7;
+  }
+
+  .main { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 200px); }
+  .panel-left { border-right: 1px solid var(--border); padding: 40px; }
+  .panel-right { padding: 40px; background: var(--deep); }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .field { margin-bottom: 28px; }
+  .field label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  input[type="number"], select {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    padding: 10px 14px;
+    outline: none;
+    appearance: none;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 6L11 1' fill='none' stroke='%23666' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  select:focus, input:focus {
+    border-color: var(--red);
+    background: rgba(229,40,26,0.04);
+  }
+
+  select option {
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  .pace-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+  }
+  .pace-input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--red);
+    font-size: 24px;
+    text-align: center;
+    width: 68px;
+    padding: 8px;
+  }
+
+  .mile-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+  .mile-card:hover { border-color: var(--red); }
+
+  .btn-calculate {
+    width: 100%;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    padding: 16px;
+    cursor: pointer;
+    margin-top: 16px;
+  }
+  .btn-calculate:hover { background: #cc2418; }
+
+  .results-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    margin-bottom: 24px;
+  }
+  .avg-pace {
+    font-size: 28px;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--red);
+  }
+
+  .dist-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .dist-row:last-child { border-bottom: none; }
+
+  /* ── FOOTER ── (EXACTLY MATCHED TO TAPER CALCULATOR) */
   footer {
     border-top: 1px solid var(--border);
     padding: 40px 48px;
@@ -385,15 +243,18 @@ select option {
     max-width: 100%;
   }
   footer img {
-  height: 40px;
-  opacity: 0.4;
-  transition: opacity 0.2s;
-}
+    height: 40px;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+  }
   footer img:hover { opacity: 1; }
+
   .footer-links {
     display: flex;
     gap: 28px;
     list-style: none;
+    margin: 0;
+    padding: 0;
   }
   .footer-links a {
     font-size: 9px;
@@ -404,230 +265,108 @@ select option {
     transition: color 0.2s;
   }
   .footer-links a:hover { color: var(--white); }
+
   .footer-copy {
     font-size: 9px;
     letter-spacing: 1px;
     color: #2a2a2a;
   }
 
-
+  /* RESPONSIVE */
   @media (max-width: 768px) {
-    header { padding: 0 20px; }
-    .logo-tagline { display: none; }
-    .hero { padding: 40px 20px 32px; }
     .main { grid-template-columns: 1fr; }
     .panel-left { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 20px; }
     .panel-right { padding: 24px 20px; }
     footer {
-  flex-direction: column;
-  gap: 24px;
-  text-align: center;
-}
-
-.footer-links {
-  flex-wrap: wrap;
-  justify-content: center;
-}
-    nav { display: none; }
+      flex-direction: column;
+      gap: 24px;
+      text-align: center;
+      padding: 32px 20px;
+    }
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
   }
-
 </style>
 </head>
-
-
 <body>
 
 <nav class="r1-nav">
-
   <a class="r1-nav-logo" href="index.html">
     <img src="logo-white.png" alt="RUN1%">
   </a>
-
   <ul class="r1-nav-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
-
   <a class="r1-back" href="index.html">Back</a>
-
 </nav>
-
 <div class="r1-spacer"></div>
 
 <section class="hero">
-
-  <div class="hero-label">Tool No. 01</div>
-
-  <h1>
-    Average Pace<br>
-    Calculator
-  </h1>
-
-  <p class="hero-sub">
-    Log your splits as you run and instantly see the pace needed
-    for the remaining miles to hit your target average.
-  </p>
-
+  <div class="hero-label">Tool No. 02</div>
+  <h1>Average Pace<br>Calculator</h1>
+  <p class="hero-sub">Log your splits as you run and instantly see the pace needed for the remaining miles to hit your target average.</p>
 </section>
 
 <div class="main">
 
-  <!-- LEFT -->
-
+  <!-- LEFT PANEL -->
   <div class="panel-left">
-
     <div class="section-label">Race Info</div>
 
     <div class="field">
-
       <label>Race Distance</label>
-
       <select id="goalDistance">
-
         <option value="13.1" selected>Half Marathon (13.1 mi)</option>
         <option value="26.2">Marathon (26.2 mi)</option>
         <option value="custom">Custom Distance</option>
-
       </select>
-
     </div>
 
     <div id="customDistContainer" class="field" style="display:none;">
-
       <label>Custom Distance (miles)</label>
-
-      <input
-        type="number"
-        id="customDistance"
-        placeholder="e.g. 15.5"
-        step="0.1"
-        min="1"
-      >
-
+      <input type="number" id="customDistance" placeholder="e.g. 15.5" step="0.1" min="1">
     </div>
 
     <div class="field">
-
       <label>Goal Pace (min/mile)</label>
-
       <div class="pace-row">
-
-        <input
-          type="number"
-          id="tgt-min"
-          class="pace-input"
-          value="9"
-          min="4"
-          max="20"
-        >
-
+        <input type="number" id="tgt-min" class="pace-input" value="9" min="4" max="20">
         <span style="font-size:28px;color:var(--red);">:</span>
-
-        <input
-          type="number"
-          id="tgt-sec"
-          class="pace-input"
-          value="00"
-          min="0"
-          max="59"
-        >
-
+        <input type="number" id="tgt-sec" class="pace-input" value="00" min="0" max="59">
         <span style="margin-left:8px;color:var(--text-dim);">/mi</span>
-
       </div>
-
     </div>
 
     <div class="field">
-
-      <div style="
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        margin-bottom:12px;
-      ">
-
-        <div class="section-label" style="
-          border:none;
-          padding:0;
-          margin:0;
-        ">
-          Logged Splits
-        </div>
-
-        <button
-          onclick="clearAll()"
-          style="
-            background:none;
-            border:none;
-            color:var(--text-dim);
-            font-size:11px;
-            cursor:pointer;
-          "
-        >
-          Clear All
-        </button>
-
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div class="section-label" style="border:none;padding:0;margin:0;">Logged Splits</div>
+        <button onclick="clearAll()" style="background:none;border:none;color:var(--text-dim);font-size:11px;cursor:pointer;">Clear All</button>
       </div>
-
       <div id="mile-rows"></div>
-
-      <button
-        onclick="addMile()"
-        style="
-          width:100%;
-          padding:12px;
-          background:transparent;
-          border:1px dashed var(--border);
-          color:var(--text-dim);
-          cursor:pointer;
-          margin-top:12px;
-        "
-      >
-        + Log Another Mile
-      </button>
-
+      <button onclick="addMile()" style="width:100%;padding:12px;background:transparent;border:1px dashed var(--border);color:var(--text-dim);cursor:pointer;margin-top:12px;">+ Log Another Mile</button>
     </div>
 
-    <button class="btn-calculate" onclick="updateResults()">
-      Update Projections →
-    </button>
-
+    <button class="btn-calculate" onclick="updateResults()">Update Projections →</button>
   </div>
 
-  <!-- RIGHT -->
-
+  <!-- RIGHT PANEL -->
   <div class="panel-right">
-
     <div class="results-header">
-
-      <div style="
-        font-size:10px;
-        letter-spacing:0.2em;
-        text-transform:uppercase;
-        color:var(--text-dim);
-      ">
-        Current Average Pace
-      </div>
-
-      <div id="avgPaceDisplay" class="avg-pace">
-        --:-- /mi
-      </div>
-
+      <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim);">Current Average Pace</div>
+      <div id="avgPaceDisplay" class="avg-pace">--:-- /mi</div>
     </div>
 
-    <div class="section-label">
-      Required Pace by Remaining Distance
-    </div>
-
+    <div class="section-label">Required Pace by Remaining Distance</div>
     <div id="results-rows"></div>
-
   </div>
-
 </div>
 
-  <!-- FOOTER -->
+<!-- FOOTER - EXACTLY MATCHED TO TAPER CALCULATOR -->
 <footer>
   <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
 
@@ -641,171 +380,80 @@ select option {
 </footer>
 
 <script>
-
 // STATE
-
 let miles = [];
 let goalDistance = 13.1;
 
 // DISTANCE SELECTOR
-
 document.getElementById('goalDistance').addEventListener('change', function() {
-
-  document.getElementById('customDistContainer').style.display =
-    (this.value === 'custom') ? 'block' : 'none';
-
-  if (this.value !== 'custom') {
-    goalDistance = parseFloat(this.value);
-  }
-
+  document.getElementById('customDistContainer').style.display = (this.value === 'custom') ? 'block' : 'none';
+  if (this.value !== 'custom') goalDistance = parseFloat(this.value);
   updateResults();
 });
 
 document.getElementById('customDistance').addEventListener('input', () => {
-
-  goalDistance =
-    parseFloat(document.getElementById('customDistance').value) || 13.1;
-
+  goalDistance = parseFloat(document.getElementById('customDistance').value) || 13.1;
   updateResults();
 });
 
 // HELPERS
-
-function paceToSecs(min, sec) {
-  return (parseInt(min) || 0) * 60 + (parseInt(sec) || 0);
-}
-
+function paceToSecs(min, sec) { return (parseInt(min)||0)*60 + (parseInt(sec)||0); }
 function secsToPace(s) {
-
-  if (!isFinite(s) || s <= 0) {
-    return '--:--';
-  }
-
-  const m = Math.floor(s / 60);
+  if (!isFinite(s) || s <= 0) return '--:--';
+  const m = Math.floor(s/60);
   const sec = Math.round(s % 60);
-
-  return `${m}:${sec.toString().padStart(2, '0')}`;
+  return `${m}:${sec.toString().padStart(2,'0')}`;
 }
 
-// ADD MILE
-
+// MILE FUNCTIONS
 function addMile() {
-
-  const min =
-    parseInt(document.getElementById('tgt-min').value) || 9;
-
-  const sec =
-    parseInt(document.getElementById('tgt-sec').value) || 0;
-
+  const min = parseInt(document.getElementById('tgt-min').value) || 9;
+  const sec = parseInt(document.getElementById('tgt-sec').value) || 0;
   miles.push({ min, sec });
-
   renderMiles();
 }
-
-// DELETE
 
 function deleteMile(idx) {
   miles.splice(idx, 1);
   renderMiles();
 }
 
-// EDIT
-
 function editMile(idx) {
-
   const m = miles[idx];
-
-  const newMin = prompt(
-    "Minutes for Mile " + (idx + 1),
-    m.min
-  );
-
-  const newSec = prompt(
-    "Seconds (0-59) for Mile " + (idx + 1),
-    m.sec
-  );
-
-  if (newMin !== null) {
-    m.min = parseInt(newMin) || m.min;
-  }
-
-  if (newSec !== null) {
-    m.sec = Math.min(
-      59,
-      Math.max(0, parseInt(newSec) || m.sec)
-    );
-  }
-
+  const newMin = prompt("Minutes for Mile " + (idx + 1), m.min);
+  const newSec = prompt("Seconds (0-59) for Mile " + (idx + 1), m.sec);
+  
+  if (newMin !== null) m.min = parseInt(newMin) || m.min;
+  if (newSec !== null) m.sec = Math.min(59, Math.max(0, parseInt(newSec) || m.sec));
+  
   renderMiles();
 }
 
-// RENDER LOGGED MILES
-
 function renderMiles() {
-
-  const container =
-    document.getElementById('mile-rows');
-
+  const container = document.getElementById('mile-rows');
   container.innerHTML = '';
 
   miles.forEach((m, i) => {
-
     const card = document.createElement('div');
-
     card.className = 'mile-card';
-
     card.innerHTML = `
-
-      <div style="
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-      ">
-
-        <div
-          onclick="editMile(${i})"
-          style="cursor:pointer; flex:1;"
-        >
-
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div onclick="editMile(${i})" style="cursor:pointer; flex:1;">
           <strong>Mile ${i + 1}</strong><br>
-
-          <span style="
-            font-family:Bebas Neue,sans-serif;
-            font-size:22px;
-            color:var(--red);
-          ">
+          <span style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--red);">
             ${m.min}:${String(m.sec).padStart(2, '0')}
           </span>
-
         </div>
-
-        <button
-          onclick="event.stopImmediatePropagation(); deleteMile(${i});"
-          style="
-            background:none;
-            border:none;
-            color:var(--red);
-            font-size:22px;
-            cursor:pointer;
-          "
-        >
-          ×
-        </button>
-
+        <button onclick="event.stopImmediatePropagation(); deleteMile(${i});" 
+                style="background:none;border:none;color:var(--red);font-size:22px;">×</button>
       </div>
-
     `;
-
     container.appendChild(card);
   });
-
   updateResults();
 }
 
-// CLEAR ALL
-
 function clearAll() {
-
   if (confirm("Clear all logged splits?")) {
     miles = [];
     renderMiles();
@@ -813,109 +461,54 @@ function clearAll() {
 }
 
 // MAIN CALCULATION
-
 function updateResults() {
-
-  const tgtMin =
-    parseInt(document.getElementById('tgt-min').value) || 9;
-
-  const tgtSec =
-    parseInt(document.getElementById('tgt-sec').value) || 0;
-
+  const tgtMin = parseInt(document.getElementById('tgt-min').value) || 9;
+  const tgtSec = parseInt(document.getElementById('tgt-sec').value) || 0;
   const targetSecs = paceToSecs(tgtMin, tgtSec);
 
-  // Logged total time
-  const totalLoggedSecs = miles.reduce(
-    (sum, m) => sum + paceToSecs(m.min, m.sec),
-    0
-  );
+  const totalLoggedSecs = miles.reduce((sum, m) => sum + paceToSecs(m.min, m.sec), 0);
+  const avgSecs = miles.length > 0 ? totalLoggedSecs / miles.length : targetSecs;
 
-  // Current average pace
-  const avgSecs =
-    miles.length > 0
-      ? totalLoggedSecs / miles.length
-      : targetSecs;
+  document.getElementById('avgPaceDisplay').textContent = secsToPace(avgSecs) + " /mi";
 
-  document.getElementById('avgPaceDisplay').textContent =
-    secsToPace(avgSecs) + " /mi";
-
-  // Results container
-  const container =
-    document.getElementById('results-rows');
-
+  const container = document.getElementById('results-rows');
   container.innerHTML = '';
 
   const totalMiles = Math.ceil(goalDistance);
 
   for (let mile = 1; mile <= totalMiles; mile++) {
-
     const row = document.createElement('div');
     row.className = 'dist-row';
 
-    // Already completed miles
     if (mile <= miles.length) {
-
       row.innerHTML = `
         <div>Mile ${mile}</div>
-
-        <div style="
-          color:var(--text-dim);
-          font-size:18px;
-        ">
-          —
-        </div>
+        <div style="color:var(--text-dim); font-size:18px;">—</div>
       `;
-
     } else {
-
-      // Total allowed time to hit target pace by THIS mile
-      const allowedTotalTime =
-        targetSecs * mile;
-
-      // Miles remaining until this checkpoint
-      const remainingMilesNeeded =
-        mile - miles.length;
-
-      // Time left available
-      const remainingTimeAllowed =
-        allowedTotalTime - totalLoggedSecs;
-
-      // Required pace over remaining miles
-      const requiredPace =
-        remainingTimeAllowed / remainingMilesNeeded;
+      const allowedTotalTime = targetSecs * mile;
+      const remainingMilesNeeded = mile - miles.length;
+      const remainingTimeAllowed = allowedTotalTime - totalLoggedSecs;
+      const requiredPace = remainingTimeAllowed / remainingMilesNeeded;
 
       let paceColor = 'var(--text)';
-
-      if (requiredPace < targetSecs) {
-        paceColor = 'var(--green)';
-      }
-
-      if (requiredPace > targetSecs + 20) {
-        paceColor = 'var(--red)';
-      }
+      if (requiredPace < targetSecs) paceColor = 'var(--green)';
+      if (requiredPace > targetSecs + 20) paceColor = 'var(--red)';
 
       row.innerHTML = `
         <div>Mile ${mile}</div>
-
-        <div style="
-          font-family:Bebas Neue,sans-serif;
-          font-size:20px;
-          color:${paceColor};
-        ">
+        <div style="font-family:Bebas Neue,sans-serif; font-size:20px; color:${paceColor};">
           ${secsToPace(requiredPace)} /mi
         </div>
       `;
     }
-
     container.appendChild(row);
   }
 }
 
 // INIT
-
 updateResults();
 
 </script>
-
 </body>
 </html>
