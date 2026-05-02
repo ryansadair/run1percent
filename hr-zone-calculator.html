@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HR Zone Calculator — RUN1%</title>
+<title>HR Zone Calculator — Run1%</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -19,8 +19,6 @@
     --text: #e8e8e8;
     --white: #f5f5f5;
     --red: #e5281a;
-    --red-dim: #8a1a10;
-    --red-glow: rgba(229,40,26,0.15);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,162 +28,265 @@
     color: var(--text);
     font-family: 'DM Mono', monospace;
     font-size: 13px;
-    line-height: 1.7;
+    line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
   }
 
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.5;
+    pointer-events: none; z-index: 1000; opacity: 0.5;
   }
 
   /* NAV */
   .r1-nav {
-    position:fixed; top:0; left:0; right:0; z-index:200;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 40px;
-    background:rgba(8,8,8,0.97);
-    border-bottom:1px solid var(--border);
-    backdrop-filter:blur(10px);
-  }
-  .r1-nav-logo img { height:35px; display:block; }
-  .r1-nav-links {
-    display: flex; align-items: center; gap: 28px; list-style: none;
-  }
-  @media (max-width: 640px) {
-    .r1-nav-links { display: none; }
-  }
-  .r1-nav-links a {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); text-decoration:none;
-  }
-  .r1-nav-links a:hover { color:var(--text); }
-  .r1-back {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); border:1px solid var(--border); 
-    padding:9px 18px; text-decoration:none;
-  }
-  .r1-back:hover { color:var(--text); border-color:var(--red); }
-  .r1-spacer { height:64px; }
-
-  /* MAIN CONTENT AREA */
-  .blog-container {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 60px 40px 120px;
-  }
-
-  .blog-header {
-    margin-bottom: 60px;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(8,8,8,0.97);
     border-bottom: 1px solid var(--border);
-    padding-bottom: 40px;
+    backdrop-filter: blur(10px);
   }
+  .r1-nav-logo img { height: 35px; }
+  .r1-nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  @media (max-width: 640px) { .r1-nav-links { display: none; } }
+  .r1-nav-links a {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none;
+  }
+  .r1-nav-links a:hover { color: var(--text); }
+  .r1-back {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); border: 1px solid var(--border);
+    padding: 9px 18px; text-decoration: none;
+  }
+  .r1-back:hover { color: var(--text); border-color: var(--red); }
+  .r1-spacer { height: 64px; }
 
-  .blog-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  /* HERO */
+  .hero {
+    padding: 64px 40px 48px;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
   }
-  .blog-label::before {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 1px;
-    background: var(--red);
+  .hero::after {
+    content: 'ZONES';
+    position: absolute; right: -20px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(100px,18vw,220px);
+    color: rgba(229,40,26,0.04);
+    pointer-events: none; user-select: none;
   }
-
+  .hero-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-label::before {
+    content: ''; display: inline-block;
+    width: 20px; height: 1px; background: var(--red);
+  }
   h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(42px, 7vw, 72px);
-    letter-spacing: 0.02em;
-    line-height: 0.95;
-    color: var(--white);
-    margin-bottom: 20px;
+    font-size: clamp(42px,7vw,80px);
+    letter-spacing: 0.04em; line-height: 0.95;
+    color: var(--white); margin-bottom: 16px;
+  }
+  .hero-sub {
+    color: var(--text-mid); font-size: 12px;
+    max-width: 480px; line-height: 1.7;
   }
 
-  .blog-meta {
-    color: var(--text-mid);
-    font-size: 12px;
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
+  /* LAYOUT */
+  .main { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 200px); }
+  .panel-left { border-right: 1px solid var(--border); padding: 40px; }
+  .panel-right { padding: 40px; background: var(--deep); }
+
+  .section-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 16px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
   }
 
-  .blog-content {
-    font-size: 15px;
-    line-height: 1.85;
+  .field { margin-bottom: 28px; }
+  .field label {
+    display: block; font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px;
+  }
+
+  input[type="number"], select {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
     color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    padding: 10px 14px;
+    outline: none; appearance: none;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 6L11 1' fill='none' stroke='%23666' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+  select:focus, input:focus {
+    border-color: var(--red);
+    background: rgba(229,40,26,0.04);
+  }
+  select option { background: var(--surface); color: var(--text); }
+
+  .field-hint {
+    font-size: 10px; color: var(--text-dim);
+    margin-top: 8px; font-style: italic; line-height: 1.6;
   }
 
-  .blog-content h2 {
+  /* HR NUMBER INPUTS */
+  .hr-input-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hr-number {
+    background: transparent; border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--red); font-family: 'DM Mono', monospace;
+    font-size: 32px; width: 100px;
+    padding: 4px 8px; outline: none; text-align: center;
+  }
+  .hr-number:focus { border-bottom-color: var(--red); }
+  .hr-unit {
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+
+  /* TOGGLE */
+  .toggle-group { display: flex; border: 1px solid var(--border); }
+  .toggle-group button {
+    flex: 1; background: transparent; border: none;
+    border-right: 1px solid var(--border);
+    color: var(--text-dim); font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 10px; cursor: pointer; transition: all 0.2s;
+  }
+  .toggle-group button:last-child { border-right: none; }
+  .toggle-group button.active { background: var(--red); color: var(--white); }
+  .toggle-group button:not(.active):hover { background: var(--surface); color: var(--text); }
+
+  /* CALCULATE BUTTON */
+  .btn-calculate {
+    width: 100%; background: var(--red); color: var(--white);
+    border: none; font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 0.1em;
+    padding: 16px; cursor: pointer; margin-top: 8px;
+  }
+  .btn-calculate:hover { background: #cc2418; }
+
+  /* RESULTS */
+  .results-empty {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: 100%; min-height: 300px;
+    color: var(--text-dim); text-align: center; gap: 12px;
+  }
+  .results-empty-icon { font-size: 48px; opacity: 0.2; line-height: 1; }
+  .results-empty p { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .results-content { display: none; }
+  .results-content.visible { display: block; }
+  .results-empty.hidden { display: none; }
+
+  /* SUMMARY BAR */
+  .input-summary {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 14px 18px; margin-bottom: 24px;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .summary-item { display: flex; flex-direction: column; gap: 2px; }
+  .summary-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); }
+  .summary-value { font-size: 16px; color: var(--white); font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.06em; }
+  .summary-value.red { color: var(--red); }
+
+  /* ZONE CARDS */
+  .zone-card {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 0.35s ease both;
+  }
+  .zone-card:last-child { border-bottom: none; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(6px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .zone-number {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    letter-spacing: 0.03em;
-    color: var(--white);
-    margin: 60px 0 24px;
+    font-size: 40px; line-height: 1; letter-spacing: 0.04em;
   }
-
-  .blog-content h3 {
+  .zone-info { display: flex; flex-direction: column; gap: 4px; }
+  .zone-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--white);
-    margin: 48px 0 20px;
+    font-size: 20px; letter-spacing: 0.06em;
+    color: var(--white); line-height: 1;
   }
-
-  .blog-content p {
-    margin-bottom: 28px;
+  .zone-desc {
+    font-size: 10px; color: var(--text-dim);
+    letter-spacing: 0.3px; line-height: 1.6;
   }
-
-  .blog-content a {
-    color: var(--red);
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  .zone-bar-wrap {
+    margin-top: 6px; height: 3px; background: var(--border); width: 100%;
   }
+  .zone-bar { height: 100%; }
+  .zone-bpm { text-align: right; white-space: nowrap; }
+  .zone-bpm-range {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 0.04em; line-height: 1;
+  }
+  .zone-bpm-label {
+    font-size: 9px; letter-spacing: 2px;
+    color: var(--text-dim); text-transform: uppercase; margin-top: 2px;
+  }
+  .zone-pct { font-size: 10px; color: var(--text-dim); margin-top: 3px; }
 
-  /* Footer */
+  /* METHOD NOTE */
+  .method-note {
+    margin-top: 32px; padding: 16px;
+    border: 1px solid var(--border);
+    font-size: 10px; color: var(--text-dim);
+    line-height: 1.8; letter-spacing: 0.3px;
+  }
+  .method-note strong { color: var(--text-mid); font-weight: 500; }
+
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
-    padding: 60px 40px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 32px;
+    padding: 40px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 100%;
   }
   footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
   footer img:hover { opacity: 1; }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-  }
+  .footer-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
   .footer-links a {
     font-size: 9px; letter-spacing: 2px; color: var(--muted);
     text-decoration: none; text-transform: uppercase; transition: color 0.2s;
   }
   .footer-links a:hover { color: var(--white); }
-  .footer-copy {
-    font-size: 9px; letter-spacing: 1px; color: #2a2a2a;
-  }
+  .footer-copy { font-size: 9px; letter-spacing: 1px; color: #2a2a2a; }
 
   @media (max-width: 768px) {
-    .blog-container {
-      padding: 40px 20px 80px;
-    }
-    footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 32px;
-    }
+    .main { grid-template-columns: 1fr; }
+    .panel-left { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 20px; }
+    .panel-right { padding: 24px 20px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 20px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
   }
 </style>
 </head>
@@ -204,19 +305,62 @@
 </nav>
 <div class="r1-spacer"></div>
 
-<div class="blog-container">
+<section class="hero">
+  <div class="hero-label">Tool No. 05</div>
+  <h1>HR Zone<br>Calculator</h1>
+  <p class="hero-sub">Enter your max and resting heart rate to get your five training zones using the Karvonen Heart Rate Reserve method — more accurate than simple percentage of max.</p>
+</section>
 
-  <div class="blog-header">
-    <div class="blog-label">Tool No. 05</div>
-    <h1>HR Zone Calculator</h1>
-    <div class="blog-meta">
+<div class="main">
 
+  <div class="panel-left">
+    <div class="section-label">Your Heart Rate Data</div>
+
+    <div class="field">
+      <label>Max Heart Rate (bpm)</label>
+      <div class="hr-input-wrap">
+        <input type="number" class="hr-number" id="maxHR" value="185" min="100" max="220">
+        <span class="hr-unit">bpm max</span>
+      </div>
+      <div class="field-hint">Best found via a hard field test — 220 minus age is a rough estimate only. A maximal 1-mile effort or the last 400m of a 5K gives a more accurate number.</div>
     </div>
+
+    <div class="field">
+      <label>Resting Heart Rate (bpm)</label>
+      <div class="hr-input-wrap">
+        <input type="number" class="hr-number" id="restHR" value="52" min="30" max="100">
+        <span class="hr-unit">bpm rest</span>
+      </div>
+      <div class="field-hint">Measure first thing in the morning before getting out of bed. Average over 3 days for best accuracy.</div>
+    </div>
+
+    <div class="field">
+      <label>Calculation Method</label>
+      <div class="toggle-group">
+        <button class="active" id="btnHRR" onclick="setMethod('hrr')">HRR (Karvonen)</button>
+        <button id="btnMax" onclick="setMethod('max')">% Max HR</button>
+      </div>
+      <div class="field-hint" id="methodHint">Heart Rate Reserve accounts for your resting HR, producing more personalized zones — especially accurate for well-trained runners with a low resting HR.</div>
+    </div>
+
+    <button class="btn-calculate" onclick="calculate()">Calculate My Zones →</button>
   </div>
 
-  <div class="blog-content">
-    
+  <div class="panel-right">
 
+    <div class="results-empty" id="resultsEmpty">
+      <div class="results-empty-icon">◎</div>
+      <p>Enter your heart rate data<br>to calculate your zones</p>
+    </div>
+
+    <div class="results-content" id="resultsContent">
+      <div class="input-summary" id="inputSummary"></div>
+      <div class="section-label">Your 5 Training Zones</div>
+      <div id="zonesContainer"></div>
+      <div class="method-note" id="methodNote"></div>
+    </div>
+
+  </div>
 </div>
 
 <footer>
@@ -228,6 +372,134 @@
   </ul>
   <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR</div>
 </footer>
+
+<script>
+  let method = 'hrr';
+
+  const ZONES = [
+    {
+      num: 1, name: 'Recovery',     color: '#3b82f6',
+      pctLow: 0.50, pctHigh: 0.60,
+      desc: 'Easy conversational effort. Warm-up, cool-down, and active recovery days.',
+    },
+    {
+      num: 2, name: 'Aerobic Base', color: '#22c55e',
+      pctLow: 0.60, pctHigh: 0.70,
+      desc: 'Comfortable but purposeful. Where most of your easy long runs live.',
+    },
+    {
+      num: 3, name: 'Tempo',        color: '#eab308',
+      pctLow: 0.70, pctHigh: 0.80,
+      desc: 'Comfortably hard. Short sentences only. Sustained 20–60 minutes.',
+    },
+    {
+      num: 4, name: 'Threshold',    color: '#f97316',
+      pctLow: 0.80, pctHigh: 0.90,
+      desc: 'Hard. Breathing is labored. Typical of 10K to half marathon race effort.',
+    },
+    {
+      num: 5, name: 'Max Effort',   color: '#e5281a',
+      pctLow: 0.90, pctHigh: 1.00,
+      desc: 'All-out. Unsustainable beyond 60–90 seconds. Intervals and final kick.',
+    },
+  ];
+
+  function setMethod(m) {
+    method = m;
+    document.getElementById('btnHRR').classList.toggle('active', m === 'hrr');
+    document.getElementById('btnMax').classList.toggle('active', m === 'max');
+    document.getElementById('methodHint').textContent = m === 'hrr'
+      ? 'Heart Rate Reserve accounts for your resting HR, producing more personalized zones — especially accurate for well-trained runners with a low resting HR.'
+      : 'Simple percentage of max HR. Less personalized but widely used and easy to apply without knowing your resting HR.';
+  }
+
+  function calcBPM(pct, maxHR, restHR) {
+    if (method === 'hrr') {
+      return Math.round(restHR + pct * (maxHR - restHR));
+    }
+    return Math.round(pct * maxHR);
+  }
+
+  function calculate() {
+    const maxHR  = parseInt(document.getElementById('maxHR').value);
+    const restHR = parseInt(document.getElementById('restHR').value);
+
+    if (!maxHR || maxHR < 100 || maxHR > 220) {
+      alert('Please enter a valid max HR (100–220 bpm).');
+      return;
+    }
+    if (!restHR || restHR < 30 || restHR > 100) {
+      alert('Please enter a valid resting HR (30–100 bpm).');
+      return;
+    }
+    if (restHR >= maxHR) {
+      alert('Resting HR must be lower than max HR.');
+      return;
+    }
+
+    const hrr = maxHR - restHR;
+    const methodLabel = method === 'hrr' ? 'Karvonen HRR' : '% Max HR';
+
+    document.getElementById('inputSummary').innerHTML = `
+      <div class="summary-item">
+        <span class="summary-label">Max HR</span>
+        <span class="summary-value red">${maxHR} bpm</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Resting HR</span>
+        <span class="summary-value">${restHR} bpm</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">HR Reserve</span>
+        <span class="summary-value">${hrr} bpm</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Method</span>
+        <span class="summary-value">${methodLabel}</span>
+      </div>
+    `;
+
+    const container = document.getElementById('zonesContainer');
+    container.innerHTML = '';
+
+    ZONES.forEach((zone, i) => {
+      const bpmLow  = calcBPM(zone.pctLow, maxHR, restHR);
+      const bpmHigh = zone.num === 5 ? maxHR : calcBPM(zone.pctHigh, maxHR, restHR) - 1;
+      const barWidth = (zone.pctHigh - zone.pctLow) * 500; // scale for visual variety
+
+      const card = document.createElement('div');
+      card.className = 'zone-card';
+      card.style.animationDelay = `${i * 0.08}s`;
+      card.innerHTML = `
+        <div class="zone-number" style="color:${zone.color};">${zone.num}</div>
+        <div class="zone-info">
+          <div class="zone-name">${zone.name}</div>
+          <div class="zone-desc">${zone.desc}</div>
+          <div class="zone-bar-wrap">
+            <div class="zone-bar" style="width:${barWidth}%; background:${zone.color};"></div>
+          </div>
+        </div>
+        <div class="zone-bpm">
+          <div class="zone-bpm-range" style="color:${zone.color};">${bpmLow}–${bpmHigh}</div>
+          <div class="zone-bpm-label">bpm</div>
+          <div class="zone-pct">${Math.round(zone.pctLow*100)}–${Math.round(zone.pctHigh*100)}%</div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    document.getElementById('methodNote').innerHTML = method === 'hrr'
+      ? `<strong>Karvonen Heart Rate Reserve —</strong> Zone BPM = Resting HR + (% × HRR). Your HRR = ${maxHR} − ${restHR} = ${hrr} bpm. This method accounts for cardiovascular fitness, producing more accurate zones than simple % of max — particularly for runners with a low resting HR.`
+      : `<strong>Percentage of Max HR —</strong> Zone BPM = % × ${maxHR} bpm. Simple and widely used, but less personalized. A runner with a resting HR of 42 gets the same zones as one at 68 — which is why HRR is the preferred method for trained runners.`;
+
+    document.getElementById('resultsEmpty').classList.add('hidden');
+    document.getElementById('resultsContent').classList.add('visible');
+
+    if (window.innerWidth < 768) {
+      document.getElementById('resultsContent').scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+</script>
 
 </body>
 </html>
