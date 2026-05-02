@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Race Predictor — RUN1%</title>
+<title>Race Predictor — Run1%</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -19,8 +19,7 @@
     --text: #e8e8e8;
     --white: #f5f5f5;
     --red: #e5281a;
-    --red-dim: #8a1a10;
-    --red-glow: rgba(229,40,26,0.15);
+    --green: #22c55e;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +29,7 @@
     color: var(--text);
     font-family: 'DM Mono', monospace;
     font-size: 13px;
-    line-height: 1.7;
+    line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -54,40 +53,49 @@
     border-bottom:1px solid var(--border);
     backdrop-filter:blur(10px);
   }
-  .r1-nav-logo img { height:35px; display:block; }
+  .r1-nav-logo img { height:35px; }
   .r1-nav-links {
-    display: flex; align-items: center; gap: 28px; list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
   }
   @media (max-width: 640px) {
     .r1-nav-links { display: none; }
   }
   .r1-nav-links a {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
     color:var(--text-dim); text-decoration:none;
   }
   .r1-nav-links a:hover { color:var(--text); }
   .r1-back {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); border:1px solid var(--border); 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--text-dim); border:1px solid var(--border);
     padding:9px 18px; text-decoration:none;
   }
   .r1-back:hover { color:var(--text); border-color:var(--red); }
   .r1-spacer { height:64px; }
 
-  /* MAIN CONTENT AREA */
-  .blog-container {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 60px 40px 120px;
-  }
-
-  .blog-header {
-    margin-bottom: 60px;
+  /* HERO */
+  .hero {
+    padding: 64px 40px 48px;
     border-bottom: 1px solid var(--border);
-    padding-bottom: 40px;
+    position: relative;
+    overflow: hidden;
   }
-
-  .blog-label {
+  .hero::after {
+    content: 'PREDICT';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(100px,18vw,220px);
+    color: rgba(229,40,26,0.04);
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-label {
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -97,95 +105,257 @@
     align-items: center;
     gap: 8px;
   }
-  .blog-label::before {
+  .hero-label::before {
     content: '';
     display: inline-block;
     width: 20px;
     height: 1px;
     background: var(--red);
   }
-
   h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(42px, 7vw, 72px);
-    letter-spacing: 0.02em;
+    font-size: clamp(42px,7vw,80px);
+    letter-spacing: 0.04em;
     line-height: 0.95;
     color: var(--white);
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
-
-  .blog-meta {
+  .hero-sub {
     color: var(--text-mid);
     font-size: 12px;
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
+    max-width: 480px;
+    line-height: 1.7;
   }
 
-  .blog-content {
-    font-size: 15px;
-    line-height: 1.85;
+  /* LAYOUT */
+  .main { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 200px); }
+  .panel-left { border-right: 1px solid var(--border); padding: 40px; }
+  .panel-right { padding: 40px; background: var(--deep); }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .field { margin-bottom: 28px; }
+  .field label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  input[type="number"], select {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
     color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    padding: 10px 14px;
+    outline: none;
+    appearance: none;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 6L11 1' fill='none' stroke='%23666' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+  select:focus, input:focus {
+    border-color: var(--red);
+    background: rgba(229,40,26,0.04);
+  }
+  select option { background: var(--surface); color: var(--text); }
+
+  /* TIME INPUT ROW */
+  .time-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+  }
+  .time-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--red);
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    text-align: center;
+    width: 64px;
+    padding: 4px;
+    outline: none;
+  }
+  .time-input:focus { border-bottom-color: var(--red); }
+  .time-sep { font-size: 24px; color: var(--text-dim); line-height: 1; }
+  .time-unit {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-left: 8px;
   }
 
-  .blog-content h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    letter-spacing: 0.03em;
+  .field-hint {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 8px;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* CALCULATE BUTTON */
+  .btn-calculate {
+    width: 100%;
+    background: var(--red);
     color: var(--white);
-    margin: 60px 0 24px;
-  }
-
-  .blog-content h3 {
+    border: none;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
+    letter-spacing: 0.1em;
+    padding: 16px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .btn-calculate:hover { background: #cc2418; }
+
+  /* RESULTS */
+  .results-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 300px;
+    color: var(--text-dim);
+    text-align: center;
+    gap: 12px;
+  }
+  .results-empty-icon { font-size: 48px; opacity: 0.2; line-height: 1; }
+  .results-empty p { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .results-content { display: none; }
+  .results-content.visible { display: block; }
+  .results-empty.hidden { display: none; }
+
+  /* INPUT SUMMARY BAR */
+  .input-summary {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .summary-item { display: flex; flex-direction: column; gap: 2px; }
+  .summary-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); }
+  .summary-value { font-size: 16px; color: var(--white); font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.06em; }
+  .summary-value.red { color: var(--red); }
+
+  /* PREDICTION ROWS */
+  .pred-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 0.35s ease both;
+  }
+  .pred-row:last-child { border-bottom: none; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(6px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .pred-distance {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .pred-distance strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.05em;
     color: var(--white);
-    margin: 48px 0 20px;
+    font-weight: 400;
   }
-
-  .blog-content p {
-    margin-bottom: 28px;
-  }
-
-  .blog-content a {
+  .pred-time {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.05em;
     color: var(--red);
-    text-decoration: underline;
-    text-underline-offset: 4px;
+    text-align: right;
+    white-space: nowrap;
   }
+  .pred-pace {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    text-align: right;
+    white-space: nowrap;
+    min-width: 72px;
+  }
+  .pred-row.source {
+    background: rgba(229,40,26,0.04);
+    margin: 0 -40px;
+    padding: 14px 40px;
+  }
+  .pred-row.source .pred-distance strong { color: var(--red); }
+  .pred-row.source .pred-time { color: var(--text); }
 
-  /* Footer */
+  /* RIEGEL NOTE */
+  .riegel-note {
+    margin-top: 32px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+  }
+  .riegel-note strong { color: var(--text-mid); font-weight: 500; }
+
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
-    padding: 60px 40px 40px;
+    padding: 40px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 32px;
+    max-width: 100%;
   }
   footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
   footer img:hover { opacity: 1; }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-  }
+  .footer-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
   .footer-links a {
     font-size: 9px; letter-spacing: 2px; color: var(--muted);
     text-decoration: none; text-transform: uppercase; transition: color 0.2s;
   }
   .footer-links a:hover { color: var(--white); }
-  .footer-copy {
-    font-size: 9px; letter-spacing: 1px; color: #2a2a2a;
-  }
+  .footer-copy { font-size: 9px; letter-spacing: 1px; color: #2a2a2a; }
 
+  /* RESPONSIVE */
   @media (max-width: 768px) {
-    .blog-container {
-      padding: 40px 20px 80px;
-    }
-    footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 32px;
-    }
+    .main { grid-template-columns: 1fr; }
+    .panel-left { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 20px; }
+    .panel-right { padding: 24px 20px; }
+    .pred-row.source { margin: 0 -20px; padding: 14px 20px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 20px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
   }
 </style>
 </head>
@@ -204,19 +374,77 @@
 </nav>
 <div class="r1-spacer"></div>
 
-<div class="blog-container">
+<section class="hero">
+  <div class="hero-label">Tool No. 02</div>
+  <h1>Race<br>Predictor</h1>
+  <p class="hero-sub">Enter a recent race result and get predicted finish times across every major distance — calculated using the Riegel formula, the gold standard in race time prediction.</p>
+</section>
 
-  <div class="blog-header">
-    <div class="blog-label">Tool No. 02</div>
-    <h1>Race Predictor</h1>
-    <div class="blog-meta">
+<div class="main">
+
+  <!-- LEFT: INPUTS -->
+  <div class="panel-left">
+    <div class="section-label">Your Recent Race</div>
+
+    <div class="field">
+      <label>Race Distance</label>
+      <select id="sourceDistance">
+        <option value="5k">5K</option>
+        <option value="10k">10K</option>
+        <option value="15k">15K</option>
+        <option value="half" selected>Half Marathon (13.1 mi)</option>
+        <option value="marathon">Marathon (26.2 mi)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Finish Time</label>
+      <div class="time-row">
+        <input type="number" class="time-input" id="inputHours" value="1" min="0" max="23" placeholder="0">
+        <span class="time-sep">:</span>
+        <input type="number" class="time-input" id="inputMinutes" value="52" min="0" max="59" placeholder="00">
+        <span class="time-sep">:</span>
+        <input type="number" class="time-input" id="inputSeconds" value="00" min="0" max="59" placeholder="00">
+        <span class="time-unit">H : M : S</span>
+      </div>
+      <div class="field-hint">Enter your official chip time. For best results use a race from the last 8 weeks.</div>
+    </div>
+
+    <div class="field">
+      <label>Fatigue Factor</label>
+      <select id="fatigueFactor">
+        <option value="1.06">1.06 — Standard (most runners)</option>
+        <option value="1.07">1.07 — Conservative (slower at longer distances)</option>
+        <option value="1.05">1.05 — Aggressive (strong endurance base)</option>
+      </select>
+      <div class="field-hint">The Riegel formula uses an exponent to model how pace slows with distance. 1.06 works for most trained runners. Adjust if you consistently over or underperform at longer distances.</div>
+    </div>
+
+    <button class="btn-calculate" onclick="predict()">Predict My Times →</button>
+  </div>
+
+  <!-- RIGHT: RESULTS -->
+  <div class="panel-right">
+
+    <div class="results-empty" id="resultsEmpty">
+      <div class="results-empty-icon">◎</div>
+      <p>Enter a race result<br>to see your predictions</p>
+    </div>
+
+    <div class="results-content" id="resultsContent">
+
+      <div class="input-summary" id="inputSummary"></div>
+
+      <div class="section-label">Predicted Finish Times</div>
+      <div id="predictionsContainer"></div>
+
+      <div class="riegel-note">
+        <strong>About the Riegel Formula —</strong>
+        T2 = T1 × (D2 ÷ D1)^1.06. Developed by Peter Riegel in 1977, it remains the most widely used model for predicting race times across distances. It assumes consistent training and race conditions — it tends to be optimistic for runners undertrained at longer distances and conservative for those with a strong endurance base.
+      </div>
 
     </div>
   </div>
-
-  <div class="blog-content">
-    
-
 </div>
 
 <footer>
@@ -228,6 +456,122 @@
   </ul>
   <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR</div>
 </footer>
+
+<script>
+  const DISTANCES = [
+    { key: '1mile',    label: '1 Mile',        meters: 1609   },
+    { key: '5k',       label: '5K',            meters: 5000   },
+    { key: '8k',       label: '8K',            meters: 8047   },
+    { key: '10k',      label: '10K',           meters: 10000  },
+    { key: '15k',      label: '15K',           meters: 15000  },
+    { key: '10mi',     label: '10 Mile',       meters: 16093  },
+    { key: 'half',     label: 'Half Marathon', meters: 21097  },
+    { key: 'marathon', label: 'Marathon',      meters: 42195  },
+    { key: '50k',      label: '50K',           meters: 50000  },
+  ];
+
+  const SOURCE_METERS = {
+    '5k': 5000, '10k': 10000, '15k': 15000, 'half': 21097, 'marathon': 42195,
+  };
+
+  function formatTime(secs) {
+    if (!isFinite(secs) || secs <= 0) return '--:--:--';
+    const h = Math.floor(secs / 3600);
+    const m = Math.floor((secs % 3600) / 60);
+    const s = Math.round(secs % 60);
+    if (h > 0) return `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    return `${m}:${String(s).padStart(2,'0')}`;
+  }
+
+  function formatPace(secsPerMile) {
+    if (!isFinite(secsPerMile) || secsPerMile <= 0) return '--:--';
+    const m = Math.floor(secsPerMile / 60);
+    const s = Math.round(secsPerMile % 60);
+    return `${m}:${String(s).padStart(2,'0')} /mi`;
+  }
+
+  function riegel(t1, d1, d2, exp) {
+    return t1 * Math.pow(d2 / d1, exp);
+  }
+
+  function predict() {
+    const sourceKey = document.getElementById('sourceDistance').value;
+    const hours   = parseInt(document.getElementById('inputHours').value)   || 0;
+    const minutes = parseInt(document.getElementById('inputMinutes').value) || 0;
+    const seconds = parseInt(document.getElementById('inputSeconds').value) || 0;
+    const exp     = parseFloat(document.getElementById('fatigueFactor').value);
+    const totalSecs = hours * 3600 + minutes * 60 + seconds;
+
+    if (totalSecs < 60) {
+      alert('Please enter a valid finish time.');
+      return;
+    }
+
+    const d1 = SOURCE_METERS[sourceKey];
+    const sourceLabel = DISTANCES.find(d => d.key === sourceKey)?.label || sourceKey;
+
+    // Summary bar
+    document.getElementById('inputSummary').innerHTML = `
+      <div class="summary-item">
+        <span class="summary-label">Source Race</span>
+        <span class="summary-value">${sourceLabel}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Finish Time</span>
+        <span class="summary-value red">${formatTime(totalSecs)}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Avg Pace</span>
+        <span class="summary-value">${formatPace(totalSecs / (d1 / 1609.34))}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Factor</span>
+        <span class="summary-value">${exp}</span>
+      </div>
+    `;
+
+    // Predictions
+    const container = document.getElementById('predictionsContainer');
+    container.innerHTML = '';
+
+    DISTANCES.forEach((dist, i) => {
+      const isSource = dist.key === sourceKey;
+      const predSecs = isSource ? totalSecs : riegel(totalSecs, d1, dist.meters, exp);
+      const miles = dist.meters / 1609.34;
+      const pace = predSecs / miles;
+
+      const row = document.createElement('div');
+      row.className = 'pred-row' + (isSource ? ' source' : '');
+      row.style.animationDelay = `${i * 0.05}s`;
+      row.innerHTML = `
+        <div class="pred-distance">
+          <strong>${dist.label}</strong>
+          ${isSource ? '<span style="font-size:9px;letter-spacing:2px;color:var(--red);text-transform:uppercase;">Your Result</span>' : ''}
+        </div>
+        <div class="pred-time">${formatTime(predSecs)}</div>
+        <div class="pred-pace">${formatPace(pace)}</div>
+      `;
+      container.appendChild(row);
+    });
+
+    document.getElementById('resultsEmpty').classList.add('hidden');
+    document.getElementById('resultsContent').classList.add('visible');
+
+    if (window.innerWidth < 768) {
+      document.getElementById('resultsContent').scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Clamp minutes/seconds on blur
+  ['inputMinutes','inputSeconds'].forEach(id => {
+    document.getElementById(id).addEventListener('blur', function() {
+      if (this.value !== '') {
+        let v = Math.max(0, Math.min(59, parseInt(this.value) || 0));
+        this.value = String(v).padStart(2,'0');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
