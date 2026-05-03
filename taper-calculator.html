@@ -538,6 +538,8 @@
     <div class="field">
       <label>Race Distance</label>
       <select id="raceDistance">
+        <option value="5k">5K</option>
+        <option value="10k">10K</option>
         <option value="half">Half Marathon (13.1 mi)</option>
         <option value="marathon">Marathon (26.2 mi)</option>
         <option value="custom">Custom Distance</option>
@@ -747,7 +749,13 @@
         alert('Please enter a valid custom distance (minimum 5 miles).');
         return;
       }
-      effectiveDistance = (customMiles >= 26.2) ? 'marathon' : 'half';
+      if (customMiles <= 6.2) {
+        effectiveDistance = '10k';
+      } else if (customMiles < 26.2) {
+        effectiveDistance = 'half';
+      } else {
+        effectiveDistance = 'marathon';
+      }
     }
 
     const peakMiles = unit === 'km' ? peakInput * 0.621371 : peakInput;
