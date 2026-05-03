@@ -391,10 +391,18 @@
       <select id="sourceDistance">
         <option value="5k">5K</option>
         <option value="10k">10K</option>
-        <option value="15k">15K</option>
         <option value="half" selected>Half Marathon (13.1 mi)</option>
         <option value="marathon">Marathon (26.2 mi)</option>
+        <option value="custom">Custom Distance</option>
       </select>
+    </div>
+
+    <div id="customDistContainer" class="field" style="display:none;">
+      <label>Custom Distance (miles)</label>
+      <div class="time-row">
+        <input type="number" id="customDistance" class="time-input" placeholder="15.5" step="0.1" min="1" style="width:100%; text-align:left; border:none; color:var(--red);">
+        <span class="time-unit">MILES</span>
+      </div>
     </div>
 
     <div class="field">
@@ -471,8 +479,19 @@
   ];
 
   const SOURCE_METERS = {
-    '5k': 5000, '10k': 10000, '15k': 15000, 'half': 21097, 'marathon': 42195,
+    '5k': 5000,
+    '10k': 10000,
+    'half': 21097,
+    'marathon': 42195,
   };
+
+  // Custom distance toggle
+  const sourceDistanceSelect = document.getElementById('sourceDistance');
+  const customDistContainer = document.getElementById('customDistContainer');
+
+  sourceDistanceSelect.addEventListener('change', function () {
+    customDistContainer.style.display = this.value === 'custom' ? 'block' : 'none';
+  });
 
   function formatTime(secs) {
     if (!isFinite(secs) || secs <= 0) return '--:--:--';
@@ -507,8 +526,23 @@
       return;
     }
 
-    const d1 = SOURCE_METERS[sourceKey];
-    const sourceLabel = DISTANCES.find(d => d.key === sourceKey)?.label || sourceKey;
+    let d1;
+    let sourceLabel;
+
+    if (sourceKey === 'custom') {
+      const customMiles = parseFloat(document.getElementById('customDistance').value);
+
+      if (!customMiles || customMiles <= 0) {
+        alert('Please enter a valid custom distance.');
+        return;
+      }
+
+      d1 = customMiles * 1609.34;
+      sourceLabel = `${customMiles} Mile Race`;
+    } else {
+      d1 = SOURCE_METERS[sourceKey];
+      sourceLabel = DISTANCES.find(d => d.key === sourceKey)?.label || sourceKey;
+    }
 
     // Summary bar
     document.getElementById('inputSummary').innerHTML = `
