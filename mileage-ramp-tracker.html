@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mileage Ramp Tracker — RUN1%</title>
+<title>Mileage Ramp Tracker — Run1%</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -19,8 +19,8 @@
     --text: #e8e8e8;
     --white: #f5f5f5;
     --red: #e5281a;
-    --red-dim: #8a1a10;
-    --red-glow: rgba(229,40,26,0.15);
+    --green: #22c55e;
+    --orange: #f97316;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,162 +30,263 @@
     color: var(--text);
     font-family: 'DM Mono', monospace;
     font-size: 13px;
-    line-height: 1.7;
+    line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
   }
 
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.5;
+    pointer-events: none; z-index: 1000; opacity: 0.5;
   }
 
   /* NAV */
   .r1-nav {
-    position:fixed; top:0; left:0; right:0; z-index:200;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 40px;
-    background:rgba(8,8,8,0.97);
-    border-bottom:1px solid var(--border);
-    backdrop-filter:blur(10px);
-  }
-  .r1-nav-logo img { height:35px; display:block; }
-  .r1-nav-links {
-    display: flex; align-items: center; gap: 28px; list-style: none;
-  }
-  @media (max-width: 640px) {
-    .r1-nav-links { display: none; }
-  }
-  .r1-nav-links a {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); text-decoration:none;
-  }
-  .r1-nav-links a:hover { color:var(--text); }
-  .r1-back {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); border:1px solid var(--border); 
-    padding:9px 18px; text-decoration:none;
-  }
-  .r1-back:hover { color:var(--text); border-color:var(--red); }
-  .r1-spacer { height:64px; }
-
-  /* MAIN CONTENT AREA */
-  .blog-container {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 60px 40px 120px;
-  }
-
-  .blog-header {
-    margin-bottom: 60px;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(8,8,8,0.97);
     border-bottom: 1px solid var(--border);
-    padding-bottom: 40px;
+    backdrop-filter: blur(10px);
   }
+  .r1-nav-logo img { height: 35px; }
+  .r1-nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  @media (max-width: 640px) { .r1-nav-links { display: none; } }
+  .r1-nav-links a {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none;
+  }
+  .r1-nav-links a:hover { color: var(--text); }
+  .r1-back {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); border: 1px solid var(--border);
+    padding: 9px 18px; text-decoration: none;
+  }
+  .r1-back:hover { color: var(--text); border-color: var(--red); }
+  .r1-spacer { height: 64px; }
 
-  .blog-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  /* HERO */
+  .hero {
+    padding: 64px 40px 48px;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
   }
-  .blog-label::before {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 1px;
-    background: var(--red);
+  .hero::after {
+    content: 'RAMP';
+    position: absolute; right: -20px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(100px,18vw,220px);
+    color: rgba(229,40,26,0.04);
+    pointer-events: none; user-select: none;
   }
-
+  .hero-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-label::before {
+    content: ''; display: inline-block;
+    width: 20px; height: 1px; background: var(--red);
+  }
   h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(42px, 7vw, 72px);
-    letter-spacing: 0.02em;
-    line-height: 0.95;
-    color: var(--white);
-    margin-bottom: 20px;
+    font-size: clamp(42px,7vw,80px);
+    letter-spacing: 0.04em; line-height: 0.95;
+    color: var(--white); margin-bottom: 16px;
+  }
+  .hero-sub {
+    color: var(--text-mid); font-size: 12px;
+    max-width: 480px; line-height: 1.7;
   }
 
-  .blog-meta {
-    color: var(--text-mid);
-    font-size: 12px;
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
+  /* LAYOUT */
+  .main { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 200px); }
+  .panel-left { border-right: 1px solid var(--border); padding: 40px; }
+  .panel-right { padding: 40px; background: var(--deep); }
+
+  .section-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 16px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
   }
 
-  .blog-content {
-    font-size: 15px;
-    line-height: 1.85;
+  .field { margin-bottom: 28px; }
+  .field label {
+    display: block; font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px;
+  }
+
+  input[type="number"], select {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
     color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px; padding: 10px 14px;
+    outline: none; appearance: none;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 6L11 1' fill='none' stroke='%23666' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+  }
+  select:focus, input:focus { border-color: var(--red); background: rgba(229,40,26,0.04); }
+  select option { background: var(--surface); color: var(--text); }
+
+  .field-hint {
+    font-size: 10px; color: var(--text-dim);
+    margin-top: 8px; font-style: italic; line-height: 1.6;
   }
 
-  .blog-content h2 {
+  /* TOGGLE */
+  .toggle-group { display: flex; border: 1px solid var(--border); }
+  .toggle-group button {
+    flex: 1; background: transparent; border: none;
+    border-right: 1px solid var(--border);
+    color: var(--text-dim); font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 10px; cursor: pointer; transition: all 0.2s;
+  }
+  .toggle-group button:last-child { border-right: none; }
+  .toggle-group button.active { background: var(--red); color: var(--white); }
+  .toggle-group button:not(.active):hover { background: var(--surface); color: var(--text); }
+
+  /* CALCULATE BUTTON */
+  .btn-calculate {
+    width: 100%; background: var(--red); color: var(--white);
+    border: none; font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 0.1em;
+    padding: 16px; cursor: pointer; margin-top: 8px;
+  }
+  .btn-calculate:hover { background: #cc2418; }
+
+  /* RESULTS */
+  .results-empty {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: 100%; min-height: 300px;
+    color: var(--text-dim); text-align: center; gap: 12px;
+  }
+  .results-empty-icon { font-size: 48px; opacity: 0.2; line-height: 1; }
+  .results-empty p { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .results-content { display: none; }
+  .results-content.visible { display: block; }
+  .results-empty.hidden { display: none; }
+
+  /* SUMMARY BAR */
+  .input-summary {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 14px 18px; margin-bottom: 24px;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .summary-item { display: flex; flex-direction: column; gap: 2px; }
+  .summary-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); }
+  .summary-value { font-size: 16px; color: var(--white); font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.06em; }
+  .summary-value.red   { color: var(--red); }
+  .summary-value.green { color: var(--green); }
+
+  /* WEEK ROWS */
+  .week-row {
+    display: grid;
+    grid-template-columns: 76px 1fr 64px;
+    align-items: center;
+    gap: 14px; padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 0.35s ease both;
+  }
+  .week-row:last-child { border-bottom: none; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(6px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .week-label { display: flex; flex-direction: column; gap: 1px; }
+  .week-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    letter-spacing: 0.03em;
-    color: var(--white);
-    margin: 60px 0 24px;
+    font-size: 20px; color: var(--text-mid);
+    line-height: 1; letter-spacing: 0.04em;
+  }
+  .week-num.is-current { color: var(--red); }
+  .week-num.is-target  { color: var(--green); }
+  .week-tag {
+    font-size: 8px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--text-dim);
+  }
+  .week-tag.is-current  { color: var(--red); }
+  .week-tag.is-target   { color: var(--green); }
+  .week-tag.is-cutback  { color: var(--orange); }
+
+  .bar-track {
+    height: 6px; background: var(--border);
+    position: relative; overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; background: var(--red);
+    transform-origin: left;
+    animation: barGrow 0.5s ease both;
+  }
+  .bar-fill.green  { background: var(--green); }
+  .bar-fill.orange { background: var(--orange); }
+  @keyframes barGrow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
   }
 
-  .blog-content h3 {
+  .week-miles {
+    text-align: right;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--white);
-    margin: 48px 0 20px;
+    font-size: 20px; color: var(--text); line-height: 1;
+  }
+  .week-miles .unit {
+    display: block; font-family: 'DM Mono', monospace;
+    font-size: 9px; color: var(--text-dim);
+    letter-spacing: 1px; text-align: right; margin-top: 1px;
   }
 
-  .blog-content p {
-    margin-bottom: 28px;
+  /* SAFETY / RULE NOTES */
+  .safety-warn {
+    margin-top: 24px; padding: 14px 16px;
+    border: 1px solid #3a2008;
+    background: rgba(249,115,22,0.05);
+    font-size: 10px; color: var(--orange);
+    line-height: 1.8;
   }
+  .safety-warn strong { font-weight: 500; }
 
-  .blog-content a {
-    color: var(--red);
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  .rule-note {
+    margin-top: 16px; padding: 14px 16px;
+    border: 1px solid var(--border);
+    font-size: 10px; color: var(--text-dim);
+    line-height: 1.8;
   }
+  .rule-note strong { color: var(--text-mid); font-weight: 500; }
 
-  /* Footer */
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
-    padding: 60px 40px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 32px;
+    padding: 40px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 100%;
   }
   footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
   footer img:hover { opacity: 1; }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-  }
+  .footer-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
   .footer-links a {
     font-size: 9px; letter-spacing: 2px; color: var(--muted);
     text-decoration: none; text-transform: uppercase; transition: color 0.2s;
   }
   .footer-links a:hover { color: var(--white); }
-  .footer-copy {
-    font-size: 9px; letter-spacing: 1px; color: #2a2a2a;
-  }
+  .footer-copy { font-size: 9px; letter-spacing: 1px; color: #2a2a2a; }
 
   @media (max-width: 768px) {
-    .blog-container {
-      padding: 40px 20px 80px;
-    }
-    footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 32px;
-    }
+    .main { grid-template-columns: 1fr; }
+    .panel-left { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 20px; }
+    .panel-right { padding: 24px 20px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 20px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
   }
 </style>
 </head>
@@ -204,19 +305,66 @@
 </nav>
 <div class="r1-spacer"></div>
 
-<div class="blog-container">
+<section class="hero">
+  <div class="hero-label">Tool No. 06</div>
+  <h1>Mileage<br>Ramp Tracker</h1>
+  <p class="hero-sub">Enter your current weekly mileage and your target. Get a safe week-by-week build schedule that respects the 10% rule and keeps you on the right side of injury.</p>
+</section>
 
-  <div class="blog-header">
-    <div class="blog-label">Tool No. 06</div>
-    <h1>Mileage Ramp Tracker</h1>
-    <div class="blog-meta">
+<div class="main">
 
+  <div class="panel-left">
+    <div class="section-label">Your Mileage</div>
+
+    <div class="field">
+      <label>Current Weekly Mileage</label>
+      <input type="number" id="currentMiles" value="20" min="1" max="150" step="1" placeholder="e.g. 20">
+      <div class="field-hint">Your average over the last 3–4 weeks. If last week was an outlier, use the week before it.</div>
     </div>
+
+    <div class="field">
+      <label>Target Weekly Mileage</label>
+      <input type="number" id="targetMiles" value="35" min="1" max="150" step="1" placeholder="e.g. 35">
+      <div class="field-hint">The peak week mileage you want to reach before tapering for your goal race.</div>
+    </div>
+
+    <div class="field">
+      <label>Weekly Ramp Rate</label>
+      <div class="toggle-group">
+        <button id="btn8"  onclick="setRamp(8)">8%</button>
+        <button class="active" id="btn10" onclick="setRamp(10)">10%</button>
+        <button id="btn12" onclick="setRamp(12)">12%</button>
+      </div>
+      <div class="field-hint" id="rampHint">The standard 10% rule — increase no more than 10% per week. Safe for most trained runners.</div>
+    </div>
+
+    <div class="field">
+      <label>Units</label>
+      <div class="toggle-group">
+        <button class="active" id="btnMi" onclick="setUnit('mi')">Miles</button>
+        <button id="btnKm" onclick="setUnit('km')">KM</button>
+      </div>
+    </div>
+
+    <button class="btn-calculate" onclick="calculate()">Generate My Ramp →</button>
   </div>
 
-  <div class="blog-content">
-    
+  <div class="panel-right">
 
+    <div class="results-empty" id="resultsEmpty">
+      <div class="results-empty-icon">◎</div>
+      <p>Enter your mileage<br>to generate your schedule</p>
+    </div>
+
+    <div class="results-content" id="resultsContent">
+      <div class="input-summary" id="inputSummary"></div>
+      <div class="section-label">Week-by-Week Schedule</div>
+      <div id="weeksContainer"></div>
+      <div id="safetyWarn"></div>
+      <div class="rule-note" id="ruleNote"></div>
+    </div>
+
+  </div>
 </div>
 
 <footer>
@@ -228,6 +376,151 @@
   </ul>
   <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR</div>
 </footer>
+
+<script>
+  let rampPct = 10;
+  let unit = 'mi';
+
+  function setRamp(pct) {
+    rampPct = pct;
+    document.getElementById('btn8').classList.toggle('active',  pct === 8);
+    document.getElementById('btn10').classList.toggle('active', pct === 10);
+    document.getElementById('btn12').classList.toggle('active', pct === 12);
+    const hints = {
+      8:  'Conservative 8% ramp — best if you are injury-prone, returning from a break, or new to higher mileage.',
+      10: 'The standard 10% rule — increase no more than 10% per week. Safe for most trained runners.',
+      12: 'Aggressive 12% ramp — only for experienced runners with a strong base and no current injury issues.',
+    };
+    document.getElementById('rampHint').textContent = hints[pct];
+  }
+
+  function setUnit(u) {
+    unit = u;
+    document.getElementById('btnMi').classList.toggle('active', u === 'mi');
+    document.getElementById('btnKm').classList.toggle('active', u === 'km');
+  }
+
+  function fmt(miles) {
+    const val = unit === 'km' ? miles * 1.60934 : miles;
+    return parseFloat(val.toFixed(1)).toString();
+  }
+
+  function calculate() {
+    const current = parseFloat(document.getElementById('currentMiles').value);
+    const target  = parseFloat(document.getElementById('targetMiles').value);
+    const unitLabel = unit === 'km' ? 'km' : 'mi';
+
+    if (!current || current < 1) { alert('Please enter your current weekly mileage.'); return; }
+    if (!target  || target  < 1) { alert('Please enter your target weekly mileage.'); return; }
+    if (target <= current) { alert('Target mileage should be higher than current mileage.'); return; }
+
+    const multiplier = 1 + (rampPct / 100);
+
+    // Build week list with cutback every 4th week
+    const weeks = [];
+    let miles = current;
+    let weekNum = 1;
+
+    // Week 1 = current base
+    weeks.push({ num: weekNum, miles: parseFloat(miles.toFixed(1)), cutback: false, current: true });
+
+    while (miles < target && weekNum < 52) {
+      weekNum++;
+      const isCutback = weekNum % 4 === 0;
+      if (isCutback) {
+        // Cutback: 80% of previous build week
+        miles = parseFloat((miles * 0.80).toFixed(1));
+        weeks.push({ num: weekNum, miles, cutback: true });
+      } else {
+        miles = parseFloat((miles * multiplier).toFixed(1));
+        if (miles >= target) {
+          weeks.push({ num: weekNum, miles: target, cutback: false, isTarget: true });
+          break;
+        }
+        weeks.push({ num: weekNum, miles, cutback: false });
+      }
+    }
+
+    // Ensure target week is always last if not already added
+    if (!weeks.find(w => w.isTarget)) {
+      weeks.push({ num: weekNum + 1, miles: target, cutback: false, isTarget: true });
+    }
+
+    const gapMiles = target - current;
+    const totalWeeks = weeks.length;
+
+    // Summary bar
+    document.getElementById('inputSummary').innerHTML = `
+      <div class="summary-item">
+        <span class="summary-label">Starting</span>
+        <span class="summary-value">${fmt(current)} ${unitLabel}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Target</span>
+        <span class="summary-value green">${fmt(target)} ${unitLabel}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Total Increase</span>
+        <span class="summary-value red">+${fmt(gapMiles)} ${unitLabel}</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Weeks</span>
+        <span class="summary-value">${totalWeeks}</span>
+      </div>
+    `;
+
+    // Render week rows
+    const container = document.getElementById('weeksContainer');
+    container.innerHTML = '';
+    const maxMiles = target;
+
+    weeks.forEach((w, i) => {
+      const barPct     = Math.max((w.miles / maxMiles) * 100, 3);
+      const barClass   = w.isTarget ? 'green' : w.cutback ? 'orange' : '';
+      const numClass   = w.isTarget ? 'is-target' : w.current ? 'is-current' : '';
+      const tagText    = w.isTarget ? 'Target' : w.current ? 'Now' : w.cutback ? 'Cutback' : '';
+      const tagClass   = w.isTarget ? 'is-target' : w.current ? 'is-current' : w.cutback ? 'is-cutback' : '';
+
+      const row = document.createElement('div');
+      row.className = 'week-row';
+      row.style.animationDelay = `${i * 0.04}s`;
+      row.innerHTML = `
+        <div class="week-label">
+          <span class="week-num ${numClass}">Wk ${w.num}</span>
+          ${tagText ? `<span class="week-tag ${tagClass}">${tagText}</span>` : ''}
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill ${barClass}" style="width:${barPct}%; animation-delay:${i*0.04+0.1}s;"></div>
+        </div>
+        <div class="week-miles">
+          ${fmt(w.miles)}
+          <span class="unit">${unitLabel}</span>
+        </div>
+      `;
+      container.appendChild(row);
+    });
+
+    // Safety warning
+    const warnEl = document.getElementById('safetyWarn');
+    if (rampPct >= 12) {
+      warnEl.innerHTML = `<div class="safety-warn"><strong>Note —</strong> A 12% weekly ramp is at the upper edge of safe progression. Monitor joint tenderness or unusual fatigue closely and be willing to repeat a week rather than push through warning signs.</div>`;
+    } else if (gapMiles > 20) {
+      warnEl.innerHTML = `<div class="safety-warn"><strong>Large jump —</strong> Going from ${fmt(current)} to ${fmt(target)} ${unitLabel} is significant. The cutback weeks in this schedule are not optional — they are where your body absorbs the training load.</div>`;
+    } else {
+      warnEl.innerHTML = '';
+    }
+
+    // Rule note
+    document.getElementById('ruleNote').innerHTML = `<strong>How this schedule works —</strong> Mileage increases ${rampPct}% each build week. Every 4th week is a cutback week at 80% of the previous build week — this is where adaptation happens. If you miss a week for any reason, repeat that week's mileage rather than skipping ahead.`;
+
+    document.getElementById('resultsEmpty').classList.add('hidden');
+    document.getElementById('resultsContent').classList.add('visible');
+
+    if (window.innerWidth < 768) {
+      document.getElementById('resultsContent').scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+</script>
 
 </body>
 </html>
