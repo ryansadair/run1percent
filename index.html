@@ -335,11 +335,14 @@
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
-    .email-inner { grid-template-columns: 1fr; gap: 36px; }
-    .email-section { padding: 56px 24px; }
-    .email-form { flex-direction: column; }
-    .email-input { border-right: 1px solid var(--border); border-bottom: none; }
-    .email-btn { padding: 14px; text-align: center; }
+    .email-inner { grid-template-columns: 1fr; gap: 32px; }
+    .email-section { padding: 48px 24px; }
+    .email-form { flex-direction: column; gap: 0; }
+    .email-input { border-right: 1px solid var(--border); border-bottom: none; width: 100%; }
+    .email-btn { width: 100%; padding: 14px; text-align: center; }
+    .email-heading { font-size: 36px; }
+    .email-eyebrow { font-size: 9px; }
+    .email-sub { font-size: 11px; line-height: 1.8; max-width: 100%; }
     .hero { padding: 100px 24px 64px; }
     .hero-stat-row { gap: 32px; }
     section { padding: 64px 24px; }
