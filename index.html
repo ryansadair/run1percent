@@ -335,12 +335,114 @@
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
+    .email-inner { grid-template-columns: 1fr; gap: 36px; }
+    .email-section { padding: 56px 24px; }
+    .email-form { flex-direction: column; }
+    .email-input { border-right: 1px solid var(--border); border-bottom: none; }
+    .email-btn { padding: 14px; text-align: center; }
     .hero { padding: 100px 24px 64px; }
     .hero-stat-row { gap: 32px; }
     section { padding: 64px 24px; }
     .about-inner { grid-template-columns: 1fr; gap: 48px; }
     footer { flex-direction: column; gap: 24px; text-align: center; }
   }
+
+  /* ── EMAIL SECTION ── */
+  .email-section {
+    background: var(--gray);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 72px 48px;
+  }
+  .email-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+  }
+  .email-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .email-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--red);
+  }
+  .email-heading {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 52px);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .email-sub {
+    font-size: 11px;
+    line-height: 2.2;
+    color: var(--muted);
+    max-width: 380px;
+  }
+  .email-form {
+    display: flex;
+    gap: 0;
+    margin-bottom: 12px;
+  }
+  .email-input {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-right: none;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 14px 18px;
+    outline: none;
+    appearance: none;
+  }
+  .email-input:focus { border-color: var(--red); }
+  .email-input::placeholder { color: var(--text-dim); }
+  .email-btn {
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .email-btn:hover { background: #c41a1a; }
+  .email-note {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .email-success {
+    display: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--green);
+    text-transform: uppercase;
+    padding: 14px 0;
+  }
+  .email-section.submitted .email-form { display: none; }
+  .email-section.submitted .email-note { display: none; }
+  .email-section.submitted .email-success { display: block; }
+
 </style>
 </head>
 <body>
@@ -482,6 +584,33 @@
   </div>
 </div>
 
+<!-- EMAIL SECTION -->
+<div class="email-section" id="emailSection">
+  <div class="email-inner">
+    <div>
+      <div class="email-eyebrow">Stay in the loop</div>
+      <h2 class="email-heading">Field Notes<br>In Your Inbox</h2>
+      <p class="email-sub">
+        New tools, race strategy writeups, and training notes —
+        when they're ready, not on a schedule. No fluff.
+      </p>
+    </div>
+    <div>
+      <div class="email-form">
+        <input
+          type="email"
+          class="email-input"
+          id="emailInput"
+          placeholder="your@email.com"
+        >
+        <button class="email-btn" onclick="submitEmail()">Subscribe</button>
+      </div>
+      <div class="email-success" id="emailSuccess">You're in. Talk soon.</div>
+      <div class="email-note">No spam. Unsubscribe any time.</div>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
@@ -575,6 +704,30 @@ if (loadMoreBtn) {
 
 // Initial render
 renderNotes();
+
+
+// ── EMAIL CAPTURE ─────────────────────────────────────────────────────
+function submitEmail() {
+  const input = document.getElementById('emailInput');
+  const email = input.value.trim();
+  if (!email || !email.includes('@')) {
+    input.style.borderColor = 'var(--red)';
+    input.focus();
+    return;
+  }
+  input.style.borderColor = '';
+
+  // Store locally until a real email service is connected
+  // To retrieve: JSON.parse(localStorage.getItem('r1_emails')) in browser console
+  // To connect a service: replace this block with a fetch() to your Mailchimp/Beehiiv/etc endpoint
+  const emails = JSON.parse(localStorage.getItem('r1_emails') || '[]');
+  if (!emails.includes(email)) {
+    emails.push(email);
+    localStorage.setItem('r1_emails', JSON.stringify(emails));
+  }
+
+  document.getElementById('emailSection').classList.add('submitted');
+}
 
 // Nav scroll effect
 const nav = document.getElementById('nav');
