@@ -713,21 +713,26 @@ renderNotes();
 function submitEmail() {
   const input = document.getElementById('emailInput');
   const email = input.value.trim();
+
   if (!email || !email.includes('@')) {
     input.style.borderColor = 'var(--red)';
     input.focus();
     return;
   }
+
   input.style.borderColor = '';
 
-  // Store locally until a real email service is connected
-  // To retrieve: JSON.parse(localStorage.getItem('r1_emails')) in browser console
-  // To connect a service: replace this block with a fetch() to your Mailchimp/Beehiiv/etc endpoint
-  const emails = JSON.parse(localStorage.getItem('r1_emails') || '[]');
-  if (!emails.includes(email)) {
-    emails.push(email);
-    localStorage.setItem('r1_emails', JSON.stringify(emails));
-  }
+  fetch(
+    'https://docs.google.com/forms/d/e/1uWilJE8xWgr1QG3aUPIMF5_ITk_xeDDOoeSQxAgiAPU/formResponse',
+    {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: 'entry.1495090308=' + encodeURIComponent(email)
+    }
+  );
 
   document.getElementById('emailSection').classList.add('submitted');
 }
