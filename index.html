@@ -599,15 +599,27 @@
       </p>
     </div>
     <div>
-      <div class="email-form">
-        <input
-          type="email"
-          class="email-input"
-          id="emailInput"
-          placeholder="Email"
-        >
-        <button class="email-btn" onclick="submitEmail()">Subscribe</button>
-      </div>
+<form
+  class="email-form"
+  action="https://docs.google.com/forms/d/1uWilJE8xWgr1QG3aUPIMF5_ITk_xeDDOoeSQxAgiAPU/formResponse"
+  method="POST"
+  target="hidden_iframe"
+  onsubmit="document.getElementById('emailSection').classList.add('submitted')"
+>
+  <input
+    type="email"
+    class="email-input"
+    name="entry.1495090308"
+    placeholder="Email"
+    required
+  >
+
+  <button type="submit" class="email-btn">
+    Subscribe
+  </button>
+</form>
+
+<iframe name="hidden_iframe" style="display:none;"></iframe>
       <div class="email-success" id="emailSuccess">You're in. Talk soon.</div>
       <div class="email-note">No spam. Unsubscribe any time.</div>
     </div>
@@ -709,33 +721,7 @@ if (loadMoreBtn) {
 renderNotes();
 
 
-// ── EMAIL CAPTURE ─────────────────────────────────────────────────────
-function submitEmail() {
-  const input = document.getElementById('emailInput');
-  const email = input.value.trim();
 
-  if (!email || !email.includes('@')) {
-    input.style.borderColor = 'var(--red)';
-    input.focus();
-    return;
-  }
-
-  input.style.borderColor = '';
-
-  fetch(
-    'https://docs.google.com/forms/d/1uWilJE8xWgr1QG3aUPIMF5_ITk_xeDDOoeSQxAgiAPU/formResponse',
-    {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: 'entry.1495090308=' + encodeURIComponent(email)
-    }
-  );
-
-  document.getElementById('emailSection').classList.add('submitted');
-}
 
 // Nav scroll effect
 const nav = document.getElementById('nav');
