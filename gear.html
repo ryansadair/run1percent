@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33D9NXKZV8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-33D9NXKZV8');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Gear I actually run in. Shoes, watches, and accessories tested on roads and trails around Eugene, OR. No sponsored opinions — just what works.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://run1percent.com/gear.html">
+
+<meta property="og:title" content="Running Gear — RUN1%">
+<meta property="og:description" content="Shoes, watches, and accessories I actually run in. Real opinions, no sponsorships.">
+<meta property="og:image" content="https://run1percent.com/og-image.png">
+<meta property="og:url" content="https://run1percent.com/gear.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Running Gear — RUN1%">
+<meta name="twitter:description" content="Shoes, watches, and accessories I actually run in. Real opinions, no sponsorships.">
+<meta name="twitter:image" content="https://run1percent.com/og-image.png">
+
+<title>Gear — Run1%</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --black: #0a0a0a;
+    --deep: #111111;
+    --surface: #181818;
+    --border: #2a2a2a;
+    --muted: #3a3a3a;
+    --text-dim: #666666;
+    --text-mid: #999999;
+    --text: #e8e8e8;
+    --white: #f5f5f5;
+    --red: #e5281a;
+    --red-dim: #8a1a10;
+    --red-glow: rgba(229,40,26,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  .r1-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(8,8,8,0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+  .r1-nav-logo img { height: 35px; display: block; }
+  .r1-nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  @media (max-width: 640px) { .r1-nav-links { display: none; } }
+  .r1-nav-links a {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none; transition: color 0.2s;
+  }
+  .r1-nav-links a:hover { color: var(--text); }
+  .r1-nav-links a.active { color: var(--red); }
+  .r1-back {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); border: 1px solid var(--border);
+    padding: 9px 18px; text-decoration: none; transition: all 0.2s;
+  }
+  .r1-back:hover { color: var(--text); border-color: var(--red); }
+  .r1-spacer { height: 64px; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 64px 40px 56px;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: 'GEAR';
+    position: absolute; right: -20px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(120px, 20vw, 280px);
+    color: rgba(229,40,26,0.04);
+    pointer-events: none; user-select: none; line-height: 1;
+  }
+  .hero-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-label::before {
+    content: ''; display: inline-block;
+    width: 20px; height: 1px; background: var(--red);
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 7vw, 88px);
+    letter-spacing: 0.04em; line-height: 0.95;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .hero-sub {
+    color: var(--text-mid); font-size: 12px;
+    max-width: 520px; line-height: 1.8;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+  .hero-disclaimer {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 24px;
+    font-size: 10px; letter-spacing: 1.5px;
+    color: var(--text-dim); text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+  }
+  .hero-disclaimer::before {
+    content: ''; display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--red); flex-shrink: 0;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto;
+  }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    background: none; border: none; border-bottom: 2px solid transparent;
+    color: var(--text-dim); font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 16px 20px; cursor: pointer; white-space: nowrap;
+    transition: all 0.2s; margin-bottom: -1px;
+  }
+  .filter-btn:hover { color: var(--text); }
+  .filter-btn.active { color: var(--white); border-bottom-color: var(--red); }
+
+  /* ── GEAR GRID ── */
+  .gear-section { max-width: 1200px; margin: 0 auto; padding: 56px 40px; }
+
+  .category-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 32px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .category-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; letter-spacing: 0.06em;
+    color: var(--white); line-height: 1;
+  }
+  .category-count {
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 64px;
+  }
+
+  /* ── GEAR CARD ── */
+  .gear-card {
+    background: var(--black);
+    padding: 0;
+    display: flex; flex-direction: column;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .gear-card:hover { background: #0d0d0d; }
+  .gear-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--red);
+    transition: height 0.25s ease;
+    z-index: 1;
+  }
+  .gear-card:hover::before { height: 100%; }
+
+  /* badge overlaid on image area */
+  .card-image-wrap {
+    position: relative;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .card-image-placeholder {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 72px);
+    color: rgba(255,255,255,0.04);
+    letter-spacing: 0.06em;
+    user-select: none;
+    text-align: center;
+    padding: 0 20px;
+    line-height: 1;
+  }
+  /* If you add real images later, use this: */
+  /* .card-image-wrap img { width:100%; height:100%; object-fit:cover; } */
+
+  .card-badge {
+    position: absolute; top: 14px; right: 14px;
+    font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 10px;
+  }
+  .badge-use    { background: #140404; border: 1px solid #2a0a0a; color: var(--red); }
+  .badge-owned  { background: #0a1a0a; border: 1px solid #0a2a0a; color: #22c55e; }
+  .badge-tested { background: #0a0a1a; border: 1px solid #0a0a2a; color: #3b82f6; }
+
+  .card-body { padding: 24px 28px 20px; flex: 1; display: flex; flex-direction: column; }
+
+  .card-category {
+    font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 8px;
+  }
+  .card-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; letter-spacing: 0.06em;
+    color: var(--white); line-height: 1; margin-bottom: 4px;
+  }
+  .card-subtitle {
+    font-size: 11px; color: var(--text-dim); margin-bottom: 16px;
+  }
+  .card-take {
+    font-size: 11px; line-height: 1.9; color: var(--text-mid);
+    flex: 1; margin-bottom: 20px;
+  }
+  .card-take strong { color: var(--text); font-weight: 500; }
+
+  /* Spec pills */
+  .card-specs {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: 20px;
+  }
+  .spec-pill {
+    font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-dim); border: 1px solid var(--border);
+    padding: 3px 8px;
+  }
+
+  /* Price + CTA row */
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 16px; border-top: 1px solid var(--border);
+    gap: 12px;
+  }
+  .card-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; color: var(--text-mid);
+    letter-spacing: 0.06em; line-height: 1;
+  }
+  .card-price span { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
+
+  .card-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--red); color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 10px 18px; text-decoration: none;
+    border: none; cursor: pointer; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .card-cta:hover { background: #cc2418; }
+  .card-cta-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--text-dim);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 10px 18px; text-decoration: none;
+    border: 1px solid var(--border); cursor: pointer; white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .card-cta-ghost:hover { color: var(--text); border-color: #555; }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    width: 100%; height: 1px;
+    background: var(--border);
+  }
+
+  /* ── PHILOSOPHY STRIP ── */
+  .philosophy-strip {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 40px;
+  }
+  .philosophy-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 80px; align-items: start;
+  }
+  .philosophy-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    letter-spacing: 0.04em; line-height: 1;
+    color: var(--white);
+  }
+  .philosophy-heading em { font-style: normal; color: var(--red); }
+  .philosophy-body {
+    font-size: 12px; line-height: 2.2; color: var(--text-dim);
+  }
+  .philosophy-body strong { color: var(--text); font-weight: 500; }
+  .philosophy-body p + p { margin-top: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
+  footer img:hover { opacity: 1; }
+  .footer-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  .footer-links a {
+    font-size: 9px; letter-spacing: 2px; color: var(--muted);
+    text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+  .footer-copy { font-size: 9px; letter-spacing: 1px; color: #2a2a2a; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .r1-nav { padding: 16px 20px; }
+    .hero { padding: 48px 20px 40px; }
+    .filter-bar { padding: 0 20px; }
+    .gear-section { padding: 40px 20px; }
+    .gear-grid { grid-template-columns: 1fr; }
+    .philosophy-strip { padding: 40px 20px; }
+    .philosophy-inner { grid-template-columns: 1fr; gap: 32px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 20px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
+  }
+
+  /* ── CATEGORY VISIBILITY ── */
+  .category-block { display: block; }
+  .category-block.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="r1-nav">
+  <a class="r1-nav-logo" href="index.html">
+    <img src="logo-white.jpg" alt="RUN1%">
+  </a>
+  <ul class="r1-nav-links">
+    <li><a href="index.html#tools">Tools</a></li>
+    <li><a href="index.html#notes">Field Notes</a></li>
+    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+  <a class="r1-back" href="index.html">Back</a>
+</nav>
+<div class="r1-spacer"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">What I Actually Run In</div>
+  <h1>Gear</h1>
+  <p class="hero-sub">
+    <strong>No sponsorships. No gifted product.</strong> Just the shoes, watches, and gear I've used across four half marathons and hundreds of training miles in Eugene, OR. If I recommend it, I've run in it.
+  </p>
+  <div class="hero-disclaimer">
+    Affiliate links — I earn a small commission at no cost to you
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterGear('all', this)">All Gear</button>
+  <button class="filter-btn" onclick="filterGear('shoes', this)">Shoes</button>
+  <button class="filter-btn" onclick="filterGear('watches', this)">Watches</button>
+  <button class="filter-btn" onclick="filterGear('accessories', this)">Accessories</button>
+  <button class="filter-btn" onclick="filterGear('nutrition', this)">Nutrition</button>
+</div>
+
+<!-- GEAR CONTENT -->
+<div class="gear-section">
+
+  <!-- ── SHOES ── -->
+  <div class="category-block" data-category="shoes" id="cat-shoes">
+    <div class="category-header">
+      <div class="category-title">Shoes</div>
+      <div class="category-count">4 picks</div>
+    </div>
+    <div class="gear-grid">
+
+      <!-- Nike Vaporfly -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">VAPORFLY<br>3</div>
+          <span class="card-badge badge-use">What I Race In</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Shoes · Race Day</div>
+          <div class="card-name">Nike Vaporfly 3</div>
+          <div class="card-subtitle">Carbon-plated road racer</div>
+          <div class="card-take">
+            <strong>The shoe I PR'd in.</strong> The carbon plate and ZoomX foam make you feel like the road is helping you forward — because it is. Not a daily trainer, not a shoe for casual runs. Save these for race day and your longest tempo sessions. The difference is real and not subtle.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">Carbon Plate</span>
+            <span class="spec-pill">ZoomX Foam</span>
+            <span class="spec-pill">8mm Drop</span>
+            <span class="spec-pill">6.6 oz</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$260 <span>/ pair</span></div>
+            <a href="https://www.runningwarehouse.com/Nike_Vaporfly_3/descpage-NVF3M.html" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Brooks Ghost -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">GHOST<br>16</div>
+          <span class="card-badge badge-owned">Daily Trainer</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Shoes · Training</div>
+          <div class="card-name">Brooks Ghost 16</div>
+          <div class="card-subtitle">Neutral daily trainer</div>
+          <div class="card-take">
+            <strong>My workhorse shoe.</strong> Every easy run, every long slow distance — this is what's on my feet. The DNA LOFT cushioning is forgiving without feeling spongy, and Brooks hasn't screwed up the fit across 16 iterations. Reliable in a way that matters when you're logging 30+ miles a week.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">DNA Loft Foam</span>
+            <span class="spec-pill">12mm Drop</span>
+            <span class="spec-pill">9.9 oz</span>
+            <span class="spec-pill">Neutral</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$140 <span>/ pair</span></div>
+            <a href="https://www.runningwarehouse.com/Brooks_Ghost_16/descpage-BG16M.html" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hoka Clifton -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">CLIFTON<br>9</div>
+          <span class="card-badge badge-tested">Also Good</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Shoes · Training</div>
+          <div class="card-name">Hoka Clifton 9</div>
+          <div class="card-subtitle">Max-cushion daily trainer</div>
+          <div class="card-take">
+            <strong>If your knees need a break.</strong> The Clifton is what I rotate in on weeks with high mileage or when my legs are beat up. The stack height is absurd but the ride is surprisingly smooth — it doesn't feel unstable like other max-cushion shoes. Good option if you're coming back from injury.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">Max Cushion</span>
+            <span class="spec-pill">5mm Drop</span>
+            <span class="spec-pill">8.3 oz</span>
+            <span class="spec-pill">Neutral</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$145 <span>/ pair</span></div>
+            <a href="https://www.runningwarehouse.com/Hoka_Clifton_9/descpage-HC9M.html" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saucony Endorphin Speed -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">ENDORPHIN<br>SPEED 4</div>
+          <span class="card-badge badge-owned">Tempo Shoe</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Shoes · Tempo / Racing</div>
+          <div class="card-name">Saucony Endorphin Speed 4</div>
+          <div class="card-subtitle">Nylon-plated trainer / racer</div>
+          <div class="card-take">
+            <strong>The best tempo shoe at this price point.</strong> The nylon plate gives you propulsion without the rigidity of carbon — so you can actually train in these without worrying about wrecking an expensive race shoe. Fast enough to race a half in, durable enough to use for weekly speedwork.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">Nylon Plate</span>
+            <span class="spec-pill">PWRRUN PB Foam</span>
+            <span class="spec-pill">8mm Drop</span>
+            <span class="spec-pill">7.0 oz</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$185 <span>/ pair</span></div>
+            <a href="https://www.runningwarehouse.com/Saucony_Endorphin_Speed_4/descpage-SES4M.html" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── WATCHES ── -->
+  <div class="category-block" data-category="watches" id="cat-watches">
+    <div class="category-header">
+      <div class="category-title">Watches</div>
+      <div class="category-count">3 picks</div>
+    </div>
+    <div class="gear-grid">
+
+      <!-- Garmin Forerunner 265 -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">FORERUNNER<br>265</div>
+          <span class="card-badge badge-use">What I Wear</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Watches · GPS Running</div>
+          <div class="card-name">Garmin Forerunner 265</div>
+          <div class="card-subtitle">AMOLED GPS running watch</div>
+          <div class="card-take">
+            <strong>The sweet spot in the Garmin lineup.</strong> The AMOLED display is legitimately readable mid-run in direct sunlight — no squinting. Training Readiness and HRV Status have changed how I manage recovery weeks. Battery runs about 13 hours GPS, which covers any race distance you'll ever run. The 965 is overkill for most people.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">AMOLED Display</span>
+            <span class="spec-pill">13hr GPS</span>
+            <span class="spec-pill">HRV Tracking</span>
+            <span class="spec-pill">46mm</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$449 <span>/ watch</span></div>
+            <a href="https://www.amazon.com/dp/B0BS3TM1MD?tag=run1percent-20" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Garmin Forerunner 165 -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">FORERUNNER<br>165</div>
+          <span class="card-badge badge-tested">Best Budget</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Watches · GPS Running</div>
+          <div class="card-name">Garmin Forerunner 165</div>
+          <div class="card-subtitle">Entry-level AMOLED GPS watch</div>
+          <div class="card-take">
+            <strong>The best watch under $300 for serious runners.</strong> You get the AMOLED screen, solid GPS accuracy, and the core Garmin training metrics. What you give up vs. the 265: shorter battery life, no Training Readiness, no multi-band GPS. For someone running 3–5 days/week and training for a half, this covers everything you actually need.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">AMOLED Display</span>
+            <span class="spec-pill">19hr GPS</span>
+            <span class="spec-pill">Garmin Coach</span>
+            <span class="spec-pill">43mm</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$249 <span>/ watch</span></div>
+            <a href="https://www.amazon.com/dp/B0CQ7H7JJN?tag=run1percent-20" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Apple Watch Ultra 2 -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">APPLE WATCH<br>ULTRA 2</div>
+          <span class="card-badge badge-tested">If You're iOS</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Watches · GPS Running</div>
+          <div class="card-name">Apple Watch Ultra 2</div>
+          <div class="card-subtitle">Premium GPS smartwatch</div>
+          <div class="card-take">
+            <strong>Best Apple Watch for running, but Garmin is still better at running.</strong> If you're deep in the Apple ecosystem and want one device for everything — calls, workouts, sleep — the Ultra 2 does it well. GPS accuracy is excellent. The running metrics lag behind Garmin's depth though, and the training load features aren't as mature. $800 is a lot for a watch Garmin beats on pure run data.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">Dual-Band GPS</span>
+            <span class="spec-pill">36hr Battery</span>
+            <span class="spec-pill">Titanium</span>
+            <span class="spec-pill">49mm</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$799 <span>/ watch</span></div>
+            <a href="https://www.amazon.com/dp/B0CHX9N594?tag=run1percent-20" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── ACCESSORIES ── -->
+  <div class="category-block" data-category="accessories" id="cat-accessories">
+    <div class="category-header">
+      <div class="category-title">Accessories</div>
+      <div class="category-count">4 picks</div>
+    </div>
+    <div class="gear-grid">
+
+      <!-- Garmin HRM-Pro -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">HRM-PRO<br>PLUS</div>
+          <span class="card-badge badge-owned">Worth It</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Accessories · Heart Rate</div>
+          <div class="card-name">Garmin HRM-Pro Plus</div>
+          <div class="card-subtitle">Chest strap heart rate monitor</div>
+          <div class="card-take">
+            <strong>Wrist HR is fine. Chest strap HR is accurate.</strong> On easy days the difference barely matters. On threshold runs and races, wrist-based HR lags 10–20 seconds behind what's actually happening. If you're training in zones or racing by HR, a chest strap removes a real variable. The HRM-Pro also tracks running dynamics (cadence, ground contact time, vertical oscillation) that the watch alone can't measure.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">Chest Strap</span>
+            <span class="spec-pill">Running Dynamics</span>
+            <span class="spec-pill">Garmin / ANT+</span>
+            <span class="spec-pill">~400hr Battery</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$129 <span>/ monitor</span></div>
+            <a href="https://www.amazon.com/dp/B09TVC3LYB?tag=run1percent-20" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flipbelt -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">FLIP<br>BELT</div>
+          <span class="card-badge badge-owned">Race Day Must</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Accessories · Carry</div>
+          <div class="card-name">FlipBelt Classic</div>
+          <div class="card-subtitle">Tubular waist running belt</div>
+          <div class="card-take">
+            <strong>Solves the phone problem without any bounce.</strong> I've tried armbands, handhelds, and shorts with pockets. The FlipBelt is the only option that genuinely disappears when you're running. Phone, gels, and keys fit without shifting. I race in this every time — the compression fit means absolutely nothing moves regardless of pace.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">Zero Bounce</span>
+            <span class="spec-pill">Fits Most Phones</span>
+            <span class="spec-pill">Machine Washable</span>
+            <span class="spec-pill">3 Sizes</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$29 <span>/ belt</span></div>
+            <a href="https://www.amazon.com/dp/B00IBTSMHC?tag=run1percent-20" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bodyglide -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">BODY<br>GLIDE</div>
+          <span class="card-badge badge-owned">Non-Negotiable</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Accessories · Anti-Chafe</div>
+          <div class="card-name">BodyGlide Original</div>
+          <div class="card-subtitle">Anti-chafe balm stick</div>
+          <div class="card-take">
+            <strong>You don't think about this until mile 10 when you desperately need it.</strong> Thighs, underarms, anywhere your kit rubs — apply before you leave. At 13+ miles the difference between "this is uncomfortable" and "I am actively being destroyed" comes down to whether you remembered BodyGlide. Buy two. Keep one in your race bag permanently.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">Sweat-Resistant</span>
+            <span class="spec-pill">Non-Greasy</span>
+            <span class="spec-pill">Stick Format</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$10 <span>/ stick</span></div>
+            <a href="https://www.amazon.com/dp/B0013H5KA0?tag=run1percent-20" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aftershokz Shokz OpenRun -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">OPENRUN<br>PRO 2</div>
+          <span class="card-badge badge-owned">Training Only</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Accessories · Audio</div>
+          <div class="card-name">Shokz OpenRun Pro 2</div>
+          <div class="card-subtitle">Bone conduction headphones</div>
+          <div class="card-take">
+            <strong>The only headphones I trust for road running.</strong> Bone conduction means you can hear traffic, other runners, and your own breathing while still listening to music or podcasts. The audio quality isn't audiophile-grade but it's good enough. I don't race in headphones — save that for training. OpenRun Pro 2 adds 10-hour battery and meaningfully better bass than the original.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">Bone Conduction</span>
+            <span class="spec-pill">10hr Battery</span>
+            <span class="spec-pill">IP55 Sweat-Proof</span>
+            <span class="spec-pill">Open Ear</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$180 <span>/ pair</span></div>
+            <a href="https://www.amazon.com/dp/B0C2HT1NVP?tag=run1percent-20" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── NUTRITION ── -->
+  <div class="category-block" data-category="nutrition" id="cat-nutrition">
+    <div class="category-header">
+      <div class="category-title">Nutrition</div>
+      <div class="category-count">3 picks</div>
+    </div>
+    <div class="gear-grid">
+
+      <!-- SiS Beta Fuel -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">BETA<br>FUEL</div>
+          <span class="card-badge badge-use">What I Race On</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Nutrition · Race Gels</div>
+          <div class="card-name">Science in Sport Beta Fuel</div>
+          <div class="card-subtitle">2:1 maltodextrin:fructose gels</div>
+          <div class="card-take">
+            <strong>The gel that doesn't destroy my stomach.</strong> I've bonked on cheaper gels mid-race. The 2:1 ratio in Beta Fuel means you can actually absorb more carbohydrates per hour without GI issues — the research backs this up and my gut confirms it. Take one at mile 5 and mile 9 in a half. Don't wait until you feel like you need it.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">40g Carbs</span>
+            <span class="spec-pill">2:1 Ratio</span>
+            <span class="spec-pill">Caffeine Option</span>
+            <span class="spec-pill">Easy to Open</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$38 <span>/ 6-pack</span></div>
+            <a href="https://www.amazon.com/dp/B08CXQH7DM?tag=run1percent-20" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maurten 100 -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">MAURTEN<br>GEL 100</div>
+          <span class="card-badge badge-tested">Also Strong</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Nutrition · Race Gels</div>
+          <div class="card-name">Maurten Gel 100</div>
+          <div class="card-subtitle">Hydrogel sports nutrition</div>
+          <div class="card-take">
+            <strong>Elites use these for a reason.</strong> The hydrogel technology means these go down smooth and absorb fast — no syrupy hit, no texture, almost no flavor. More expensive than anything else on this list but if you've had stomach issues with other gels, they're worth the trial. Stack these with the Drink Mix 160 if you want to go full Maurten.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">25g Carbs</span>
+            <span class="spec-pill">Hydrogel</span>
+            <span class="spec-pill">Neutral Flavor</span>
+            <span class="spec-pill">Caffeine Option</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$45 <span>/ 6-pack</span></div>
+            <a href="https://www.amazon.com/dp/B07Q1BCZXC?tag=run1percent-20" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liquid IV -->
+      <div class="gear-card">
+        <div class="card-image-wrap">
+          <div class="card-image-placeholder">LIQUID<br>I.V.</div>
+          <span class="card-badge badge-owned">Daily Use</span>
+        </div>
+        <div class="card-body">
+          <div class="card-category">Nutrition · Hydration</div>
+          <div class="card-name">Liquid I.V. Hydration Multiplier</div>
+          <div class="card-subtitle">Electrolyte drink mix</div>
+          <div class="card-take">
+            <strong>The day before and morning of a long run.</strong> Not something I use mid-race, but Liquid I.V. is my pre-hydration routine on long run days and after any run over 10 miles. The sodium content is meaningful and it actually tastes good — Lemon Lime is the move. Cheaper per serving than most electrolyte options when you buy the 30-pack.
+          </div>
+          <div class="card-specs">
+            <span class="spec-pill">500mg Sodium</span>
+            <span class="spec-pill">Cellular Transport</span>
+            <span class="spec-pill">No Artificial Colors</span>
+            <span class="spec-pill">30 Servings</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">$28 <span>/ 30-pack</span></div>
+            <a href="https://www.amazon.com/dp/B01IT9NLHW?tag=run1percent-20" target="_blank" rel="noopener" class="card-cta">Shop →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- PHILOSOPHY STRIP -->
+<div class="philosophy-strip">
+  <div class="philosophy-inner">
+    <div>
+      <div class="philosophy-heading">How I pick<br><em>gear</em></div>
+    </div>
+    <div class="philosophy-body">
+      <p>
+        <strong>I only list gear I've used.</strong> Not gear I've read about, not gear that showed up in a PR package. Every item on this page has been on my feet, on my wrist, or in my hand during a real run in Eugene.
+      </p>
+      <p>
+        Some of these links are affiliate links — that means if you click through and buy, I earn a small commission at no extra cost to you. That's how I keep the tools free and the site ad-free. I'd recommend the same gear either way.
+      </p>
+      <p>
+        <strong>Running Warehouse is almost always the better place to buy shoes</strong> — better return policy, running-focused staff, and the same prices as everywhere else. Amazon links are there for convenience on non-shoe items.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="logo-white.jpg" alt="RUN1%" style="height:40px; opacity:0.4;">
+  <ul class="footer-links">
+    <li><a href="index.html#tools">Tools</a></li>
+    <li><a href="index.html#notes">Field Notes</a></li>
+    <li><a href="gear.html">Gear</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR</div>
+</footer>
+
+<script>
+  function filterGear(category, btn) {
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Show/hide category blocks
+    document.querySelectorAll('.category-block').forEach(block => {
+      if (category === 'all' || block.dataset.category === category) {
+        block.classList.remove('hidden');
+      } else {
+        block.classList.add('hidden');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
