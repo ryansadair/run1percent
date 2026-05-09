@@ -745,10 +745,31 @@
 
   function getRaceWeekTips(distance) {
     const tips = {
-      half: [ /* your original half tips */ ],
-      marathon: [ /* your original marathon tips */ ],
-      '10k': [ /* your original 10k tips */ ],
-      '50k': [ /* your original 50k tips */ ]
+      half: [
+        { strong: 'Lock your gear now.', text: 'Nothing new on race day — not your shoes, not your socks, not your nutrition. Everything you use on Saturday should have been tested in training.' },
+        { strong: 'Pre-hydrate the day before.', text: 'Start race morning already ahead on fluids. Sip consistently throughout Friday. Coffee is fine — just match it with water.' },
+        { strong: 'Know your first-mile pace cold.', text: 'Write it on your hand if you have to. The first mile will feel effortlessly easy because of adrenaline. Run your plan, not your feelings.' },
+        { strong: 'Sleep Thursday night more than Friday.', text: 'Pre-race nerves will kill Friday sleep. That\'s normal. The sleep you bank Thursday is what actually fuels Saturday.' },
+        { strong: 'Shakeout easy on Thursday or Friday.', text: '20–30 minutes at easy effort with 4–6 strides. Keeps the legs from going completely stale without adding any meaningful fatigue.' },
+      ],
+      marathon: [
+        { strong: 'Carb-load starts 48 hours out.', text: 'Not one big pasta dinner Saturday night — consistent carbohydrate loading starting Thursday. Aim for 8–10g of carbs per kg of body weight over those two days.' },
+        { strong: 'Prepare for miles 18–22.', text: 'This is where most marathons are won or lost. If you\'ve done the long runs, trust them. If you haven\'t, the wall is real — run the first half conservatively.' },
+        { strong: 'Practice your gel timing in the final week.', text: 'Know exactly when you\'re taking nutrition — miles 6, 12, 18 is a common pattern. Pre-open them in your belt if you can. Don\'t try to open a packet at race effort.' },
+        { strong: 'Get to the start line dry and warm.', text: 'Bring a throwaway layer. Standing in a corral for 45 minutes burns more energy than most runners account for. Stay warm until the last possible moment.' },
+        { strong: 'Keep race week easy and short.', text: 'No heroic final sessions. Two or three 20–30 minute easy runs with strides. Your fitness is locked in. The goal is to arrive fresh, not prove you\'re ready.' },
+      ],
+      '10k': [
+        { strong: 'One short shakeout the day before.', text: '15–20 minutes easy with 4 short strides at race pace. Wakes the legs up without leaving anything on the table.' },
+        { strong: 'Warm up properly on race morning.', text: 'A 10K hurts from the first mile. You need 10–15 minutes of easy jogging and a few strides before the gun so your body isn\'t shocked by the pace.' },
+        { strong: 'Have a pace plan for each 2K segment.', text: 'The 10K rewards runners who go out controlled and build. Miles 1–2 should feel almost too easy. Suffering is for miles 4–6.' },
+      ],
+      '50k': [
+        { strong: 'Crew and drop bag logistics first.', text: 'Know exactly what\'s in every drop bag, where it\'ll be, and what your crew can hand you and when. Logistics failures at mile 22 cost more time than fitness.' },
+        { strong: 'Poles, if legal, should be practiced.', text: 'Don\'t show up with trekking poles for the first time on race day. They change your gait and use muscle groups you may not have trained.' },
+        { strong: 'Eat early and often.', text: 'Real food, not just gels. Ultras are eating contests with running attached. Start calories in the first hour and don\'t stop. Saltines, boiled potatoes, and broth are your friends late in the race.' },
+        { strong: 'Your pace will be slower than you think.', text: 'Terrain, elevation, and time on feet all compound. Trust your effort level more than any target pace. Walk the uphills early — you\'ll make it back on the descents.' },
+      ],
     };
     return tips[distance] || tips.half;
   }

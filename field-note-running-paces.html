@@ -20,7 +20,7 @@
     --white: #f5f5f5;
     --red: #e5281a;
     --red-dim: #8a1a10;
-    --red-glow: rgba(229,40,26,0.15);
+    --red-glow: rgba(229,40,26,0.08);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,26 +55,22 @@
     backdrop-filter:blur(10px);
   }
   .r1-nav-logo img { height:35px; display:block; }
-  .r1-nav-links {
-    display: flex; align-items: center; gap: 28px; list-style: none;
-  }
-  @media (max-width: 640px) {
-    .r1-nav-links { display: none; }
-  }
+  .r1-nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+  @media (max-width: 640px) { .r1-nav-links { display:none; } }
   .r1-nav-links a {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
     color:var(--text-dim); text-decoration:none;
   }
   .r1-nav-links a:hover { color:var(--text); }
   .r1-back {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); border:1px solid var(--border); 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--text-dim); border:1px solid var(--border);
     padding:9px 18px; text-decoration:none;
   }
   .r1-back:hover { color:var(--text); border-color:var(--red); }
   .r1-spacer { height:64px; }
 
-  /* MAIN CONTENT AREA */
+  /* LAYOUT */
   .blog-container {
     max-width: 760px;
     margin: 0 auto;
@@ -100,8 +96,7 @@
   .blog-label::before {
     content: '';
     display: inline-block;
-    width: 20px;
-    height: 1px;
+    width: 20px; height: 1px;
     background: var(--red);
   }
 
@@ -122,6 +117,7 @@
     flex-wrap: wrap;
   }
 
+  /* CONTENT */
   .blog-content {
     font-size: 15px;
     line-height: 1.85;
@@ -133,18 +129,16 @@
     font-size: 32px;
     letter-spacing: 0.03em;
     color: var(--white);
-    margin: 60px 0 24px;
-  }
-
-  .blog-content h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--white);
-    margin: 48px 0 20px;
+    margin: 56px 0 20px;
   }
 
   .blog-content p {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
+  }
+
+  .blog-content strong {
+    color: var(--white);
+    font-weight: 500;
   }
 
   .blog-content a {
@@ -153,7 +147,130 @@
     text-underline-offset: 4px;
   }
 
-  /* Footer */
+  /* CALLOUT */
+  .callout {
+    border-left: 3px solid var(--red);
+    background: var(--red-glow);
+    padding: 20px 24px;
+    margin: 36px 0;
+  }
+  .callout p {
+    margin-bottom: 0;
+    color: var(--white);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* PACE CARDS */
+  .pace-cards {
+    margin: 8px 0 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border: 1px solid var(--border);
+  }
+  .pace-card {
+    background: var(--surface);
+    padding: 24px 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pace-card:last-child { border-bottom: none; }
+  .pace-card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+  .pace-card-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--red);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .pace-card-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+  .pace-card-body {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+  .pace-card-body strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .pace-card-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .spec-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+  }
+
+  /* RULES LIST */
+  .rules-list {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+  .rules-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .rules-list li .rule-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--red);
+    line-height: 1.2;
+  }
+  .rules-list li strong {
+    display: block;
+    color: var(--white);
+    margin-bottom: 4px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .rules-list li span { color: var(--text-mid); font-size: 13px; }
+
+  /* CLOSER */
+  .closer {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .closer-tag {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .closer p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     padding: 60px 40px 40px;
@@ -163,29 +280,19 @@
     flex-wrap: wrap;
     gap: 32px;
   }
-  footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
-  footer img:hover { opacity: 1; }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-  }
+  footer img { height:40px; opacity:0.4; transition:opacity 0.2s; }
+  footer img:hover { opacity:1; }
+  .footer-links { display:flex; gap:28px; list-style:none; }
   .footer-links a {
-    font-size: 9px; letter-spacing: 2px; color: var(--muted);
-    text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+    font-size:9px; letter-spacing:2px; color:var(--muted);
+    text-decoration:none; text-transform:uppercase; transition:color 0.2s;
   }
-  .footer-links a:hover { color: var(--white); }
-  .footer-copy {
-    font-size: 9px; letter-spacing: 1px; color: #2a2a2a;
-  }
+  .footer-links a:hover { color:var(--white); }
+  .footer-copy { font-size:9px; letter-spacing:1px; color:#2a2a2a; }
 
   @media (max-width: 768px) {
-    .blog-container {
-      padding: 40px 20px 80px;
-    }
-    footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 32px;
-    }
+    .blog-container { padding:40px 20px 80px; }
+    footer { flex-direction:column; text-align:center; gap:32px; }
   }
 </style>
 </head>
@@ -198,7 +305,7 @@
   <ul class="r1-nav-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <a class="r1-back" href="index.html">Back</a>
@@ -209,158 +316,150 @@
 
   <div class="blog-header">
     <div class="blog-label">Field Notes</div>
-    <h1>Decoding Running Paces</h1>
+    <h1>Decoding<br>Running Paces</h1>
     <div class="blog-meta">
       <span>November 2025</span>
-      <span>10 min read</span>
+      <span>Training</span>
+      <span>8 min read</span>
     </div>
   </div>
 
   <div class="blog-content">
-    
-    <!-- ==================== START WRITING HERE ==================== -->
-    
-<article class="max-w-3xl mx-auto prose prose-invert prose-lg">
 
-    <div class="prose-invert">
-        <p class="text-xl leading-relaxed text-gray-200">
-            Serious distance runners live or die by their ability to understand and apply the right intensity at the right time. Misjudge a workout and you waste weeks. Nail these distinctions and every session compounds.
-        </p>
+    <p>Serious distance runners live and die by their ability to apply the right intensity at the right time. Go too hard on an easy day and you compromise the hard session that follows. Go too easy on a tempo and you get nothing from it. Misjudge the opening miles of a half marathon and you're fighting for survival by mile 10.</p>
 
-        <div class="my-12 p-8 bg-zinc-950 border border-gray-800 rounded-2xl">
-            <h3 class="uppercase tracking-widest text-red-500 text-sm mb-4"></h3>
-            <p class="text-gray-300">
-                Paces are not rigid numbers — they are <strong>physiological tools</strong>. The best runners use them with intention. Context (fatigue, heat, hills, recovery) always matters more than any single percentage.
-            </p>
-        </div>
+    <p>Most runners think in two gears: fast and slow. The 1% think in six.</p>
 
-        <h2 class="text-3xl font-semibold text-white mt-16 mb-8">Recovery, Speed Work & Everything In Between</h2>
-
-        <!-- Easy / Recovery -->
-        <div class="mb-16">
-            <h3 class="text-2xl font-semibold text-white mb-4 flex items-center gap-3">
-                <span class="inline-block w-6 h-px bg-gray-600"></span>
-                1. Easy / Recovery Runs
-            </h3>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <ul class="space-y-4 text-gray-300">
-                        <li><strong>Purpose:</strong> Aerobic base, capillary development, fat metabolism, recovery</li>
-                        <li><strong>How it feels:</strong> Conversational. You could do this all day.</li>
-                        <li><strong>RPE:</strong> 3–5 / 10</li>
-                        <li><strong>Typical duration:</strong> 45–120+ minutes</li>
-                    </ul>
-                </div>
-                <div class="text-gray-400 text-sm leading-relaxed">
-                    This is where 70–80% of your weekly mileage should live. Protect your easy days fiercely — they are not “junk miles.”
-                </div>
-            </div>
-        </div>
-
-        <!-- Long Run -->
-        <div class="mb-16">
-            <h3 class="text-2xl font-semibold text-white mb-4 flex items-center gap-3">
-                <span class="inline-block w-6 h-px bg-gray-600"></span>
-                2. Long Run / Aerobic Endurance Pace
-            </h3>
-            <p class="text-gray-300">
-                Comfortably challenging but sustainable. Speak in short sentences. RPE 5–6.5. 
-                Usually 90 minutes to 3+ hours. Finish the last 20–30% strong when possible.
-            </p>
-        </div>
-
-        <!-- Marathon Pace -->
-        <div class="mb-16">
-            <h3 class="text-2xl font-semibold text-white mb-4 flex items-center gap-3">
-                <span class="inline-block w-6 h-px bg-gray-600"></span>
-                3. Marathon Pace (MP)
-            </h3>
-            <p class="text-gray-300">
-                Hard but controlled. The effort you could sustain for the full race distance on a good day. 
-                <strong>RPE: 7–8 / 10</strong>. Highly individual and improves dramatically with strong aerobic development.
-            </p>
-        </div>
-
-        <!-- Tempo / Threshold -->
-        <div class="mb-16">
-            <h3 class="text-2xl font-semibold text-white mb-4 flex items-center gap-3">
-                <span class="inline-block w-6 h-px bg-gray-600"></span>
-                4. Tempo / Threshold Runs
-            </h3>
-            <div class="bg-zinc-900 border border-gray-700 rounded-2xl p-8">
-                <p class="font-medium text-red-400 mb-4">The most commonly confused paces</p>
-                <p class="text-gray-300">
-                    <strong>Lactate Threshold (LT)</strong> is the highest intensity you can sustain for roughly 45–60 minutes before lactate builds rapidly.
-                </p>
-                <p class="mt-6 text-gray-300">
-                    <strong>Tempo Run:</strong> 20–40 minutes (continuous or broken) at or very near LT pace. 
-                    “Comfortably hard.” You can say a few words but not hold a conversation. RPE 8–8.5.
-                </p>
-            </div>
-        </div>
-
-        <!-- VO2 Max -->
-        <div class="mb-16">
-            <h3 class="text-2xl font-semibold text-white mb-4 flex items-center gap-3">
-                <span class="inline-block w-6 h-px bg-gray-600"></span>
-                5. VO2 Max Intervals
-            </h3>
-            <p class="text-gray-300">
-                3K–5K race pace (or fastest effort you could hold for ~8–12 minutes). 
-                Very hard breathing. RPE 9–9.5. Reps of 3–8 minutes with equal or slightly shorter recovery.
-            </p>
-        </div>
-
-        <!-- Speed / Reps -->
-        <div class="mb-16">
-            <h3 class="text-2xl font-semibold text-white mb-4 flex items-center gap-3">
-                <span class="inline-block w-6 h-px bg-gray-600"></span>
-                6. Speed Work
-            </h3>
-            <p class="text-gray-300">
-                Mile pace or faster. Short, sharp efforts (200m–800m) with full recovery. 
-                RPE 9.5–10. Used sparingly for neuromuscular power and economy.
-            </p>
-        </div>
-
-        <h2 class="text-3xl font-semibold text-white mt-20 mb-8">Practical Application Tips</h2>
-        
-        <ul class="list-none space-y-6 text-gray-300 mb-16">
-            <li class="flex gap-4">
-                <span class="text-red-500 font-mono text-xl">01.</span>
-                <span><strong>80/20 Rule:</strong> 80% easy/long running, 20% quality work above tempo.</span>
-            </li>
-            <li class="flex gap-4">
-                <span class="text-red-500 font-mono text-xl">02.</span>
-                <span>Easy days must stay truly easy. The magic happens when hard sessions are truly hard.</span>
-            </li>
-            <li class="flex gap-4">
-                <span class="text-red-500 font-mono text-xl">03.</span>
-                <span>Use perceived effort and breathing as your primary guide. Data supports, it doesn’t dictate.</span>
-            </li>
-        </ul>
-<br>
-        <!-- Extra spacing added here -->
-        <div class="mt-20 p-8 bg-gradient-to-br from-zinc-900 to-black border border-gray-700 rounded-3xl">
-            <p class="text-lg italic text-gray-200">
-                For those still working toward their first serious half or marathon: Don’t obsess over perfect paces yet. 
-                Master the difference between “easy” and “not easy.” Everything else becomes dramatically easier with time.
-            </p>
-            <p class="mt-8 text-white font-medium">
-                The 1% difference isn’t knowing these terms — it’s consistently applying them with intention, week after week.
-            </p>
-        </div>
-
-        <div class="mt-16 pt-8 border-t border-gray-800 text-center">
-            <p class="text-sm uppercase tracking-widest text-gray-500">Save this Field Note. Return to it every training block.</p>
-        </div>
+    <div class="callout">
+      <p>Paces are physiological tools, not rigid numbers. The best runners use them with intention. Context — fatigue, heat, hills, recovery — always matters more than any single percentage or target.</p>
     </div>
-</article>
 
+    <h2>The Six Paces Worth Knowing</h2>
 
-    <!-- Add as many sections as you need -->
-    
-    <!-- ==================== END OF YOUR CONTENT ==================== -->
+    <div class="pace-cards">
+
+      <div class="pace-card">
+        <div class="pace-card-header">
+          <div class="pace-card-num">01</div>
+          <div class="pace-card-name">Easy / Recovery</div>
+        </div>
+        <div class="pace-card-body">
+          <strong>The foundation of every training week.</strong> You could hold a full conversation. Your breathing is quiet. This is where 70–80% of your weekly mileage should live — not because it's easy to do, but because it's hard to do correctly. Most runners run their easy days too fast and arrive at hard sessions already depleted.
+        </div>
+        <div class="pace-card-specs">
+          <span class="spec-tag">RPE 3–4</span>
+          <span class="spec-tag">Fully conversational</span>
+          <span class="spec-tag">45–120+ min</span>
+        </div>
+      </div>
+
+      <div class="pace-card">
+        <div class="pace-card-header">
+          <div class="pace-card-num">02</div>
+          <div class="pace-card-name">Long Run</div>
+        </div>
+        <div class="pace-card-body">
+          <strong>Comfortably challenging but sustainable for hours.</strong> Short sentences only. This is aerobic endurance work — building the fat-burning machinery, capillary density, and mental resilience that race day actually demands. Finish the final 20–30% at a controlled pickup, not a crawl.
+        </div>
+        <div class="pace-card-specs">
+          <span class="spec-tag">RPE 5–6</span>
+          <span class="spec-tag">Short sentences</span>
+          <span class="spec-tag">90 min – 3+ hr</span>
+        </div>
+      </div>
+
+      <div class="pace-card">
+        <div class="pace-card-header">
+          <div class="pace-card-num">03</div>
+          <div class="pace-card-name">Marathon Pace</div>
+        </div>
+        <div class="pace-card-body">
+          <strong>Hard but controlled.</strong> The effort you could sustain for the full race distance on your best day. Most runners underestimate how much training at this specific intensity improves race day execution. Use the <a href="race-predictor.html">Race Predictor</a> to estimate your marathon pace from a recent result.
+        </div>
+        <div class="pace-card-specs">
+          <span class="spec-tag">RPE 7–8</span>
+          <span class="spec-tag">Controlled hard</span>
+          <span class="spec-tag">Highly individual</span>
+        </div>
+      </div>
+
+      <div class="pace-card">
+        <div class="pace-card-header">
+          <div class="pace-card-num">04</div>
+          <div class="pace-card-name">Tempo / Threshold</div>
+        </div>
+        <div class="pace-card-body">
+          <strong>The most commonly misunderstood pace.</strong> Lactate threshold is the highest intensity you can sustain for roughly 45–60 minutes before blood lactate accumulates faster than you can clear it. Tempo pace sits just at or slightly below that line. Comfortably hard — a few words possible, not full sentences. Most runners run their tempo miles too fast, spike past threshold, and wonder why they can't hold the effort.
+        </div>
+        <div class="pace-card-specs">
+          <span class="spec-tag">RPE 8–8.5</span>
+          <span class="spec-tag">A few words only</span>
+          <span class="spec-tag">20–40 min sustained</span>
+        </div>
+      </div>
+
+      <div class="pace-card">
+        <div class="pace-card-header">
+          <div class="pace-card-num">05</div>
+          <div class="pace-card-name">VO2 Max Intervals</div>
+        </div>
+        <div class="pace-card-body">
+          <strong>3K to 5K race pace.</strong> The fastest effort you could hold for roughly 8–12 minutes all-out. Very hard breathing. These sessions raise your aerobic ceiling — they're expensive and require real recovery, so use them sparingly. Reps of 3–8 minutes with equal or slightly shorter rest.
+        </div>
+        <div class="pace-card-specs">
+          <span class="spec-tag">RPE 9–9.5</span>
+          <span class="spec-tag">No words possible</span>
+          <span class="spec-tag">3–8 min reps</span>
+        </div>
+      </div>
+
+      <div class="pace-card">
+        <div class="pace-card-header">
+          <div class="pace-card-num">06</div>
+          <div class="pace-card-name">Speed Work</div>
+        </div>
+        <div class="pace-card-body">
+          <strong>Mile pace or faster.</strong> Short, sharp efforts — 100m to 800m — with full recovery between. Used sparingly to build neuromuscular power, turnover, and running economy. Not where fitness is built; where it's sharpened. Don't chase this without a solid aerobic base underneath it.
+        </div>
+        <div class="pace-card-specs">
+          <span class="spec-tag">RPE 9.5–10</span>
+          <span class="spec-tag">All-out</span>
+          <span class="spec-tag">Full recovery</span>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>Three Rules That Actually Matter</h2>
+
+    <ul class="rules-list">
+      <li>
+        <span class="rule-num">01</span>
+        <div>
+          <strong>80/20 Applies to Everyone</strong>
+          <span>Roughly 80% of your weekly volume should be easy to moderate effort. The remaining 20% is quality — tempo, intervals, race-pace work. This isn't a guideline for elites. It's the distribution that produces adaptation without breaking you down.</span>
+        </div>
+      </li>
+      <li>
+        <span class="rule-num">02</span>
+        <div>
+          <strong>Easy Must Be Actually Easy</strong>
+          <span>The failure mode of most amateur training isn't that hard days aren't hard enough — it's that easy days aren't easy enough. If you're running 30 seconds per mile faster than you should on a recovery day, you're stealing from tomorrow's session.</span>
+        </div>
+      </li>
+      <li>
+        <span class="rule-num">03</span>
+        <div>
+          <strong>Effort Overrules the Watch</strong>
+          <span>On a hot day, a hilly course, or after a poor night of sleep, your target pace is wrong. Use perceived effort and breathing as your primary guide. Data confirms what your body is already telling you — it doesn't replace it.</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="closer">
+      <div class="closer-tag">Bottom Line</div>
+      <p>For those still working toward a first half or marathon: don't obsess over exact paces yet. Master the difference between easy and not easy. Everything else becomes dramatically clearer once you understand what genuine easy effort actually feels like in your body. The 1% difference isn't knowing these terms — it's applying them with consistency, week after week.</p>
+    </div>
 
   </div>
 </div>
@@ -370,7 +469,7 @@
   <ul class="footer-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR <br> FOR INFORMATIONAL USE ONLY. NOT MEDICAL ADVICE.</div>

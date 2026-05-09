@@ -20,7 +20,7 @@
     --white: #f5f5f5;
     --red: #e5281a;
     --red-dim: #8a1a10;
-    --red-glow: rgba(229,40,26,0.15);
+    --red-glow: rgba(229,40,26,0.08);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,26 +55,22 @@
     backdrop-filter:blur(10px);
   }
   .r1-nav-logo img { height:35px; display:block; }
-  .r1-nav-links {
-    display: flex; align-items: center; gap: 28px; list-style: none;
-  }
-  @media (max-width: 640px) {
-    .r1-nav-links { display: none; }
-  }
+  .r1-nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+  @media (max-width: 640px) { .r1-nav-links { display:none; } }
   .r1-nav-links a {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
     color:var(--text-dim); text-decoration:none;
   }
   .r1-nav-links a:hover { color:var(--text); }
   .r1-back {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); border:1px solid var(--border); 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--text-dim); border:1px solid var(--border);
     padding:9px 18px; text-decoration:none;
   }
   .r1-back:hover { color:var(--text); border-color:var(--red); }
   .r1-spacer { height:64px; }
 
-  /* MAIN CONTENT AREA */
+  /* LAYOUT */
   .blog-container {
     max-width: 760px;
     margin: 0 auto;
@@ -100,8 +96,7 @@
   .blog-label::before {
     content: '';
     display: inline-block;
-    width: 20px;
-    height: 1px;
+    width: 20px; height: 1px;
     background: var(--red);
   }
 
@@ -122,6 +117,7 @@
     flex-wrap: wrap;
   }
 
+  /* CONTENT */
   .blog-content {
     font-size: 15px;
     line-height: 1.85;
@@ -133,18 +129,16 @@
     font-size: 32px;
     letter-spacing: 0.03em;
     color: var(--white);
-    margin: 60px 0 24px;
-  }
-
-  .blog-content h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--white);
-    margin: 48px 0 20px;
+    margin: 56px 0 20px;
   }
 
   .blog-content p {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
+  }
+
+  .blog-content strong {
+    color: var(--white);
+    font-weight: 500;
   }
 
   .blog-content a {
@@ -153,7 +147,72 @@
     text-underline-offset: 4px;
   }
 
-  /* Footer */
+  /* CALLOUT */
+  .callout {
+    border-left: 3px solid var(--red);
+    background: var(--red-glow);
+    padding: 20px 24px;
+    margin: 36px 0;
+  }
+  .callout p {
+    margin-bottom: 0;
+    color: var(--white);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* TACTICS LIST */
+  .tactics-list {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+  .tactics-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .tactics-list li .tactic-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--red);
+    line-height: 1.2;
+  }
+  .tactics-list li strong {
+    display: block;
+    color: var(--white);
+    margin-bottom: 4px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .tactics-list li span { color: var(--text-mid); font-size: 13px; }
+
+  /* CLOSER */
+  .closer {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .closer-tag {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .closer p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     padding: 60px 40px 40px;
@@ -163,29 +222,19 @@
     flex-wrap: wrap;
     gap: 32px;
   }
-  footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
-  footer img:hover { opacity: 1; }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-  }
+  footer img { height:40px; opacity:0.4; transition:opacity 0.2s; }
+  footer img:hover { opacity:1; }
+  .footer-links { display:flex; gap:28px; list-style:none; }
   .footer-links a {
-    font-size: 9px; letter-spacing: 2px; color: var(--muted);
-    text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+    font-size:9px; letter-spacing:2px; color:var(--muted);
+    text-decoration:none; text-transform:uppercase; transition:color 0.2s;
   }
-  .footer-links a:hover { color: var(--white); }
-  .footer-copy {
-    font-size: 9px; letter-spacing: 1px; color: #2a2a2a;
-  }
+  .footer-links a:hover { color:var(--white); }
+  .footer-copy { font-size:9px; letter-spacing:1px; color:#2a2a2a; }
 
   @media (max-width: 768px) {
-    .blog-container {
-      padding: 40px 20px 80px;
-    }
-    footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 32px;
-    }
+    .blog-container { padding:40px 20px 80px; }
+    footer { flex-direction:column; text-align:center; gap:32px; }
   }
 </style>
 </head>
@@ -198,7 +247,7 @@
   <ul class="r1-nav-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <a class="r1-back" href="index.html">Back</a>
@@ -209,37 +258,73 @@
 
   <div class="blog-header">
     <div class="blog-label">Field Notes</div>
-    <h1>Running Through the Newborn Stage</h1>
+    <h1>Running Through<br>the Newborn Stage</h1>
     <div class="blog-meta">
       <span>April 2026</span>
-      <span>8 min read</span>
+      <span>Lifestyle</span>
+      <span>6 min read</span>
     </div>
   </div>
 
   <div class="blog-content">
-    
-    <!-- ==================== START WRITING HERE ==================== -->
-    
-    <p>The first few weeks (or two months from my recent experience) with a newborn feel like someone dropped you into a new universe where sleep is a myth and your body is no longer your own. For many runners, this is also the moment when their running identity quietly starts to fracture. You’re no longer “a runner who just had a baby.” You’re a parent who struggles to log even a few miles.
-Like I said, I’ve been there. The 2 a.m. feeds, the zombie-like exhaustion, the way your legs feel like they belong to someone else when you finally sneak out for a run. The newborn stage doesn’t just test your fitness; it tests your identity as a runner.
-Here’s what I’ve learned through my first lap through this chaotic season, and what actually helps you keep showing up instead of disappearing completely.
-The Reality Check
-Your easy pace is going to feel brutally hard. Your weekly mileage will drop...dramatically. That’s not failure; that’s biology and logistics doing what they do. The goal isn’t to hit your old numbers. The goal is to protect the habit so you can rebuild when the fog lifts. Read that again. The fog will lift, I promise.
-What Actually Works
 
-The 20-minute rule: If you can get out the door for even 20 minutes, you win. Some days that’s all you’ll manage. Celebrate it. Consistency at low volume beats heroic efforts that burn you out.
-Stroller + treadmill as lifelines: When your new baby hits the age where you feel comfortable putting them in a jogging stroller, do it. A solid jogging stroller and access to a treadmill (or very early/late runs) become your best friends. I’ve logged more miles hitting the treadmill at 5am or pushing a sleeping baby in a stroller than I care to admit.
-Gear that removes friction: This is where the 1% mindset shows up. Invest in gear that makes the limited windows you do have as comfortable and effective as possible. Lightweight layers that handle spit-up, shoes that feel good even when you’re carrying extra baby weight, and a watch that gives you honest feedback without judgment (I'm looking at you Garmin).
+    <p>The first few weeks with a newborn — or two months, from my recent experience — feel like someone dropped you into a new universe where sleep is a myth and your body is no longer your own. For runners, this is also the moment when your running identity quietly starts to fracture. You're no longer a runner who just had a baby. You're a parent who's struggling to log even a few miles a week.</p>
 
-For the runners still dreaming of this stage
-If you’re not there yet but want to be someday: Start building the mental and physical resilience now. Learn how to make the most of short, high-quality sessions. The habits you build in your 20s and early 30s will pay massive dividends when life gets messier.
-The newborn stage doesn’t end your running story. It just writes a new, harder chapter. The runners who come out the other side stronger are the ones who refuse to let perfect be the enemy of good enough. Sometimes good enough is good enough.
-You’re not behind. You’re adapting. Keep moving, even if it’s slow.</p>
+    <p>I've been there. The 2 a.m. feeds. The zombie-level exhaustion. The way your legs feel like they belong to someone else when you finally sneak out for a run. The newborn stage doesn't just test your fitness — it tests your identity as a runner. And that second thing is harder to train for.</p>
 
+    <div class="callout">
+      <p>The goal isn't to hit your old numbers. The goal is to protect the habit so you can rebuild when the fog lifts. The fog will lift.</p>
+    </div>
 
-    <!-- Add as many sections as you need -->
-    
-    <!-- ==================== END OF YOUR CONTENT ==================== -->
+    <h2>The Reality Check First</h2>
+
+    <p>Your easy pace is going to feel brutally hard. Your weekly mileage will drop — dramatically and without negotiation. That's not failure. That's biology and logistics doing exactly what they're supposed to do when you've just added a human to your household.</p>
+
+    <p>The 1% mindset here isn't about grinding through exhaustion. It's about playing the long game. A runner who logs three miles four times a week through the newborn stage is in infinitely better shape six months from now than one who tries to keep up with their old training, breaks down, and stops running entirely.</p>
+
+    <h2>What Actually Works</h2>
+
+    <ul class="tactics-list">
+      <li>
+        <span class="tactic-num">01</span>
+        <div>
+          <strong>The 20-Minute Rule</strong>
+          <span>If you can get out the door for even 20 minutes, you win that day. Some stretches that's genuinely all you'll manage. Celebrate it anyway. Consistency at low volume beats heroic efforts followed by two-week gaps every time.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">02</span>
+        <div>
+          <strong>Stroller and Treadmill as Lifelines</strong>
+          <span>Once your baby is old enough for a jogging stroller, use it. A solid running stroller and a treadmill at home or nearby are the two best infrastructure investments you can make during this period. I've logged more miles pushing a sleeping baby at 5 a.m. than I care to admit — and every one of them counted.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">03</span>
+        <div>
+          <strong>Remove Every Friction Point</strong>
+          <span>Gear laid out the night before. Shoes by the door. A route that requires zero decisions. The newborn stage teaches you that activation energy is real — any obstacle between you and the run will win. Eliminate as many as you can before you go to sleep.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">04</span>
+        <div>
+          <strong>Let the Watch Tell the Truth</strong>
+          <span>Your paces will be slower. Your HR will be higher. Sleep deprivation is real stress that shows up in real data. Don't compare to where you were six months ago — compare to where you were last week. Progress in this season is measured in weeks, not months.</span>
+        </div>
+      </li>
+    </ul>
+
+    <h2>For Runners Who Aren't There Yet</h2>
+
+    <p>If you're not in this stage yet but know it's coming: the best preparation isn't training harder now. It's building the mental habits that let you function on minimal sleep and still value a short run. Practice making the most of 25-minute sessions. Get comfortable with easy effort. Learn that a slow mile still counts.</p>
+
+    <p>The habits you build in the years before this season are the ones you'll fall back on during it. That's worth thinking about now, not later.</p>
+
+    <div class="closer">
+      <div class="closer-tag">Bottom Line</div>
+      <p>The newborn stage doesn't end your running story. It writes a harder chapter. The runners who come out the other side stronger are the ones who refuse to let perfect be the enemy of good enough — who keep showing up in whatever form showing up is possible. You're not behind. You're adapting. Keep moving, even if it's slow.</p>
+    </div>
 
   </div>
 </div>
@@ -249,7 +334,7 @@ You’re not behind. You’re adapting. Keep moving, even if it’s slow.</p>
   <ul class="footer-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR <br> FOR INFORMATIONAL USE ONLY. NOT MEDICAL ADVICE.</div>

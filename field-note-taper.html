@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Taper Paranoia is Real - And Normal — RUN1%</title>
+<title>The Taper Paranoia is Real — And Normal — RUN1%</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
     --white: #f5f5f5;
     --red: #e5281a;
     --red-dim: #8a1a10;
-    --red-glow: rgba(229,40,26,0.15);
+    --red-glow: rgba(229,40,26,0.08);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,26 +55,22 @@
     backdrop-filter:blur(10px);
   }
   .r1-nav-logo img { height:35px; display:block; }
-  .r1-nav-links {
-    display: flex; align-items: center; gap: 28px; list-style: none;
-  }
-  @media (max-width: 640px) {
-    .r1-nav-links { display: none; }
-  }
+  .r1-nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+  @media (max-width: 640px) { .r1-nav-links { display:none; } }
   .r1-nav-links a {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
     color:var(--text-dim); text-decoration:none;
   }
   .r1-nav-links a:hover { color:var(--text); }
   .r1-back {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); border:1px solid var(--border); 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--text-dim); border:1px solid var(--border);
     padding:9px 18px; text-decoration:none;
   }
   .r1-back:hover { color:var(--text); border-color:var(--red); }
   .r1-spacer { height:64px; }
 
-  /* MAIN CONTENT AREA */
+  /* LAYOUT */
   .blog-container {
     max-width: 760px;
     margin: 0 auto;
@@ -100,8 +96,7 @@
   .blog-label::before {
     content: '';
     display: inline-block;
-    width: 20px;
-    height: 1px;
+    width: 20px; height: 1px;
     background: var(--red);
   }
 
@@ -122,6 +117,7 @@
     flex-wrap: wrap;
   }
 
+  /* CONTENT */
   .blog-content {
     font-size: 15px;
     line-height: 1.85;
@@ -133,18 +129,16 @@
     font-size: 32px;
     letter-spacing: 0.03em;
     color: var(--white);
-    margin: 60px 0 24px;
-  }
-
-  .blog-content h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--white);
-    margin: 48px 0 20px;
+    margin: 56px 0 20px;
   }
 
   .blog-content p {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
+  }
+
+  .blog-content strong {
+    color: var(--white);
+    font-weight: 500;
   }
 
   .blog-content a {
@@ -153,7 +147,75 @@
     text-underline-offset: 4px;
   }
 
-  /* Footer */
+  /* CALLOUT BLOCK */
+  .callout {
+    border-left: 3px solid var(--red);
+    background: var(--red-glow);
+    padding: 20px 24px;
+    margin: 36px 0;
+  }
+  .callout p {
+    margin-bottom: 0;
+    color: var(--white);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* NUMBERED TACTICS LIST */
+  .tactics-list {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+  .tactics-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .tactics-list li .tactic-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--red);
+    line-height: 1.2;
+  }
+  .tactics-list li strong {
+    display: block;
+    color: var(--white);
+    margin-bottom: 4px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .tactics-list li span {
+    color: var(--text-mid);
+    font-size: 13px;
+  }
+
+  /* CLOSER */
+  .closer {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .closer-tag {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .closer p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     padding: 60px 40px 40px;
@@ -163,29 +225,19 @@
     flex-wrap: wrap;
     gap: 32px;
   }
-  footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
-  footer img:hover { opacity: 1; }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-  }
+  footer img { height:40px; opacity:0.4; transition:opacity 0.2s; }
+  footer img:hover { opacity:1; }
+  .footer-links { display:flex; gap:28px; list-style:none; }
   .footer-links a {
-    font-size: 9px; letter-spacing: 2px; color: var(--muted);
-    text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+    font-size:9px; letter-spacing:2px; color:var(--muted);
+    text-decoration:none; text-transform:uppercase; transition:color 0.2s;
   }
-  .footer-links a:hover { color: var(--white); }
-  .footer-copy {
-    font-size: 9px; letter-spacing: 1px; color: #2a2a2a;
-  }
+  .footer-links a:hover { color:var(--white); }
+  .footer-copy { font-size:9px; letter-spacing:1px; color:#2a2a2a; }
 
   @media (max-width: 768px) {
-    .blog-container {
-      padding: 40px 20px 80px;
-    }
-    footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 32px;
-    }
+    .blog-container { padding:40px 20px 80px; }
+    footer { flex-direction:column; text-align:center; gap:32px; }
   }
 </style>
 </head>
@@ -198,7 +250,7 @@
   <ul class="r1-nav-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <a class="r1-back" href="index.html">Back</a>
@@ -209,38 +261,73 @@
 
   <div class="blog-header">
     <div class="blog-label">Field Notes</div>
-    <h1>The Taper Paranoia is Real - And Normal</h1>
+    <h1>The Taper Paranoia<br>Is Real — And Normal</h1>
     <div class="blog-meta">
       <span>March 2026</span>
-      <span>8 min read</span>
+      <span>Training</span>
+      <span>6 min read</span>
     </div>
   </div>
 
   <div class="blog-content">
-    
-    <!-- ==================== START WRITING HERE ==================== -->
-    
-    <p>If you’ve ever hit the taper and suddenly become convinced that you’re losing all your fitness, that your legs feel like lead, or that you’re getting sick right before race day… welcome to the club. Taper paranoia is not a sign you’re weak or unprepared. It’s a sign you’ve done the work.
-The 1% of runners don’t eliminate taper paranoia. They learn to manage it like the predictable psychological storm that it is.
-What’s Actually Happening
-During a proper taper, your body is recovering from accumulated fatigue while your training stimulus drops. Muscles feel flat. Sleep can get weird. You start overanalyzing every twinge. This is normal physiology meeting an anxious brain that has been in “grind mode” for 12–16 weeks.
-Practical Ways to Handle It
 
-Data detox: Limit watch staring. One or two easy runs per week with no pace goals. Trust the process more than the numbers.
-Routine anchors: Keep some structure (same wake-up time, same easy shakeout routes, same pre-race meals) so your brain doesn’t spiral.
-Mental reframing: Remind yourself that every PR you’ve ever run was preceded by this exact feeling. The flat legs usually turn into fresh, bouncy ones on race morning.
-Light stimulus: A few short strides or 20–30 second pickups in the final week can remind your neuromuscular system what speed feels like without adding fatigue.
+    <p>If you've ever hit the taper and become convinced you're losing fitness, that your legs are turning to concrete, or that you're definitely getting sick four days before race day — welcome to the club. Taper paranoia is not a sign you're weak or underprepared. It's a sign you've done the work.</p>
 
-For those still working up to their first serious half or marathon
-Taper paranoia hits everyone, but it hits harder when the race feels bigger than anything you’ve done before. Start practicing mini-tapers now—reduce volume before shorter races and observe how your body and mind respond. Building that trust early makes the big-race taper far less terrifying.
-The runners who perform best in the taper aren’t the ones who feel great the whole time. They’re the ones who feel the paranoia… and go to the start line anyway.
-You’re not falling apart. You’re sharpening.</p>
-    
+    <p>The 1% don't eliminate taper paranoia. They learn to manage it like the predictable psychological storm it is.</p>
 
+    <div class="callout">
+      <p>Every PR you've ever run was preceded by this exact feeling. Every single one.</p>
+    </div>
 
-    <!-- Add as many sections as you need -->
-    
-    <!-- ==================== END OF YOUR CONTENT ==================== -->
+    <h2>What's Actually Happening</h2>
+
+    <p>During a proper taper, your body is absorbing weeks of accumulated training stress while your stimulus drops sharply. The fatigue starts to lift — but before it does, muscles feel flat and unresponsive. Sleep can get weird. Your resting heart rate might tick up slightly. You start cataloguing every twinge in your calves.</p>
+
+    <p>This is completely normal physiology colliding with an anxious brain that's been in grind mode for 12–16 weeks. The training is done. Your brain hasn't gotten the memo yet.</p>
+
+    <h2>Four Ways to Handle It</h2>
+
+    <ul class="tactics-list">
+      <li>
+        <span class="tactic-num">01</span>
+        <div>
+          <strong>Data Detox</strong>
+          <span>Limit watch staring. One or two easy runs per week with no pace targets. The numbers will not reassure you right now. Trust the training log, not the current session.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">02</span>
+        <div>
+          <strong>Routine Anchors</strong>
+          <span>Keep your structure intact — same wake time, same easy routes, same pre-run coffee. Routine signals safety to a nervous system that's looking for reasons to panic.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">03</span>
+        <div>
+          <strong>Mental Reframing</strong>
+          <span>The flat legs you're feeling right now are temporary. The fitness underneath them is real and compounding. Race morning, those same legs will feel electric. This is how it works.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">04</span>
+        <div>
+          <strong>Light Stimulus</strong>
+          <span>A few short strides or 20–30 second pickups in the final week can remind your neuromuscular system what speed feels like — without adding meaningful fatigue. Fast legs, not tired ones.</span>
+        </div>
+      </li>
+    </ul>
+
+    <h2>If This Is Your First Big Race</h2>
+
+    <p>Taper paranoia hits harder when the race feels bigger than anything you've done before. That's normal. The uncertainty is proportional to the ambition. Start practicing mini-tapers now — pull back before shorter tune-up races and observe how your body responds. Building that trust early makes the full taper far less terrifying when it counts.</p>
+
+    <p>Use the <a href="taper-calculator.html">Taper Calculator</a> to build a week-by-week mileage plan so you're not guessing how much to cut and when.</p>
+
+    <div class="closer">
+      <div class="closer-tag">Bottom Line</div>
+      <p>The runners who perform best in the taper aren't the ones who feel great the whole time. They're the ones who feel the paranoia, sit with it, and go to the start line anyway. You're not falling apart. You're sharpening.</p>
+    </div>
 
   </div>
 </div>
@@ -250,7 +337,7 @@ You’re not falling apart. You’re sharpening.</p>
   <ul class="footer-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR <br> FOR INFORMATIONAL USE ONLY. NOT MEDICAL ADVICE.</div>

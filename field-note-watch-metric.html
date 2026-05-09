@@ -20,7 +20,7 @@
     --white: #f5f5f5;
     --red: #e5281a;
     --red-dim: #8a1a10;
-    --red-glow: rgba(229,40,26,0.15);
+    --red-glow: rgba(229,40,26,0.08);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,26 +55,22 @@
     backdrop-filter:blur(10px);
   }
   .r1-nav-logo img { height:35px; display:block; }
-  .r1-nav-links {
-    display: flex; align-items: center; gap: 28px; list-style: none;
-  }
-  @media (max-width: 640px) {
-    .r1-nav-links { display: none; }
-  }
+  .r1-nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+  @media (max-width: 640px) { .r1-nav-links { display:none; } }
   .r1-nav-links a {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
     color:var(--text-dim); text-decoration:none;
   }
   .r1-nav-links a:hover { color:var(--text); }
   .r1-back {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); border:1px solid var(--border); 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--text-dim); border:1px solid var(--border);
     padding:9px 18px; text-decoration:none;
   }
   .r1-back:hover { color:var(--text); border-color:var(--red); }
   .r1-spacer { height:64px; }
 
-  /* MAIN CONTENT AREA */
+  /* LAYOUT */
   .blog-container {
     max-width: 760px;
     margin: 0 auto;
@@ -100,8 +96,7 @@
   .blog-label::before {
     content: '';
     display: inline-block;
-    width: 20px;
-    height: 1px;
+    width: 20px; height: 1px;
     background: var(--red);
   }
 
@@ -122,6 +117,7 @@
     flex-wrap: wrap;
   }
 
+  /* CONTENT */
   .blog-content {
     font-size: 15px;
     line-height: 1.85;
@@ -133,18 +129,16 @@
     font-size: 32px;
     letter-spacing: 0.03em;
     color: var(--white);
-    margin: 60px 0 24px;
-  }
-
-  .blog-content h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--white);
-    margin: 48px 0 20px;
+    margin: 56px 0 20px;
   }
 
   .blog-content p {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
+  }
+
+  .blog-content strong {
+    color: var(--white);
+    font-weight: 500;
   }
 
   .blog-content a {
@@ -153,7 +147,105 @@
     text-underline-offset: 4px;
   }
 
-  /* Footer */
+  /* CALLOUT BLOCK */
+  .callout {
+    border-left: 3px solid var(--red);
+    background: var(--red-glow);
+    padding: 20px 24px;
+    margin: 36px 0;
+  }
+  .callout p {
+    margin-bottom: 0;
+    color: var(--white);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* METRIC COMPARISON TABLE */
+  .metric-table {
+    border: 1px solid var(--border);
+    margin: 36px 0;
+    overflow: hidden;
+  }
+  .metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .metric-row:last-child { border-bottom: none; }
+  .metric-row.header { background: var(--surface); }
+  .metric-cell {
+    padding: 14px 16px;
+    font-size: 12px;
+    border-right: 1px solid var(--border);
+    line-height: 1.5;
+  }
+  .metric-cell:last-child { border-right: none; }
+  .metric-row.header .metric-cell {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .metric-cell.good { color: #22c55e; }
+  .metric-cell.bad  { color: var(--red); }
+  .metric-cell.mid  { color: #f97316; }
+
+  /* NUMBERED TACTICS LIST */
+  .tactics-list {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+  .tactics-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .tactics-list li .tactic-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--red);
+    line-height: 1.2;
+  }
+  .tactics-list li strong {
+    display: block;
+    color: var(--white);
+    margin-bottom: 4px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .tactics-list li span {
+    color: var(--text-mid);
+    font-size: 13px;
+  }
+
+  /* CLOSER */
+  .closer {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .closer-tag {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .closer p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     padding: 60px 40px 40px;
@@ -163,29 +255,21 @@
     flex-wrap: wrap;
     gap: 32px;
   }
-  footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
-  footer img:hover { opacity: 1; }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-  }
+  footer img { height:40px; opacity:0.4; transition:opacity 0.2s; }
+  footer img:hover { opacity:1; }
+  .footer-links { display:flex; gap:28px; list-style:none; }
   .footer-links a {
-    font-size: 9px; letter-spacing: 2px; color: var(--muted);
-    text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+    font-size:9px; letter-spacing:2px; color:var(--muted);
+    text-decoration:none; text-transform:uppercase; transition:color 0.2s;
   }
-  .footer-links a:hover { color: var(--white); }
-  .footer-copy {
-    font-size: 9px; letter-spacing: 1px; color: #2a2a2a;
-  }
+  .footer-links a:hover { color:var(--white); }
+  .footer-copy { font-size:9px; letter-spacing:1px; color:#2a2a2a; }
 
   @media (max-width: 768px) {
-    .blog-container {
-      padding: 40px 20px 80px;
-    }
-    footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 32px;
-    }
+    .blog-container { padding:40px 20px 80px; }
+    footer { flex-direction:column; text-align:center; gap:32px; }
+    .metric-table { font-size: 11px; }
+    .metric-cell { padding: 10px 12px; }
   }
 </style>
 </head>
@@ -198,7 +282,7 @@
   <ul class="r1-nav-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <a class="r1-back" href="index.html">Back</a>
@@ -209,39 +293,87 @@
 
   <div class="blog-header">
     <div class="blog-label">Field Notes</div>
-    <h1>One Watch Metric That Actually Matters</h1>
+    <h1>One Watch Metric<br>That Actually Matters</h1>
     <div class="blog-meta">
       <span>January 2025</span>
-      <span>8 min read</span>
+      <span>Gear</span>
+      <span>6 min read</span>
     </div>
   </div>
 
   <div class="blog-content">
-    
-    <!-- ==================== START WRITING HERE ==================== -->
-    
-    <p>There are dozens of metrics on modern running watches: VO2 max estimates, recovery scores, training load, aerobic/anaerobic training effect, etc. Most of them are interesting. Very few of them actually move the needle for serious half marathon and marathon performance.
-After years of testing every new feature that comes out, there’s one metric I keep coming back to as disproportionately valuable:
-Running Power (or more specifically, your ability to hold normalized power sustainably).
-But let’s be real—most runners obsess over the wrong numbers. Pace lies in the heat or on hills. Heart rate drifts with fatigue, dehydration, or heat. Even “fitness” scores can be misleading.
-Why Power Cuts Through the Noise
-It gives you a relatively consistent external measure of work output that isn’t as heavily influenced by environmental conditions or daily physiological fluctuations. When used correctly, it becomes an incredibly honest feedback tool during both training and racing.
-How Serious Runners Actually Use It
 
-Training: Learn your power zones the way you once learned heart rate zones. Do key workouts by power (especially tempo and threshold work).
-Racing: Use power as a ceiling in the early miles when excitement tries to override strategy.
-Progress tracking: Watch how your power at marathon pace evolves over a training block. That trend tells you more about real fitness gains than most other metrics combined.
+    <p>Modern running watches will bury you in data. VO2 max estimates. Training load. Recovery scores. Aerobic and anaerobic training effect. Body battery. Acute chronic workload ratio. Most of it is genuinely interesting. Very little of it actually moves the needle for half marathon and marathon performance.</p>
 
-Important nuance for aspiring runners
-If you’re still building your base and working toward your first half marathon, don’t get lost in power meter rabbit holes yet. Master consistent mileage, easy running, and basic pacing first. Power becomes exponentially more useful once you have a solid aerobic foundation.
-The best runners I know don’t chase every shiny metric. They pick one or two that give them reliable, actionable truth and ignore the rest until they actually need them.
-In a world drowning in data, the ability to focus on what actually matters is itself a 1% skill.</p>
-    
+    <p>After four races and a lot of time staring at a Garmin, there's one metric I keep coming back to as disproportionately useful: <strong>running power</strong> — specifically, your ability to hold normalized power sustainably across a key workout or race.</p>
 
+    <div class="callout">
+      <p>Pace lies in heat and on hills. Heart rate lags behind effort by 20–30 seconds and drifts with fatigue. Power gives you an honest, real-time measure of work output regardless of conditions.</p>
+    </div>
 
-    <!-- Add as many sections as you need -->
-    
-    <!-- ==================== END OF YOUR CONTENT ==================== -->
+    <h2>Why the Other Metrics Fall Short</h2>
+
+    <p>This isn't a knock on GPS pace or heart rate — both are useful. But each has a fundamental limitation in the moments that matter most.</p>
+
+    <div class="metric-table">
+      <div class="metric-row header">
+        <div class="metric-cell">Metric</div>
+        <div class="metric-cell">Strength</div>
+        <div class="metric-cell">Problem</div>
+      </div>
+      <div class="metric-row">
+        <div class="metric-cell"><strong>GPS Pace</strong></div>
+        <div class="metric-cell good">Instant, familiar</div>
+        <div class="metric-cell bad">Lies on hills and in heat</div>
+      </div>
+      <div class="metric-row">
+        <div class="metric-cell"><strong>Heart Rate</strong></div>
+        <div class="metric-cell good">Reflects true effort over time</div>
+        <div class="metric-cell bad">20–30 sec lag, drifts with fatigue</div>
+      </div>
+      <div class="metric-row">
+        <div class="metric-cell"><strong>Running Power</strong></div>
+        <div class="metric-cell good">Real-time, terrain-adjusted</div>
+        <div class="metric-cell mid">Requires learning your zones first</div>
+      </div>
+    </div>
+
+    <h2>How to Actually Use It</h2>
+
+    <ul class="tactics-list">
+      <li>
+        <span class="tactic-num">01</span>
+        <div>
+          <strong>Build Your Power Zones</strong>
+          <span>The same way you learned heart rate zones — find your critical power or functional threshold power through a field test, then train to those zones. Most Garmin watches will generate these automatically once you've done enough efforts.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">02</span>
+        <div>
+          <strong>Use It as a Ceiling in Races</strong>
+          <span>Set a power ceiling for the first half of your race. When the crowd surges at mile one and adrenaline makes everything feel easy, your power number won't lie to you. If you're already at race-effort power output, you're running too fast — regardless of what pace shows on the display.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">03</span>
+        <div>
+          <strong>Track It Block Over Block</strong>
+          <span>The real value of power is longitudinal. Watch how your power at a given pace improves over a 12-week training cycle. When your easy runs produce less power output at the same effort, that's real fitness — not a number a watch estimated from your wrist.</span>
+        </div>
+      </li>
+    </ul>
+
+    <h2>If You're Still Building Your Base</h2>
+
+    <p>Don't fall into the power meter rabbit hole yet. If you're working toward your first half marathon or still under 25 miles per week, the priority is consistent mileage, honest easy running, and learning the difference between a hard effort and a moderate one. Power becomes exponentially more useful once you have an aerobic foundation to measure against.</p>
+
+    <p>The best runners aren't the ones tracking every metric. They're the ones who pick one or two that give them reliable, actionable truth — and ignore the rest until they actually need them. In a world drowning in data, that selective focus is itself a 1% skill.</p>
+
+    <div class="closer">
+      <div class="closer-tag">Bottom Line</div>
+      <p>If you want to stop guessing during hard sessions and races, set up power zones and use power as your primary governor in the first half of any key effort. Let pace and heart rate confirm what power is already telling you.</p>
+    </div>
 
   </div>
 </div>
@@ -251,7 +383,7 @@ In a world drowning in data, the ability to focus on what actually matters is it
   <ul class="footer-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR <br> FOR INFORMATIONAL USE ONLY. NOT MEDICAL ADVICE.</div>

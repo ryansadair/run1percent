@@ -20,7 +20,7 @@
     --white: #f5f5f5;
     --red: #e5281a;
     --red-dim: #8a1a10;
-    --red-glow: rgba(229,40,26,0.15);
+    --red-glow: rgba(229,40,26,0.08);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,26 +55,22 @@
     backdrop-filter:blur(10px);
   }
   .r1-nav-logo img { height:35px; display:block; }
-  .r1-nav-links {
-    display: flex; align-items: center; gap: 28px; list-style: none;
-  }
-  @media (max-width: 640px) {
-    .r1-nav-links { display: none; }
-  }
+  .r1-nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+  @media (max-width: 640px) { .r1-nav-links { display:none; } }
   .r1-nav-links a {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
     color:var(--text-dim); text-decoration:none;
   }
   .r1-nav-links a:hover { color:var(--text); }
   .r1-back {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); border:1px solid var(--border); 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--text-dim); border:1px solid var(--border);
     padding:9px 18px; text-decoration:none;
   }
   .r1-back:hover { color:var(--text); border-color:var(--red); }
   .r1-spacer { height:64px; }
 
-  /* MAIN CONTENT AREA */
+  /* LAYOUT */
   .blog-container {
     max-width: 760px;
     margin: 0 auto;
@@ -100,8 +96,7 @@
   .blog-label::before {
     content: '';
     display: inline-block;
-    width: 20px;
-    height: 1px;
+    width: 20px; height: 1px;
     background: var(--red);
   }
 
@@ -122,6 +117,7 @@
     flex-wrap: wrap;
   }
 
+  /* CONTENT */
   .blog-content {
     font-size: 15px;
     line-height: 1.85;
@@ -133,18 +129,16 @@
     font-size: 32px;
     letter-spacing: 0.03em;
     color: var(--white);
-    margin: 60px 0 24px;
-  }
-
-  .blog-content h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--white);
-    margin: 48px 0 20px;
+    margin: 56px 0 20px;
   }
 
   .blog-content p {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
+  }
+
+  .blog-content strong {
+    color: var(--white);
+    font-weight: 500;
   }
 
   .blog-content a {
@@ -153,7 +147,104 @@
     text-underline-offset: 4px;
   }
 
-  /* Footer */
+  /* CALLOUT */
+  .callout {
+    border-left: 3px solid var(--red);
+    background: var(--red-glow);
+    padding: 20px 24px;
+    margin: 36px 0;
+  }
+  .callout p {
+    margin-bottom: 0;
+    color: var(--white);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* REASON LIST */
+  .reason-list {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+  .reason-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .reason-list li .reason-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--red);
+    line-height: 1.2;
+  }
+  .reason-list li strong {
+    display: block;
+    color: var(--white);
+    margin-bottom: 4px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .reason-list li span { color: var(--text-mid); font-size: 13px; }
+
+  /* TACTICS LIST */
+  .tactics-list {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+  .tactics-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .tactics-list li .tactic-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--red);
+    line-height: 1.2;
+  }
+  .tactics-list li strong {
+    display: block;
+    color: var(--white);
+    margin-bottom: 4px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .tactics-list li span { color: var(--text-mid); font-size: 13px; }
+
+  /* CLOSER */
+  .closer {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .closer-tag {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .closer p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     padding: 60px 40px 40px;
@@ -163,29 +254,19 @@
     flex-wrap: wrap;
     gap: 32px;
   }
-  footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
-  footer img:hover { opacity: 1; }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-  }
+  footer img { height:40px; opacity:0.4; transition:opacity 0.2s; }
+  footer img:hover { opacity:1; }
+  .footer-links { display:flex; gap:28px; list-style:none; }
   .footer-links a {
-    font-size: 9px; letter-spacing: 2px; color: var(--muted);
-    text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+    font-size:9px; letter-spacing:2px; color:var(--muted);
+    text-decoration:none; text-transform:uppercase; transition:color 0.2s;
   }
-  .footer-links a:hover { color: var(--white); }
-  .footer-copy {
-    font-size: 9px; letter-spacing: 1px; color: #2a2a2a;
-  }
+  .footer-links a:hover { color:var(--white); }
+  .footer-copy { font-size:9px; letter-spacing:1px; color:#2a2a2a; }
 
   @media (max-width: 768px) {
-    .blog-container {
-      padding: 40px 20px 80px;
-    }
-    footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 32px;
-    }
+    .blog-container { padding:40px 20px 80px; }
+    footer { flex-direction:column; text-align:center; gap:32px; }
   }
 </style>
 </head>
@@ -198,7 +279,7 @@
   <ul class="r1-nav-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <a class="r1-back" href="index.html">Back</a>
@@ -209,42 +290,86 @@
 
   <div class="blog-header">
     <div class="blog-label">Field Notes</div>
-    <h1>Why Your First Mile Is Lying to You</h1>
+    <h1>Why Your First Mile<br>Is Lying to You</h1>
     <div class="blog-meta">
       <span>May 2025</span>
-      <span>8 min read</span>
+      <span>Race Strategy</span>
+      <span>5 min read</span>
     </div>
   </div>
 
   <div class="blog-content">
-    
-    <!-- ==================== START WRITING HERE ==================== -->
-    
-    <p>Your watch says 7:45 for the first mile and you feel like a god. By mile 8 you’re questioning every life choice that led you here. Sound familiar?
-The first mile is a notorious liar, especially in half marathons and marathons. It lies because of adrenaline, crowd energy, fresh legs, and the dangerous cocktail of excitement and under-pacing awareness. Learning to ignore it—or at least interpret it correctly—is one of the highest-ROI skills for serious distance runners.
-Why the First Mile Misleads
 
-Physiological: Your body is still warming up. Heart rate lags behind effort. Perceived exertion is artificially low.
-Psychological: The starting line dopamine hit is real. Most runners go out too fast because it feels easy.
-Tactical: In big races, positioning and drafting can pull you along faster than your sustainable pace.
+    <p>Your watch says 7:45 for mile one and you feel like a god. By mile 8 you're questioning every life choice that led you here. Sound familiar?</p>
 
-I’ve watched too many talented runners blow up in the second half of a half marathon because they trusted that glowing 7:xx on their watch instead of their training data and body signals.
-How the 1% Handle the First Mile
+    <p>The first mile is a notorious liar — especially in half marathons and marathons. Learning to ignore it, or at least interpret it correctly, is one of the highest-ROI skills in distance running. Most runners never figure it out. The 1% know exactly what's happening and plan for it before the gun fires.</p>
 
-Have a pre-race “truth number”: Know your goal pace from training. Write it on your hand or set a strict alert on your watch. If the first mile is more than 10–15 seconds faster than goal, you’re probably in trouble.
-Use effort + data, not just pace: In the opening miles, rate of perceived exertion (RPE) and heart rate are more honest companions than GPS pace, especially if the course has early elevation or crowds.
-Practice it: Do goal-pace workouts that start conservatively. Train your brain to resist the urge to “go with the flow” when everyone else is flying.
+    <div class="callout">
+      <p>The first mile is theater. The real race starts around mile 3–4, when the novelty wears off and the work begins.</p>
+    </div>
 
-For runners still building toward that half or full
-Don’t worry if your first miles are messy right now. The ability to run negative splits or even splits comes with time, experience, and deliberate practice. Start by learning to run the second mile at the pace you want to hold, not the first. That single adjustment will save more races than almost anything else.
-The first mile is theater. The real race starts around mile 3–4 when the novelty wears off and the work begins. Train yourself to be patient there, and you’ll be the one passing people in the final miles instead of getting passed.
-Master this, and you stop lying to yourself.</p>
-    
+    <h2>Why the First Mile Lies</h2>
 
+    <ul class="reason-list">
+      <li>
+        <span class="reason-num">01</span>
+        <div>
+          <strong>Physiological</strong>
+          <span>Your body is still warming up. Heart rate lags 20–30 seconds behind true effort. Perceived exertion is artificially low because your muscles haven't begun accumulating the metabolic byproducts that make hard running feel hard.</span>
+        </div>
+      </li>
+      <li>
+        <span class="reason-num">02</span>
+        <div>
+          <strong>Psychological</strong>
+          <span>The starting line dopamine hit is real. Fresh legs, crowd energy, months of training peaking all at once — your brain is flooded with the signal that everything is fine. It isn't lying maliciously. It genuinely doesn't know what's coming yet.</span>
+        </div>
+      </li>
+      <li>
+        <span class="reason-num">03</span>
+        <div>
+          <strong>Tactical</strong>
+          <span>In larger races, positioning and drafting pull you along faster than your sustainable pace. The crowd sets the tempo. Your ego agrees to follow. Your legs haven't filed an objection yet — but they will.</span>
+        </div>
+      </li>
+    </ul>
 
-    <!-- Add as many sections as you need -->
-    
-    <!-- ==================== END OF YOUR CONTENT ==================== -->
+    <h2>How the 1% Handle Mile One</h2>
+
+    <ul class="tactics-list">
+      <li>
+        <span class="tactic-num">01</span>
+        <div>
+          <strong>Have a Truth Number</strong>
+          <span>Know your goal pace from training before you arrive at the start line. Write it on your hand. Set a pace alert on your watch. If mile one comes in more than 10–15 seconds faster than goal, you're in trouble — regardless of how it feels.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">02</span>
+        <div>
+          <strong>Use Effort, Not Just Pace</strong>
+          <span>In the opening miles, RPE and heart rate are more honest than GPS pace — especially on a course with early elevation or crowd congestion. If your HR is already at tempo range and you're only at mile one, slow down immediately.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">03</span>
+        <div>
+          <strong>Practice It in Training</strong>
+          <span>Do goal-pace workouts that start conservatively. Train your brain to resist the pull of early crowd pace. The feeling of running controlled while everyone around you surges is a skill — and it needs reps before race day.</span>
+        </div>
+      </li>
+    </ul>
+
+    <h2>If You're Still Building Toward Your First Half</h2>
+
+    <p>Don't stress if your early miles are inconsistent right now. The ability to run even splits or negative splits comes with experience and deliberate practice. Start smaller: in your next long run, focus on running mile two at the pace you want to hold — not mile one. That single adjustment will teach you more about pacing than any calculator.</p>
+
+    <p>You can also use the <a href="average-pace.html">Pace Calculator</a> mid-run to see exactly what pace you need over remaining miles to hit your goal average. When you've gone out too fast, knowing the real number — not guessing — changes how you manage the rest of the race.</p>
+
+    <div class="closer">
+      <div class="closer-tag">Bottom Line</div>
+      <p>Train yourself to be patient in the first three miles and you'll be the one passing people in the final three — instead of the one getting passed. Master the first mile and you stop lying to yourself about what the race actually costs.</p>
+    </div>
 
   </div>
 </div>
@@ -254,7 +379,7 @@ Master this, and you stop lying to yourself.</p>
   <ul class="footer-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR <br> FOR INFORMATIONAL USE ONLY. NOT MEDICAL ADVICE.</div>
