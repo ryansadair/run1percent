@@ -555,10 +555,10 @@ function renderMiles() {
       <div class="mile-card-edit">
         <div class="mile-edit-row">
           <input type="number" id="edit-min-${i}" class="mile-edit-input" value="${m.min}" min="0" max="59"
-                 inputmode="numeric" onkeydown="if(event.key==='Enter') saveMile(${i})">
+                 inputmode="numeric" onfocus="this.select()" onkeydown="if(event.key==='Enter') saveMile(${i})">
           <span class="mile-edit-sep">:</span>
           <input type="number" id="edit-sec-${i}" class="mile-edit-input" value="${String(m.sec).padStart(2,'0')}" min="0" max="59"
-                 inputmode="numeric" onkeydown="if(event.key==='Enter') saveMile(${i})">
+                 inputmode="numeric" onfocus="this.select()" onkeydown="if(event.key==='Enter') saveMile(${i})">
           <span class="mile-edit-label">min : sec</span>
         </div>
         <div class="mile-edit-actions">
