@@ -232,9 +232,52 @@
     border: 1px solid var(--border);
     padding: 12px 14px;
     margin-bottom: 12px;
-    cursor: pointer;
   }
-  .mile-card:hover { border-color: var(--red); }
+  .mile-card:hover { border-color: var(--border); }
+
+  /* INLINE EDIT STATE */
+  .mile-card.editing { border-color: var(--red); background: rgba(229,40,26,0.04); }
+  .mile-card-view { display: flex; justify-content: space-between; align-items: center; }
+  .mile-card-edit {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .mile-card.editing .mile-card-edit { display: block; }
+  .mile-edit-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .mile-edit-input {
+    background: var(--black);
+    border: 1px solid var(--border);
+    color: var(--red);
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    text-align: center;
+    width: 72px;
+    padding: 6px 4px;
+    outline: none;
+  }
+  .mile-edit-input:focus { border-color: var(--red); }
+  .mile-edit-sep { font-size: 24px; color: var(--text-dim); }
+  .mile-edit-label { font-size: 10px; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase; margin-left: 4px; }
+  .mile-edit-actions { display: flex; gap: 8px; }
+  .btn-save-mile {
+    flex: 1; background: var(--red); color: var(--white);
+    border: none; font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px; letter-spacing: 0.1em;
+    padding: 10px; cursor: pointer;
+  }
+  .btn-cancel-mile {
+    background: transparent; color: var(--text-dim);
+    border: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; padding: 10px 14px; cursor: pointer;
+  }
 
   .btn-calculate {
     width: 100%;
@@ -447,11 +490,10 @@ function secsToPace(s) {
   return `${m}:${sec.toString().padStart(2,'0')}`;
 }
 
-// MILE FUNCTIONS
 function addMile() {
   const min = parseInt(document.getElementById('tgt-min').value) || 9;
   const sec = parseInt(document.getElementById('tgt-sec').value) || 0;
-  miles.push({ min, sec });
+  miles.push({ min, sec, editing: false });
   renderMiles();
 }
 
@@ -460,14 +502,34 @@ function deleteMile(idx) {
   renderMiles();
 }
 
-function editMile(idx) {
-  const m = miles[idx];
-  const newMin = prompt("Minutes for Mile " + (idx + 1), m.min);
-  const newSec = prompt("Seconds (0-59) for Mile " + (idx + 1), m.sec);
-  
-  if (newMin !== null) m.min = parseInt(newMin) || m.min;
-  if (newSec !== null) m.sec = Math.min(59, Math.max(0, parseInt(newSec) || m.sec));
-  
+function toggleEdit(idx) {
+  // Close any other open edits first
+  miles.forEach((m, i) => { if (i !== idx) m.editing = false; });
+  miles[idx].editing = !miles[idx].editing;
+  renderMiles();
+  // Focus the minutes input if opening
+  if (miles[idx] && miles[idx].editing) {
+    setTimeout(() => {
+      const input = document.getElementById(`edit-min-${idx}`);
+      if (input) { input.focus(); input.select(); }
+    }, 50);
+  }
+}
+
+function saveMile(idx) {
+  const minEl = document.getElementById(`edit-min-${idx}`);
+  const secEl = document.getElementById(`edit-sec-${idx}`);
+  if (!minEl || !secEl) return;
+  const newMin = Math.max(0, Math.min(59, parseInt(minEl.value) || 0));
+  const newSec = Math.max(0, Math.min(59, parseInt(secEl.value) || 0));
+  miles[idx].min = newMin;
+  miles[idx].sec = newSec;
+  miles[idx].editing = false;
+  renderMiles();
+}
+
+function cancelEdit(idx) {
+  miles[idx].editing = false;
   renderMiles();
 }
 
@@ -477,17 +539,32 @@ function renderMiles() {
 
   miles.forEach((m, i) => {
     const card = document.createElement('div');
-    card.className = 'mile-card';
+    card.className = 'mile-card' + (m.editing ? ' editing' : '');
     card.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <div onclick="editMile(${i})" style="cursor:pointer; flex:1;">
-          <strong>Mile ${i + 1}</strong><br>
-          <span style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--red);">
+      <div class="mile-card-view">
+        <div onclick="toggleEdit(${i})" style="cursor:pointer; flex:1;">
+          <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:2px;">Mile ${i + 1}</div>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--red);line-height:1;">
             ${m.min}:${String(m.sec).padStart(2, '0')}
           </span>
+          <span style="font-size:10px;color:var(--text-dim);margin-left:4px;">/mi — tap to edit</span>
         </div>
-        <button onclick="event.stopImmediatePropagation(); deleteMile(${i});" 
-                style="background:none;border:none;color:var(--red);font-size:22px;">×</button>
+        <button onclick="event.stopPropagation(); deleteMile(${i});"
+                style="background:none;border:none;color:var(--text-dim);font-size:22px;cursor:pointer;padding:4px 8px;line-height:1;">×</button>
+      </div>
+      <div class="mile-card-edit">
+        <div class="mile-edit-row">
+          <input type="number" id="edit-min-${i}" class="mile-edit-input" value="${m.min}" min="0" max="59"
+                 inputmode="numeric" onkeydown="if(event.key==='Enter') saveMile(${i})">
+          <span class="mile-edit-sep">:</span>
+          <input type="number" id="edit-sec-${i}" class="mile-edit-input" value="${String(m.sec).padStart(2,'0')}" min="0" max="59"
+                 inputmode="numeric" onkeydown="if(event.key==='Enter') saveMile(${i})">
+          <span class="mile-edit-label">min : sec</span>
+        </div>
+        <div class="mile-edit-actions">
+          <button class="btn-save-mile" onclick="saveMile(${i})">Save</button>
+          <button class="btn-cancel-mile" onclick="cancelEdit(${i})">Cancel</button>
+        </div>
       </div>
     `;
     container.appendChild(card);
@@ -496,10 +573,8 @@ function renderMiles() {
 }
 
 function clearAll() {
-  if (confirm("Clear all logged splits?")) {
-    miles = [];
-    renderMiles();
-  }
+  miles = [];
+  renderMiles();
 }
 
 // MAIN CALCULATION
