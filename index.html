@@ -102,7 +102,7 @@
   .nav-links a:hover { color: var(--white); }
   .nav-links a.active { color: var(--red); }
 
-  /* HERO + other existing styles... (keeping them all) */
+  /* HERO */
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 120px 48px 80px; text-align: center; overflow: hidden; }
   .hero::after {
     content: '';
@@ -283,23 +283,7 @@
     color: var(--red);
   }
 
-  /* CODE BLOCKS - Clean dark style */
-  pre {
-    background: #0a0a0a;
-    border: 1px solid var(--border);
-    padding: 24px 28px;
-    overflow-x: auto;
-    margin: 32px 0;
-    font-size: 13.5px;
-    line-height: 1.7;
-    color: #e0e0e0;
-    font-family: 'DM Mono', monospace;
-  }
-  code {
-    font-family: 'DM Mono', monospace;
-  }
-
-  /* ABOUT + FOOTER */
+  /* ABOUT */
   .about-strip {
     background: var(--gray);
     border-top: 1px solid var(--border);
@@ -321,6 +305,7 @@
   .about-text { font-size: 12px; line-height: 2.2; color: var(--muted); max-width: 480px; }
   .about-text strong { color: var(--white); font-weight: 500; }
 
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     padding: 40px 48px;
@@ -345,25 +330,7 @@
     color: #2a2a2a;
   }
 
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    .email-inner { grid-template-columns: 1fr; gap: 32px; }
-    .email-section { padding: 48px 24px; }
-    .email-form { flex-direction: column; gap: 0; }
-    .email-input { border-right: 1px solid var(--border); border-bottom: none; width: 100%; }
-    .email-btn { width: 100%; padding: 14px; text-align: center; }
-    .email-heading { font-size: 36px; }
-    .email-eyebrow { font-size: 9px; }
-    .email-sub { font-size: 11px; line-height: 1.8; max-width: 100%; }
-    .hero { padding: 100px 24px 64px; }
-    .hero-stat-row { gap: 32px; }
-    section { padding: 64px 24px; }
-    .about-inner { grid-template-columns: 1fr; gap: 48px; }
-    footer { flex-direction: column; gap: 24px; text-align: center; }
-  }
-
-  /* ── EMAIL SECTION ── */
+  /* EMAIL SECTION */
   .email-section {
     background: var(--gray);
     border-top: 1px solid var(--border);
@@ -415,10 +382,10 @@
   }
   .email-input {
     flex: 1;
-    background: var(--surface);
+    background: var(--black);
     border: 1px solid var(--border);
     border-right: none;
-    color: var(--text);
+    color: var(--white);
     font-family: var(--font-mono);
     font-size: 13px;
     padding: 14px 18px;
@@ -426,7 +393,7 @@
     appearance: none;
   }
   .email-input:focus { border-color: var(--red); }
-  .email-input::placeholder { color: var(--text-dim); }
+  .email-input::placeholder { color: var(--muted); }
   .email-btn {
     background: var(--red);
     color: var(--white);
@@ -444,14 +411,14 @@
   .email-note {
     font-size: 9px;
     letter-spacing: 1.5px;
-    color: var(--text-dim);
+    color: var(--muted);
     text-transform: uppercase;
   }
   .email-success {
     display: none;
     font-size: 11px;
     letter-spacing: 2px;
-    color: var(--green);
+    color: #22c55e;
     text-transform: uppercase;
     padding: 14px 0;
   }
@@ -459,6 +426,24 @@
   .email-section.submitted .email-note { display: none; }
   .email-section.submitted .email-success { display: block; }
 
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 64px; }
+    .hero-stat-row { gap: 32px; }
+    section { padding: 64px 24px; }
+    .about-inner { grid-template-columns: 1fr; gap: 48px; }
+    .email-inner { grid-template-columns: 1fr; gap: 32px; }
+    .email-section { padding: 48px 24px; }
+    .email-form { flex-direction: column; gap: 0; }
+    .email-input { border-right: 1px solid var(--border); border-bottom: none; width: 100%; }
+    .email-btn { width: 100%; padding: 14px; text-align: center; }
+    .email-heading { font-size: 36px; }
+    .email-eyebrow { font-size: 9px; }
+    .email-sub { font-size: 11px; line-height: 1.8; max-width: 100%; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+  }
 </style>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -527,7 +512,7 @@
       <div class="tool-number">02</div>
       <div class="tool-name">Race Predictor</div>
       <div class="tool-desc">The Riegel formula, done right. Plug in any race result and get realistic finish time predictions across every distance.</div>
-      <span class="tool-tag coming">Live</span>
+      <span class="tool-tag">Live</span>
     </a>
     <a href="training-plan-generator.html" class="tool-card">
       <div class="tool-number">03</div>
@@ -560,16 +545,15 @@
 <div style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:32px 48px;">
   <div style="max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
     <div>
-      <div style="font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:8px;">Clutter Free, always</div>
-      <p style="font-size:12px; color:var(--muted); line-height:2; max-width:480px; font-family:var(--font-mono);">These tools cost nothing. If one helped you on a run, buy me a gel — it takes 30 seconds and keeps the site going.</p>
+      <div style="font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:8px;">Free, always</div>
+      <p style="font-size:12px; color:var(--muted); line-height:2; max-width:480px; font-family:var(--font-mono);">These tools cost nothing and always will. If one helped you on a run, buy me a gel — it takes 30 seconds and keeps the site going.</p>
     </div>
-    <a href="https://ko-fi.com/run1percent" target="_blank" rel="noopener"
-       style="display:inline-block; background:transparent; border:1px solid var(--red); color:var(--red); font-family:var(--font-mono); font-size:10px; letter-spacing:2.5px; text-transform:uppercase; padding:14px 28px; text-decoration:none; white-space:nowrap;">
+    <a href="https://ko-fi.com/run1percent" target="_blank" rel="noopener" class="btn-primary">
       Buy me a gel →
     </a>
   </div>
 </div>
-  
+
 <!-- FIELD NOTES -->
 <div class="section-divider"></div>
 <section id="notes">
@@ -592,10 +576,13 @@
       <div class="section-label" style="margin-bottom:12px;">Who made this</div>
       <h2 class="section-title" style="margin-bottom:28px; font-size: clamp(32px,4vw,52px);">Built by a runner,<br>for runners.</h2>
       <p class="about-text">
-        <strong>I'm a 4× half marathoner based in Eugene, Oregon</strong> — one of the greatest running cities in the world.
-        I built these tools because I wanted them pre & mid-race and couldn't find anything that wasn't bloated, ad-covered, or built for casual runners.
-        <br><br>
-        Run1% is clutter free. No accounts, no cookie banners. Just useful tools for people serious enough to go the distance.
+        I ran my first half marathon because someone told me I probably couldn't. I've run three more since — including a <strong>1:52 PR</strong> — because it turns out I can't stop.
+      </p>
+      <p class="about-text" style="margin-top:16px;">
+        I built these tools because I wanted them mid-race and couldn't find anything that wasn't bloated, covered in ads, or built for people who jog once a week. <strong>Run1% is what I wished existed.</strong>
+      </p>
+      <p class="about-text" style="margin-top:16px;">
+        Based in Eugene, Oregon. No accounts, no cookie banners, no ads. Just useful tools for people serious enough to go the distance.
       </p>
     </div>
     <div class="about-stat-grid">
@@ -629,29 +616,35 @@
         New tools, race strategy writeups, and training notes —
         when they're ready, not on a schedule. No fluff.
       </p>
+      <a href="mailto:run1percent@gmail.com"
+         style="display:inline-block; margin-top:20px; font-size:9px;
+         letter-spacing:2px; color:var(--muted); text-decoration:none;
+         text-transform:uppercase; transition:color 0.2s;"
+         onmouseover="this.style.color='#ffffff'"
+         onmouseout="this.style.color='var(--muted)'">
+        run1percent@gmail.com
+      </a>
     </div>
     <div>
-<form
-  class="email-form"
-  action="https://docs.google.com/forms/d/1uWilJE8xWgr1QG3aUPIMF5_ITk_xeDDOoeSQxAgiAPU/formResponse"
-  method="POST"
-  target="hidden_iframe"
-  onsubmit="document.getElementById('emailSection').classList.add('submitted')"
->
-  <input
-    type="email"
-    class="email-input"
-    name="entry.1495090308"
-    placeholder="Email"
-    required
-  >
-
-  <button type="submit" class="email-btn">
-    Subscribe
-  </button>
-</form>
-
-<iframe name="hidden_iframe" style="display:none;"></iframe>
+      <form
+        class="email-form"
+        action="https://docs.google.com/forms/d/1uWilJE8xWgr1QG3aUPIMF5_ITk_xeDDOoeSQxAgiAPU/formResponse"
+        method="POST"
+        target="hidden_iframe"
+        onsubmit="document.getElementById('emailSection').classList.add('submitted')"
+      >
+        <input
+          type="email"
+          class="email-input"
+          name="entry.1495090308"
+          placeholder="Email"
+          required
+        >
+        <button type="submit" class="email-btn">
+          Subscribe
+        </button>
+      </form>
+      <iframe name="hidden_iframe" style="display:none;"></iframe>
       <div class="email-success" id="emailSuccess">You're in. Talk soon.</div>
       <div class="email-note">No spam. Unsubscribe any time.</div>
     </div>
@@ -662,55 +655,51 @@
 <footer>
   <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
   <ul class="footer-links">
-    <li><a href="#tools" class="active">Tools</a></li>
+    <li><a href="#tools">Tools</a></li>
     <li><a href="#notes">Field Notes</a></li>
     <li><a href="gear.html">Gear</a></li>
     <li><a href="#about">About</a></li>
   </ul>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
-
   <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR <br> FOR INFORMATIONAL USE ONLY. NOT MEDICAL ADVICE.</div>
-  </div>
 </footer>
 
 <script>
-  
+
 // ==================== FIELD NOTES DATA ====================
 // Add new notes here. Put **newest** notes at the TOP of the array.
 const fieldNotes = [
-
-    {
+  {
     url: "field-note-newborn-stage.html",
     date: "Apr 2026 · Lifestyle",
     title: "Running Through the Newborn Stage",
     excerpt: ""
   },
-      {
+  {
     url: "field-note-taper.html",
     date: "Mar 2026 · Training",
     title: "The Taper Paranoia Is Real — And Normal",
     excerpt: ""
   },
-      {
+  {
     url: "field-note-running-paces.html",
     date: "November 2025 · Training",
     title: "Decoding Running Paces",
     excerpt: ""
   },
-    {
+  {
     url: "field-note-first-mile.html",
     date: "May 2025 · Race Strategy",
     title: "Why Your First Mile Is Lying to You",
     excerpt: ""
   },
-    {
+  {
     url: "field-note-watch-metric.html",
     date: "Jan 2025 · Gear",
     title: "One Watch Metric That Actually Matters",
     excerpt: ""
   },
 //  {
-//   url: "field-note-running-start.html",
+//    url: "field-note-running-start.html",
 //    date: "Aug 2024 · Lifestyle",
 //    title: "My Running Start",
 //    excerpt: ""
@@ -726,7 +715,6 @@ function renderNotes() {
 
   if (!grid) return;
 
-  // Clear current cards
   grid.innerHTML = '';
 
   const notesToShow = fieldNotes.slice(0, currentlyShown + notesPerLoad);
@@ -745,7 +733,6 @@ function renderNotes() {
 
   currentlyShown = notesToShow.length;
 
-  // Show/hide Load More button
   if (currentlyShown >= fieldNotes.length) {
     loadMoreBtn.style.display = 'none';
   } else {
@@ -753,17 +740,12 @@ function renderNotes() {
   }
 }
 
-// Load More button
 const loadMoreBtn = document.getElementById('loadMoreBtn');
 if (loadMoreBtn) {
   loadMoreBtn.addEventListener('click', renderNotes);
 }
 
-// Initial render
 renderNotes();
-
-
-
 
 // Nav scroll effect
 const nav = document.getElementById('nav');
