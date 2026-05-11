@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.run1percent.com/sitemap.xml
+Sitemap: https://run1percent.com/sitemap.xml
