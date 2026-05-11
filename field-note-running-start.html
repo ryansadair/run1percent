@@ -20,7 +20,7 @@
     --white: #f5f5f5;
     --red: #e5281a;
     --red-dim: #8a1a10;
-    --red-glow: rgba(229,40,26,0.15);
+    --red-glow: rgba(229,40,26,0.08);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,26 +55,16 @@
     backdrop-filter:blur(10px);
   }
   .r1-nav-logo img { height:35px; display:block; }
-  .r1-nav-links {
-    display: flex; align-items: center; gap: 28px; list-style: none;
-  }
-  @media (max-width: 640px) {
-    .r1-nav-links { display: none; }
-  }
+  .r1-nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+  @media (max-width: 640px) { .r1-nav-links { display:none; } }
   .r1-nav-links a {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
     color:var(--text-dim); text-decoration:none;
   }
   .r1-nav-links a:hover { color:var(--text); }
-  .r1-back {
-    font-size:10px; letter-spacing:2px; text-transform:uppercase; 
-    color:var(--text-dim); border:1px solid var(--border); 
-    padding:9px 18px; text-decoration:none;
-  }
-  .r1-back:hover { color:var(--text); border-color:var(--red); }
   .r1-spacer { height:64px; }
 
-  /* MAIN CONTENT AREA */
+  /* LAYOUT */
   .blog-container {
     max-width: 760px;
     margin: 0 auto;
@@ -100,8 +90,7 @@
   .blog-label::before {
     content: '';
     display: inline-block;
-    width: 20px;
-    height: 1px;
+    width: 20px; height: 1px;
     background: var(--red);
   }
 
@@ -122,6 +111,7 @@
     flex-wrap: wrap;
   }
 
+  /* CONTENT */
   .blog-content {
     font-size: 15px;
     line-height: 1.85;
@@ -133,18 +123,16 @@
     font-size: 32px;
     letter-spacing: 0.03em;
     color: var(--white);
-    margin: 60px 0 24px;
-  }
-
-  .blog-content h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--white);
-    margin: 48px 0 20px;
+    margin: 56px 0 20px;
   }
 
   .blog-content p {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
+  }
+
+  .blog-content strong {
+    color: var(--white);
+    font-weight: 500;
   }
 
   .blog-content a {
@@ -153,7 +141,75 @@
     text-underline-offset: 4px;
   }
 
-  /* Footer */
+  /* CALLOUT BLOCK */
+  .callout {
+    border-left: 3px solid var(--red);
+    background: var(--red-glow);
+    padding: 20px 24px;
+    margin: 36px 0;
+  }
+  .callout p {
+    margin-bottom: 0;
+    color: var(--white);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* NUMBERED TACTICS LIST */
+  .tactics-list {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+  .tactics-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .tactics-list li .tactic-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--red);
+    line-height: 1.2;
+  }
+  .tactics-list li strong {
+    display: block;
+    color: var(--white);
+    margin-bottom: 4px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .tactics-list li span {
+    color: var(--text-mid);
+    font-size: 13px;
+  }
+
+  /* CLOSER */
+  .closer {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .closer-tag {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .closer p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     padding: 60px 40px 40px;
@@ -163,29 +219,65 @@
     flex-wrap: wrap;
     gap: 32px;
   }
-  footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
-  footer img:hover { opacity: 1; }
-  .footer-links {
-    display: flex; gap: 28px; list-style: none;
-  }
+  footer img { height:40px; opacity:0.4; transition:opacity 0.2s; }
+  footer img:hover { opacity:1; }
+  .footer-links { display:flex; gap:28px; list-style:none; }
   .footer-links a {
-    font-size: 9px; letter-spacing: 2px; color: var(--muted);
-    text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+    font-size:9px; letter-spacing:2px; color:var(--muted);
+    text-decoration:none; text-transform:uppercase; transition:color 0.2s;
   }
-  .footer-links a:hover { color: var(--white); }
-  .footer-copy {
-    font-size: 9px; letter-spacing: 1px; color: #2a2a2a;
-  }
+  .footer-links a:hover { color:var(--white); }
+  .footer-copy { font-size:9px; letter-spacing:1px; color:#2a2a2a; }
 
   @media (max-width: 768px) {
-    .blog-container {
-      padding: 40px 20px 80px;
-    }
-    footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 32px;
-    }
+    .blog-container { padding:40px 20px 80px; }
+    footer { flex-direction:column; text-align:center; gap:32px; }
+  }
+
+  /* HAMBURGER MENU */
+  .r1-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px; height: 36px;
+    background: none; border: none;
+    cursor: pointer; padding: 4px;
+    flex-shrink: 0;
+  }
+  .r1-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: #e8e8e8; transition: all 0.25s ease;
+    transform-origin: center;
+  }
+  .r1-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .r1-hamburger.open span:nth-child(2) { opacity: 0; }
+  .r1-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .r1-mobile-menu {
+    display: none;
+    position: fixed; top: 64px; left: 0; right: 0; z-index: 199;
+    background: rgba(8,8,8,0.98);
+    border-bottom: 1px solid #2a2a2a;
+    backdrop-filter: blur(10px);
+    padding: 8px 0;
+    flex-direction: column;
+  }
+  .r1-mobile-menu.open { display: flex; }
+  .r1-mobile-menu a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: #666666; text-decoration: none;
+    padding: 16px 24px;
+    border-bottom: 1px solid #1a1a1a;
+    transition: color 0.2s, background 0.2s;
+  }
+  .r1-mobile-menu a:last-child { border-bottom: none; }
+  .r1-mobile-menu a:hover { color: #f5f5f5; background: rgba(255,255,255,0.03); }
+  .r1-mobile-menu a.active { color: #e5281a; }
+
+  @media (max-width: 640px) {
+    .r1-hamburger { display: flex; }
   }
 </style>
 </head>
@@ -198,11 +290,19 @@
   <ul class="r1-nav-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
-  <a class="r1-back" href="index.html">Back</a>
+  <button class="r1-hamburger" id="r1Hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="r1-mobile-menu" id="r1MobileMenu">
+  <a href="index.html#tools">Tools</a>
+  <a href="index.html#notes">Field Notes</a>
+  <a href="gear.html">Gear</a>
+  <a href="index.html#about">About</a>
+</div>
 <div class="r1-spacer"></div>
 
 <div class="blog-container">
@@ -211,35 +311,95 @@
     <div class="blog-label">Field Notes</div>
     <h1>My Running Start</h1>
     <div class="blog-meta">
-      <span>August 2024</span>
-      <span>8 min read</span>
+      <span>May 2025</span>
+      <span>Origin Story</span>
+      <span>7 min read</span>
     </div>
   </div>
 
   <div class="blog-content">
-    
-    <!-- ==================== START WRITING HERE ==================== -->
-    
-    <p>The first few weeks (or months) with a newborn feel like someone dropped you into a new universe where sleep is a myth and your body is no longer your own. For many runners, this is also the moment when their running identity quietly starts to fracture. You’re not “a runner who just had a kid.” You’re a runner navigating the newborn stage, and that distinction matters.
-I’ve been there. The 3 a.m. feeds, the zombie-like exhaustion, the way your legs feel like they belong to someone else when you finally sneak out for a run. The newborn stage doesn’t just test your fitness; it tests your identity as a runner.
-Here’s what I’ve learned from multiple laps through this chaotic season, and what actually helps you keep showing up instead of disappearing completely.
-The Reality Check
-Your easy pace is going to feel brutally hard. Your weekly mileage will drop—sometimes dramatically. That’s not failure; that’s biology and logistics doing what they do. The goal isn’t to hit your old numbers. The goal is to protect the habit so you can rebuild when the fog lifts.
-What Actually Works
 
-The 20-minute rule: If you can get out the door for even 20 minutes, you win. Some days that’s all you’ll manage. Celebrate it. Consistency at low volume beats heroic efforts that burn you out.
-Stroller + treadmill as lifelines: A solid jogging stroller and access to a treadmill (or very early/late runs) become your best friends. I’ve logged more miles pushing a sleeping baby than I care to admit.
-Gear that removes friction: This is where the 1% mindset shows up. Invest in kit that makes the limited windows you do have as comfortable and effective as possible—lightweight layers that handle spit-up, shoes that feel good even when you’re carrying extra baby weight, and a watch that gives you honest feedback without judgment.
+    <p>I started running in August 2024. Before that, I had barely run a mile in my life and I genuinely hated it. Like most people, I assumed “runner’s high” was just a myth invented by people who were already fit.</p>
 
-For the runners still dreaming of this stage
-If you’re not there yet but want to be someday: Start building the mental and physical resilience now. Practice running on broken sleep. Learn how to make the most of short, high-quality sessions. The habits you build in your 20s and early 30s will pay massive dividends when life gets messier.
-The newborn stage doesn’t end your running story. It just writes a new, harder chapter. The runners who come out the other side stronger are the ones who refuse to let perfect be the enemy of good enough.
-You’re not behind. You’re adapting. Keep moving, even if it’s slow.</p>
+    <p>I was wrong.</p>
 
+    <div class="callout">
+      <p>The first mile felt awful. The second mile still sucked — but something was different. Somewhere around mile two on one random run, it hit me. That elusive high. It was real, and it hooked me instantly.</p>
+    </div>
 
-    <!-- Add as many sections as you need -->
-    
-    <!-- ==================== END OF YOUR CONTENT ==================== -->
+    <h2>From Zero to Consistent</h2>
+
+    <p>I didn’t have a plan. I just kept showing up. 10–20 miles per week became my new normal. Street runs, country roads, treadmill sessions when life got busy. I ran in sunshine, pouring rain, heat, and cold. No fancy gear, no coach — just putting one foot in front of the other week after week.</p>
+
+    <h2>The Half Marathon Journey</h2>
+
+    <p>In less than a year I went from never racing to completing four half marathons:</p>
+
+    <ul class="tactics-list">
+      <li>
+        <span class="tactic-num">1</span>
+        <div>
+          <strong>First Half — 2:12</strong>
+          <span>Hit the wall hard at mile 8. Walked some. Learned a lot.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">2</span>
+        <div>
+          <strong>Second — 2:04</strong>
+          <span>Started more conservatively and held on better.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">3</span>
+        <div>
+          <strong>Third — 1:52</strong>
+          <span>Big personal best. Everything clicked.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">4</span>
+        <div>
+          <strong>Fourth — 1:54</strong>
+          <span>Newborn stage with our first baby. Training was messy, but I still showed up.</span>
+        </div>
+      </li>
+    </ul>
+
+    <h2>What I’ve Learned</h2>
+
+    <ul class="tactics-list">
+      <li>
+        <span class="tactic-num">01</span>
+        <div>
+          <strong>You don’t have to love it on day one</strong>
+          <span>Most people hate running at the start. That’s normal. You just have to keep going until the day you don’t.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">02</span>
+        <div>
+          <strong>The high is real</strong>
+          <span>It usually shows up after you’ve earned it through consistency. Keep showing up long enough and it finds you.</span>
+        </div>
+      </li>
+      <li>
+        <span class="tactic-num">03</span>
+        <div>
+          <strong>Progress compounds quietly</strong>
+          <span>One mile becomes two, then ten, then a half marathon. The jump from hating it to being hooked happens faster than you expect.</span>
+        </div>
+      </li>
+    </ul>
+
+    <h2>Where I Am Now</h2>
+
+    <p>I’m currently in the newborn stage with our first baby, so training volume isn’t where I want it to be. But I’m still moving. A full marathon is on the horizon, and I can’t wait to see what’s possible.</p>
+
+    <div class="closer">
+      <div class="closer-tag">Bottom Line</div>
+      <p>If you hate running right now — I was you. Start small. Stay consistent. The day will come when you cross a finish line wondering how the hell you got here. And you’ll smile, because you’ll know exactly how.</p>
+    </div>
 
   </div>
 </div>
@@ -249,11 +409,35 @@ You’re not behind. You’re adapting. Keep moving, even if it’s slow.</p>
   <ul class="footer-links">
     <li><a href="index.html#tools">Tools</a></li>
     <li><a href="index.html#notes">Field Notes</a></li>
-    <li><a href="gear.html" class="active">Gear</a></li>
+    <li><a href="gear.html">Gear</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
   <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR <br> FOR INFORMATIONAL USE ONLY. NOT MEDICAL ADVICE.</div>
 </footer>
 
+<script>
+  (function() {
+    var btn = document.getElementById('r1Hamburger');
+    var menu = document.getElementById('r1MobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e) {
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+      }
+    });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+      });
+    });
+  })();
+</script>
 </body>
 </html>
