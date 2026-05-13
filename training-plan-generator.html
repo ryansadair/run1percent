@@ -818,7 +818,7 @@
       container.appendChild(block);
     });
 
-    // === JOURNAL PROMO LOGIC ===
+// === JOURNAL PROMO (Bundle Removed) ===
     const journalPromo = document.getElementById('journalPromo');
     const journalCards = document.getElementById('journalCards');
     journalCards.innerHTML = '';
@@ -838,20 +838,24 @@
         url: "https://run1percent.gumroad.com/l/iwidr"       // ← Replace with your real link
       }];
     }
+    // No bundle for 5K / 10K
 
-    journals.forEach(j => {
-      const cardHTML = `
-        <div style="background:var(--deep); border:1px solid var(--border); padding:20px; display:flex; flex-direction:column; height:100%;">
-          <div style="font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:0.04em; margin-bottom:8px;">${j.title}</div>
-          <div style="font-size:10px; color:var(--text-dim); flex-grow:1; margin-bottom:20px;">${j.desc}</div>
-          <a href="${j.url}" target="_blank" style="display:block; background:var(--red); color:white; text-align:center; padding:12px; font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:0.08em; text-decoration:none;">
-            BUY PDF →
-          </a>
-        </div>`;
-      journalCards.innerHTML += cardHTML;
-    });
-
-    journalPromo.style.display = 'block';
+    if (journals.length > 0) {
+      journals.forEach(j => {
+        const cardHTML = `
+          <div style="background:var(--deep); border:1px solid var(--border); padding:20px; display:flex; flex-direction:column; height:100%;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:0.04em; margin-bottom:8px;">${j.title}</div>
+            <div style="font-size:10px; color:var(--text-dim); flex-grow:1; margin-bottom:20px;">${j.desc}</div>
+            <a href="${j.url}" target="_blank" style="display:block; background:var(--red); color:white; text-align:center; padding:12px; font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:0.08em; text-decoration:none;">
+              Training Journal PDF →
+            </a>
+          </div>`;
+        journalCards.innerHTML += cardHTML;
+      });
+      journalPromo.style.display = 'block';
+    } else {
+      journalPromo.style.display = 'none';
+    }
 
     // Show results
     document.getElementById('resultsEmpty').classList.add('hidden');
