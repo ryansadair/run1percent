@@ -471,8 +471,8 @@
     <div class="field">
       <label>Plan Goal</label>
       <div class="toggle-group">
-        <button class="active" id="btnFinish" onclick="setGoal('finish')">Finish</button>
-        <button id="btnTime" onclick="setGoal('time')">Time Goal</button>
+          <button id="btnFinish" onclick="setGoal('finish')">Finish</button>
+          <button class="active" id="btnTime" onclick="setGoal('time')">Time Goal</button>
       </div>
       <div class="field-hint" id="goalHint">Finish plans prioritize consistency and mileage. Time-goal plans add tempo and race-pace work.</div>
     </div>
@@ -554,6 +554,7 @@
   const def = new Date();
   def.setDate(def.getDate() + 112);
   document.getElementById('raceDate').value = def.toISOString().split('T')[0];
+  setGoal('time');
 
   // ── CONSTANTS ─────────────────────────────────────────────────────
   const DIST_NAMES  = { '5k':'5K','10k':'10K','half':'Half Marathon','marathon':'Marathon' };
