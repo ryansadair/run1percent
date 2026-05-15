@@ -1,0 +1,3 @@
+## Redirect all www traffic to non-www (permanent)
+https://www.run1percent.com/*    https://run1percent.com/:splat    301!
+https://www.run1percent.com      https://run1percent.com    301!
