@@ -1,5 +1,34 @@
 /*
   Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
 
+# Sitemap
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
+
+# === CANONICALS FOR HIGH-PRIORITY PAGES ===
+/ 
+  Link: <https://run1percent.com/>; rel="canonical"
+
+/average-pace*
+  Link: <https://run1percent.com/average-pace>; rel="canonical"
+
+/race-predictor*
+  Link: <https://run1percent.com/race-predictor>; rel="canonical"
+
+/taper-calculator*
+  Link: <https://run1percent.com/taper-calculator>; rel="canonical"
+
+/mileage-ramp-tracker*
+  Link: <https://run1percent.com/mileage-ramp-tracker>; rel="canonical"
+
+/hr-zone-calculator*
+  Link: <https://run1percent.com/hr-zone-calculator>; rel="canonical"
+
+/training-plan-generator*
+  Link: <https://run1percent.com/training-plan-generator>; rel="canonical"
+
+/gear*
+  Link: <https://run1percent.com/gear>; rel="canonical"
