@@ -30,6 +30,72 @@
 <meta name="twitter:image" content="https://run1percent.com/og-image.png">
   
 <title>HR Zone Calculator — Run1%</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Heart Rate Zone Calculator",
+      "description": "Calculate your 5 heart rate training zones using the Karvonen Heart Rate Reserve method. More accurate than simple percentage of max HR.",
+      "url": "https://run1percent.com/hr-zone-calculator",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "All",
+      "isAccessibleForFree": true,
+      "publisher": {
+        "@type": "Organization",
+        "name": "RUN1%",
+        "url": "https://run1percent.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What heart rate zone should most of my running be in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Zone 2 — aerobic base. Most serious runners should be doing 70–80% of their weekly mileage here. It feels almost embarrassingly easy. That's the point. Zone 2 builds the fat-burning aerobic engine that makes every other zone more sustainable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What zone is a half marathon run at?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most trained runners, a half marathon sits in Zone 4 — threshold effort. Elite runners may dip into high Zone 3. If you're spending significant time in Zone 5 during a half, you went out too fast."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is my heart rate so high on easy runs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your cardiovascular system hasn't adapted yet to deliver oxygen efficiently at lower intensities. The fix is consistent easy running over months — not weeks. Slow down more than feels necessary. It works."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find my true max heart rate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most reliable field test: after a proper warm-up, run a hard 800m or 1 mile at max effort. Your peak HR reading near the end of that effort is close to your true max. Do this on a flat surface and check the peak number on your watch afterward — not during."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Karvonen vs percentage of max HR — which should I use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Karvonen for anyone with a resting HR below 55 or above 65 — those are the runners where the difference matters most. Percentage of max is fine as a starting point if you don't know your resting HR, but it systematically undercalculates zones for fit runners and overcalculates them for beginners."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -463,32 +529,44 @@
       <div style="border-top:1px solid var(--border);">
 
         <div style="padding:20px 0; border-bottom:1px solid var(--border);">
-          <div style="font-size:12px; color:var(--white); margin-bottom:8px; letter-spacing:0.3px;">What heart rate zone should most of my running be in?</div>
+          <h3 style="font-size:12px; color:var(--white); margin-bottom:8px; letter-spacing:0.3px; font-weight:400; font-family:'DM Mono',monospace;">What heart rate zone should most of my running be in?</h3>
           <div style="font-size:11px; line-height:1.9; color:var(--text-dim);">Zone 2 — aerobic base. Most serious runners should be doing 70–80% of their weekly mileage here. It feels almost embarrassingly easy. That's the point. Zone 2 builds the fat-burning aerobic engine that makes every other zone more sustainable.</div>
         </div>
 
         <div style="padding:20px 0; border-bottom:1px solid var(--border);">
-          <div style="font-size:12px; color:var(--white); margin-bottom:8px; letter-spacing:0.3px;">What zone is a half marathon run at?</div>
+          <h3 style="font-size:12px; color:var(--white); margin-bottom:8px; letter-spacing:0.3px; font-weight:400; font-family:'DM Mono',monospace;">What zone is a half marathon run at?</h3>
           <div style="font-size:11px; line-height:1.9; color:var(--text-dim);">For most trained runners, a half marathon sits in Zone 4 — threshold effort. Elite runners may dip into high Zone 3. If you're spending significant time in Zone 5 during a half, you went out too fast.</div>
         </div>
 
         <div style="padding:20px 0; border-bottom:1px solid var(--border);">
-          <div style="font-size:12px; color:var(--white); margin-bottom:8px; letter-spacing:0.3px;">Why is my heart rate so high on easy runs?</div>
+          <h3 style="font-size:12px; color:var(--white); margin-bottom:8px; letter-spacing:0.3px; font-weight:400; font-family:'DM Mono',monospace;">Why is my heart rate so high on easy runs?</h3>
           <div style="font-size:11px; line-height:1.9; color:var(--text-dim);">This is one of the most common issues for newer runners. Your cardiovascular system hasn't adapted yet to deliver oxygen efficiently at lower intensities. The fix is consistent easy running over months — not weeks. Slow down more than feels necessary. It works.</div>
         </div>
 
         <div style="padding:20px 0; border-bottom:1px solid var(--border);">
-          <div style="font-size:12px; color:var(--white); margin-bottom:8px; letter-spacing:0.3px;">How do I find my true max heart rate?</div>
+          <h3 style="font-size:12px; color:var(--white); margin-bottom:8px; letter-spacing:0.3px; font-weight:400; font-family:'DM Mono',monospace;">How do I find my true max heart rate?</h3>
           <div style="font-size:11px; line-height:1.9; color:var(--text-dim);">The most reliable field test: after a proper warm-up, run a hard 800m or 1 mile at max effort. Your peak HR reading near the end of that effort is close to your true max. Do this on a flat surface and check the peak number on your watch afterward — not during.</div>
         </div>
 
         <div style="padding:20px 0;">
-          <div style="font-size:12px; color:var(--white); margin-bottom:8px; letter-spacing:0.3px;">Karvonen vs percentage of max — which should I use?</div>
+          <h3 style="font-size:12px; color:var(--white); margin-bottom:8px; letter-spacing:0.3px; font-weight:400; font-family:'DM Mono',monospace;">Karvonen vs percentage of max — which should I use?</h3>
           <div style="font-size:11px; line-height:1.9; color:var(--text-dim);">Karvonen for anyone with a resting HR below 55 or above 65 — those are the runners where the difference matters most. Percentage of max is fine as a starting point if you don't know your resting HR, but it systematically undercalculates zones for fit runners and overcalculates them for beginners.</div>
         </div>
 
       </div>
     </div>
+  </div>
+</div>
+<!-- FIELD NOTE CALLOUT -->
+<div style="border-top:1px solid var(--border); padding:40px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <a href="field-note-watch-metric" style="display:flex; align-items:center; justify-content:space-between; gap:24px; padding:20px 24px; border:1px solid var(--border); text-decoration:none; transition:border-color 0.2s, background 0.2s;" onmouseover="this.style.borderColor='var(--red)';this.style.background='rgba(229,40,26,0.04)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='transparent'">
+      <div>
+        <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:6px;">Field Note</div>
+        <div style="font-size:13px; color:var(--text); font-family:'DM Mono',monospace;">One Watch Metric That Actually Matters — why running power beats pace and HR in the moments that count.</div>
+      </div>
+      <div style="color:var(--red); font-size:20px; flex-shrink:0;">→</div>
+    </a>
   </div>
 </div>
 
