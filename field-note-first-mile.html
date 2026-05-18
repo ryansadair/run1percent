@@ -307,6 +307,10 @@
   @media (max-width: 768px) {
     .blog-container { padding:40px 20px 80px; }
     footer { flex-direction:column; text-align:center; gap:32px; }
+    #footer-right {
+    text-align: center !important;
+    align-items: center !important;
+  }
   }
 
   /* ── HAMBURGER MENU ── */
@@ -469,6 +473,7 @@
 </div>
 
 </article></main>
+<!-- FOOTER -->
 <footer>
   <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
   <ul class="footer-links">
@@ -477,7 +482,32 @@
     <li><a href="/gear">Gear</a></li>
     <li><a href="/#about">About</a></li>
   </ul>
-  <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR <br> FOR INFORMATIONAL USE ONLY. NOT MEDICAL ADVICE.</div>
+    <div id="footer-right" style="text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+    <!-- SOCIAL LINKS -->
+    <div style="display:flex; gap:14px; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; opacity:0.75;">
+      <a href="https://x.com/run1pct"
+         target="_blank"
+         rel="noopener"
+         style="color:var(--muted, #3a3a3a); text-decoration:none;"
+         onmouseover="this.style.color='#f5f5f5'"
+         onmouseout="this.style.color='var(--muted, #3a3a3a)'">
+        X
+      </a>
+      <a href="https://instagram.com/run1pct"
+         target="_blank"
+         rel="noopener"
+         style="color:var(--muted, #3a3a3a); text-decoration:none;"
+         onmouseover="this.style.color='#f5f5f5'"
+         onmouseout="this.style.color='var(--muted, #3a3a3a)'">
+        Instagram
+      </a>
+    </div>
+    <!-- COPY -->
+    <div class="footer-copy">
+      © 2026 RUN1PERCENT.COM · EUGENE, OR <br>
+      FOR INFORMATIONAL USE ONLY · NOT MEDICAL ADVICE
+    </div>
+  </div>
 </footer>
 
 <script>
