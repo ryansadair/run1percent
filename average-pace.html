@@ -498,6 +498,7 @@
   /* FAQ responsive */
   @media (max-width: 768px) {
     #faqOuter { grid-template-columns: 1fr !important; gap: 32px !important; }
+    #faqOuterPace { grid-template-columns: 1fr !important; gap: 32px !important; }
   }
 </style>
 </head>
@@ -589,12 +590,16 @@
 
 <!-- FAQ SECTION -->
 <div style="border-top:1px solid var(--border); padding:64px 40px;">
-  <div style="max-width:1200px; margin:0 auto;">
-    <div id="faqOuter" style="display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:start;">
-      <div>
-        <div style="font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Common Questions</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,3vw,40px); letter-spacing:1px; color:var(--white); line-height:1;">Pacing<br>Explained</div>
-      </div>
+  <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;" id="faqOuterPace">
+    <div>
+      <div style="font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:12px;">How It Works</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,3vw,40px); letter-spacing:1px; color:var(--white); margin-bottom:24px; line-height:1;">Real-Time<br>Pace Math</div>
+      <p style="font-size:12px; line-height:2.2; color:var(--text-dim); margin-bottom:16px;">Most runners check their watch at mile markers and do rough mental math — "I'm a little fast, I'll back off." That works fine until you've gone out too hard and need to know exactly how much damage has been done.</p>
+      <p style="font-size:12px; line-height:2.2; color:var(--text-dim); margin-bottom:16px;">This tool calculates it precisely: <strong style="color:var(--text);">Required pace = (Goal total time − Time already elapsed) ÷ Miles remaining</strong>. Log each mile split as you go and the required pace projection updates instantly for every remaining distance — 1 mile out, 5K out, all the way to the finish.</p>
+      <p style="font-size:12px; line-height:2.2; color:var(--text-dim);">Built specifically for mid-race use. Large number inputs, number pad on iOS, and a single-tap edit flow so you can update splits with gloves on or at mile 9 when your hands are less cooperative than usual.</p>
+    </div>
+    <div>
+      <div style="font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Common Questions</div>
       <div style="border-top:1px solid var(--border);">
 
         <div style="border-bottom:1px solid var(--border);">
