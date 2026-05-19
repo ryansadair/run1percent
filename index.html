@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+ 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-33D9NXKZV8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
+ 
   gtag('config', 'G-33D9NXKZV8');
 </script>
   
@@ -18,7 +18,7 @@
 <meta name="description" content="Practical, no-BS tools for serious distance runners. Mid-race pace adjustments, realistic race predictors, safe mileage ramps, taper calculator, HR zones and more. Built in Eugene, OR. Always clutter free.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://run1percent.com/">
-
+ 
 <meta property="og:title" content="RUN1% — Tools for Runners Who've Done the Hard Part">
 <meta property="og:description" content="Running tools for half marathoners and beyond. Pace calculator, race predictor, taper calculator, HR zones and more.">
 <meta property="og:image" content="https://run1percent.com/og-image.png">
@@ -78,18 +78,18 @@
     --font-display: 'Bebas Neue', sans-serif;
     --font-mono: 'DM Mono', monospace;
   }
-
+ 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     background: var(--black);
     color: var(--white);
     font-family: var(--font-mono);
     overflow-x: hidden;
   }
-
+ 
   /* NOISE OVERLAY */
   body::before {
     content: '';
@@ -99,7 +99,7 @@
     pointer-events: none;
     z-index: 1000;
   }
-
+ 
   /* NAV */
   nav {
     position: fixed;
@@ -137,7 +137,7 @@
   }
   .nav-links a:hover { color: var(--white); }
   .nav-links a.active { color: var(--red); }
-
+ 
   /* HERO */
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 120px 48px 80px; text-align: center; overflow: hidden; }
   .hero::after {
@@ -149,7 +149,7 @@
     animation: scanline 3s ease-in-out infinite;
   }
   @keyframes scanline { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-
+ 
   .hero-bg-number {
     position: absolute;
     font-family: var(--font-display);
@@ -162,7 +162,7 @@
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
   }
-
+ 
   .hero-eyebrow { font-size: 10px; letter-spacing: 4px; color: var(--red); text-transform: uppercase; margin-bottom: 32px; }
   .hero-logo { height: clamp(90px, 10vw, 110px); display: block; margin: 0 auto 48px; }
   .hero-tagline {
@@ -210,12 +210,12 @@
     cursor: pointer;
   }
   .btn-ghost:hover { border-color: #444; color: var(--white); }
-
+ 
   .hero-stat-row { display: flex; gap: 56px; margin-top: 72px; }
   .hero-stat-num { font-family: var(--font-display); font-size: 42px; color: var(--white); line-height: 1; }
   .hero-stat-num span { color: var(--red); }
   .hero-stat-label { font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-top: 6px; }
-
+ 
   /* SECTION STYLES */
   section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
   .section-label { font-size: 9px; letter-spacing: 4px; color: var(--red); text-transform: uppercase; margin-bottom: 12px; }
@@ -233,7 +233,7 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-
+ 
   /* TOOLS GRID */
   .tools-grid {
     display: grid;
@@ -263,7 +263,7 @@
     transition: height 0.25s ease;
   }
   .tool-card:hover::before { height: 100%; }
-
+ 
   .tool-number { font-family: var(--font-display); font-size: 11px; letter-spacing: 3px; color: var(--muted); margin-bottom: 20px; }
   .tool-name { font-family: var(--font-display); font-size: 28px; letter-spacing: 1px; color: var(--white); margin-bottom: 12px; line-height: 1.1; }
   .tool-desc { font-size: 11px; line-height: 2; color: var(--muted); letter-spacing: 0.3px; }
@@ -278,7 +278,7 @@
     background: #140404;
     padding: 4px 10px;
   }
-
+ 
   /* FIELD NOTES */
   .notes-grid {
     display: grid;
@@ -318,7 +318,7 @@
     letter-spacing: 2px;
     color: var(--red);
   }
-
+ 
   /* ABOUT */
   .about-strip {
     background: var(--gray);
@@ -340,7 +340,7 @@
   .about-stat-label { font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
   .about-text { font-size: 12px; line-height: 2.2; color: var(--muted); max-width: 480px; }
   .about-text strong { color: var(--white); font-weight: 500; }
-
+ 
   /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
@@ -365,7 +365,7 @@
     letter-spacing: 1px;
     color: #2a2a2a;
   }
-
+ 
   /* EMAIL SECTION */
   .email-section {
     background: var(--gray);
@@ -461,7 +461,7 @@
   .email-section.submitted .email-form { display: none; }
   .email-section.submitted .email-note { display: none; }
   .email-section.submitted .email-success { display: block; }
-
+ 
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
@@ -484,7 +484,7 @@
     align-items: center !important;
   }
   }
-
+ 
   /* ── HAMBURGER MENU ── */
   .r1-hamburger {
     display: none;
@@ -504,7 +504,7 @@
   .r1-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .r1-hamburger.open span:nth-child(2) { opacity: 0; }
   .r1-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
+ 
   .r1-mobile-menu {
     display: none;
     position: fixed; top: 64px; left: 0; right: 0; z-index: 199;
@@ -526,7 +526,7 @@
   .r1-mobile-menu a:last-child { border-bottom: none; }
   .r1-mobile-menu a:hover { color: #ffffff; background: rgba(255,255,255,0.03); }
   .r1-mobile-menu a.active { color: #e02020; }
-
+ 
   @media (max-width: 768px) {
     .r1-hamburger { display: flex; }
   }
@@ -537,7 +537,7 @@
 <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">
@@ -559,7 +559,7 @@
   <a href="/gear">Gear</a>
   <a href="/#about">About</a>
 </div>
-
+ 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg-number">1%</div>
@@ -590,7 +590,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- TOOLS -->
 <div class="section-divider"></div>
 <section id="tools">
@@ -635,7 +635,7 @@
     </a>
   </div>
 </section>
-
+ 
 <!-- SUPPORT STRIP -->
 <div style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:32px 48px;">
   <div style="max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
@@ -648,7 +648,7 @@
     </a>
   </div>
 </div>
-
+ 
 <!-- FIELD NOTES -->
 <div class="section-divider"></div>
 <section id="notes">
@@ -656,14 +656,14 @@
   <h2 class="section-title">Field Notes</h2>
   
   <div class="notes-grid" id="notesGrid"></div>
-
+ 
   <div style="text-align: center; margin-top: 60px;">
-    <button id="loadMoreBtn" class="btn-primary" style="min-width: 200px; padding: 16px 40px; font-size: 11px;">
-      Load More Notes
-    </button>
+    <a href="/field-notes" class="btn-primary" style="min-width: 200px; padding: 16px 40px; font-size: 11px; display: inline-block;">
+      All Field Notes →
+    </a>
   </div>
 </section>
-
+ 
 <!-- ABOUT -->
 <div class="about-strip" id="about">
   <div class="about-inner">
@@ -703,7 +703,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- EMAIL SECTION -->
 <div class="email-section" id="emailSection">
   <div class="email-inner">
@@ -754,7 +754,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- FOOTER -->
 <footer>
   <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
@@ -791,9 +791,9 @@
     </div>
   </div>
 </footer>
-
+ 
 <script>
-
+ 
 // ==================== FIELD NOTES DATA ====================
 // Add new notes here. Put **newest** notes at the TOP of the array.
 const fieldNotes = [
@@ -815,7 +815,7 @@ const fieldNotes = [
     title: "Decoding Running Paces",
     excerpt: "Most runners think in two gears: fast and slow. The 1% think in six. A breakdown of every training pace and when to actually use them."
   },
-    {
+  {
     url: "field-note-running-data",
     date: "Aug 2025 · Training",
     title: "Finding Where You Lie in the Data",
@@ -833,7 +833,7 @@ const fieldNotes = [
     title: "One Watch Metric That Actually Matters",
     excerpt: "Pace lies on hills. Heart rate lags behind effort. There's one metric that gives you an honest, real-time read regardless of conditions."
   },
-    {
+  {
     url: "field-note-mph-to-pace",
     date: "Nov 2024 · Training",
     title: "A Simple MPH to Pace Chart",
@@ -846,22 +846,13 @@ const fieldNotes = [
     excerpt: "I started running in August 2024 and genuinely hated it. Less than a year later I'd finished two half marathons. Here's what changed."
   }
 ];
-
-const notesPerLoad = 3;
-let currentlyShown = 0;
-
-function renderNotes() {
+ 
+// Render the 3 most recent notes on the homepage
+(function renderHomepageNotes() {
   const grid = document.getElementById('notesGrid');
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
-
   if (!grid) return;
-
-  grid.innerHTML = '';
-
-  const notesToShow = fieldNotes.slice(0, currentlyShown + notesPerLoad);
-
-  notesToShow.forEach(note => {
-    const cardHTML = `
+  fieldNotes.slice(0, 3).forEach(note => {
+    grid.innerHTML += `
       <a href="${note.url}" class="note-card" style="text-decoration:none; color:inherit; display:block;">
         <div class="note-date">${note.date}</div>
         <div class="note-title">${note.title}</div>
@@ -869,25 +860,9 @@ function renderNotes() {
         <span class="note-arrow">Read →</span>
       </a>
     `;
-    grid.innerHTML += cardHTML;
   });
-
-  currentlyShown = notesToShow.length;
-
-  if (currentlyShown >= fieldNotes.length) {
-    loadMoreBtn.style.display = 'none';
-  } else {
-    loadMoreBtn.style.display = 'inline-block';
-  }
-}
-
-const loadMoreBtn = document.getElementById('loadMoreBtn');
-if (loadMoreBtn) {
-  loadMoreBtn.addEventListener('click', renderNotes);
-}
-
-renderNotes();
-
+})();
+ 
 // Nav scroll effect
 const nav = document.getElementById('nav');
 if (nav) {
@@ -896,7 +871,7 @@ if (nav) {
   });
 }
 </script>
-
+ 
 <script>
   (function() {
     var btn = document.getElementById('r1Hamburger');
