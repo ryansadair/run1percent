@@ -36,7 +36,7 @@
   "@type": "Blog",
   "name": "RUN1% Field Notes",
   "description": "Running tips, race strategy, training advice, and gear notes from a 4x half marathoner in Eugene, OR.",
-  "url": "https://run1percent.com/field-notes",
+  "url": "https://run1percent.com/-notes",
   "publisher": {
     "@type": "Organization",
     "name": "RUN1%",
@@ -507,7 +507,7 @@
   </a>
   <ul class="r1-nav-links">
     <li><a href="/#tools">Tools</a></li>
-    <li><a href="/field-notes" class="active">Field Notes</a></li>
+    <li><a href="/#notes" class="active">Field Notes</a></li>
     <li><a href="/gear">Gear</a></li>
     <li><a href="/#about">About</a></li>
   </ul>
@@ -517,7 +517,7 @@
 </nav>
 <div class="r1-mobile-menu" id="r1MobileMenu">
   <a href="/#tools">Tools</a>
-  <a href="/field-notes" class="active">Field Notes</a>
+  <a href="/#notes" class="active">Field Notes</a>
   <a href="/gear">Gear</a>
   <a href="/#about">About</a>
 </div>
@@ -629,7 +629,7 @@
   <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
   <ul class="footer-links">
     <li><a href="/#tools">Tools</a></li>
-    <li><a href="/field-notes">Field Notes</a></li>
+    <li><a href="/#notes">Field Notes</a></li>
     <li><a href="/gear">Gear</a></li>
     <li><a href="/#about">About</a></li>
   </ul>
@@ -739,7 +739,7 @@ function renderGrid() {
   const gridActiveFilter = document.getElementById('gridActiveFilter');
 
   // Skip index 0 — it's the featured note
-  const remaining = fieldNotes.slice(1);
+  const remaining = fieldNotes.slice(0);
   const filtered = activeFilter === 'all'
     ? remaining
     : remaining.filter(n => n.category === activeFilter);
