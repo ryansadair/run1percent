@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33D9NXKZV8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-33D9NXKZV8');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Running tips, race strategy, training advice, and gear notes from a 4x half marathoner in Eugene, OR. Real experience, no fluff.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://run1percent.com/field-notes">
+
+<meta property="og:title" content="Field Notes — RUN1%">
+<meta property="og:description" content="Running tips, race strategy, and training advice from a 4x half marathoner. Real experience, no fluff.">
+<meta property="og:image" content="https://run1percent.com/og-image.png">
+<meta property="og:url" content="https://run1percent.com/field-notes">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Field Notes — RUN1%">
+<meta name="twitter:description" content="Running tips, race strategy, and training advice from a 4x half marathoner.">
+<meta name="twitter:image" content="https://run1percent.com/og-image.png">
+
+<title>Field Notes — Run1%</title>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "RUN1% Field Notes",
+  "description": "Running tips, race strategy, training advice, and gear notes from a 4x half marathoner in Eugene, OR.",
+  "url": "https://run1percent.com/field-notes",
+  "publisher": {
+    "@type": "Organization",
+    "name": "RUN1%",
+    "url": "https://run1percent.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://run1percent.com/logo-white.png"
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Ryan",
+    "url": "https://run1percent.com/#about"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --black: #0a0a0a;
+    --deep: #111111;
+    --surface: #181818;
+    --border: #2a2a2a;
+    --muted: #3a3a3a;
+    --text-dim: #666666;
+    --text-mid: #999999;
+    --text: #e8e8e8;
+    --white: #f5f5f5;
+    --red: #e5281a;
+    --red-dim: #8a1a10;
+    --red-glow: rgba(229,40,26,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  .r1-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(8,8,8,0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+  .r1-nav-logo img { height: 35px; display: block; }
+  .r1-nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  @media (max-width: 640px) { .r1-nav-links { display: none; } }
+  .r1-nav-links a {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none; transition: color 0.2s;
+  }
+  .r1-nav-links a:hover { color: var(--text); }
+  .r1-nav-links a.active { color: var(--red); }
+  .r1-spacer { height: 64px; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 72px 40px 56px;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: 'NOTES';
+    position: absolute; right: -20px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(120px, 20vw, 280px);
+    color: rgba(229,40,26,0.04);
+    pointer-events: none; user-select: none; line-height: 1;
+  }
+  .hero-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-label::before {
+    content: ''; display: inline-block;
+    width: 20px; height: 1px; background: var(--red);
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 9vw, 104px);
+    letter-spacing: 0.03em; line-height: 0.92;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .hero-sub {
+    color: var(--text-mid); font-size: 12px;
+    max-width: 480px; line-height: 1.8;
+  }
+  .hero-meta {
+    display: flex; gap: 32px; margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .hero-meta-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; color: var(--red); line-height: 1;
+    letter-spacing: 0.04em;
+  }
+  .hero-meta-label {
+    font-size: 9px; letter-spacing: 2px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+
+  /* ── FEATURED NOTE ── */
+  .featured-wrap {
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+  }
+  .featured-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 56px 0;
+  }
+  .featured-label {
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .featured-label::before {
+    content: ''; display: inline-block;
+    width: 24px; height: 1px; background: var(--red);
+  }
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    text-decoration: none; color: inherit;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .featured-card:hover { border-color: var(--red); }
+  .featured-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--red);
+    transition: height 0.3s ease;
+    z-index: 1;
+  }
+  .featured-card:hover::before { height: 100%; }
+
+  .featured-text {
+    padding: 48px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    background: var(--deep);
+  }
+  .featured-category {
+    font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 16px;
+  }
+  .featured-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 0.03em; line-height: 0.95;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .featured-excerpt {
+    font-size: 12px; line-height: 1.9;
+    color: var(--text-mid); flex: 1; margin-bottom: 32px;
+  }
+  .featured-footer {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .featured-date {
+    font-size: 10px; letter-spacing: 1.5px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+  .featured-arrow {
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--red); text-transform: uppercase;
+  }
+
+  .featured-visual {
+    background: var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    border-left: 1px solid var(--border);
+    min-height: 320px; position: relative; overflow: hidden;
+  }
+  .featured-bg-word {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 12vw, 160px);
+    color: rgba(229,40,26,0.06);
+    letter-spacing: 0.04em; line-height: 1;
+    text-align: center; padding: 20px;
+    user-select: none;
+  }
+  .featured-visual-label {
+    position: absolute; bottom: 24px; right: 24px;
+    font-size: 9px; letter-spacing: 3px;
+    color: var(--text-dim); text-transform: uppercase;
+    border: 1px solid var(--border); padding: 6px 12px;
+    background: var(--black);
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-wrap {
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    position: sticky; top: 64px; z-index: 100;
+    background: rgba(8,8,8,0.97);
+    backdrop-filter: blur(10px);
+  }
+  .filter-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto;
+  }
+  .filter-inner::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    background: none; border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-dim); font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 16px 20px; cursor: pointer; white-space: nowrap;
+    transition: all 0.2s; margin-bottom: -1px;
+  }
+  .filter-btn:hover { color: var(--text); }
+  .filter-btn.active { color: var(--white); border-bottom-color: var(--red); }
+
+  /* ── NOTES GRID ── */
+  .grid-wrap {
+    padding: 56px 40px 80px;
+  }
+  .grid-inner {
+    max-width: 1200px; margin: 0 auto;
+  }
+  .grid-header {
+    display: flex; align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .grid-count {
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+  .grid-active-filter {
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--red); text-transform: uppercase;
+  }
+
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .note-card {
+    background: var(--black);
+    padding: 32px;
+    display: block; text-decoration: none; color: inherit;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .note-card:hover { background: #0d0d0d; }
+  .note-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--red);
+    transition: height 0.25s ease;
+  }
+  .note-card:hover::before { height: 100%; }
+  .note-card.hidden { display: none; }
+
+  .note-category {
+    font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 10px;
+  }
+  .note-date {
+    font-size: 9px; letter-spacing: 1.5px;
+    color: var(--text-dim); text-transform: uppercase; margin-bottom: 14px;
+  }
+  .note-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px; letter-spacing: 0.04em;
+    color: var(--white); margin-bottom: 12px; line-height: 1.1;
+  }
+  .note-excerpt {
+    font-size: 11px; line-height: 1.9;
+    color: var(--text-mid); margin-bottom: 20px;
+  }
+  .note-arrow {
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--red); text-transform: uppercase;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    display: none;
+    text-align: center; padding: 80px 40px;
+    color: var(--text-dim);
+  }
+  .empty-state.visible { display: block; }
+  .empty-state-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px; color: var(--border);
+    margin-bottom: 16px; line-height: 1;
+  }
+  .empty-state p {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  }
+
+  /* ── EMAIL STRIP ── */
+  .email-strip {
+    border-top: 1px solid var(--border);
+    background: var(--deep);
+    padding: 56px 40px;
+  }
+  .email-strip-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .email-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    letter-spacing: 0.04em; line-height: 1;
+    color: var(--white); margin-bottom: 12px;
+  }
+  .email-sub {
+    font-size: 11px; line-height: 2; color: var(--text-dim);
+  }
+  .email-eyebrow {
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .email-eyebrow::before {
+    content: ''; display: inline-block;
+    width: 16px; height: 1px; background: var(--red);
+  }
+  .email-form {
+    display: flex; gap: 0; margin-bottom: 10px;
+  }
+  .email-input {
+    flex: 1; background: var(--black);
+    border: 1px solid var(--border); border-right: none;
+    color: var(--white); font-family: 'DM Mono', monospace;
+    font-size: 13px; padding: 14px 18px; outline: none;
+  }
+  .email-input:focus { border-color: var(--red); }
+  .email-input::placeholder { color: var(--text-dim); }
+  .email-btn {
+    background: var(--red); color: var(--white);
+    border: none; font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 14px 24px; cursor: pointer; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .email-btn:hover { background: #cc2418; }
+  .email-note {
+    font-size: 9px; letter-spacing: 1.5px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+  .email-success {
+    display: none; font-size: 11px; letter-spacing: 2px;
+    color: #22c55e; text-transform: uppercase; padding: 14px 0;
+  }
+  .email-strip.submitted .email-form { display: none; }
+  .email-strip.submitted .email-note { display: none; }
+  .email-strip.submitted .email-success { display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 32px;
+  }
+  footer img { height: 40px; opacity: 0.4; transition: opacity 0.2s; }
+  footer img:hover { opacity: 1; }
+  .footer-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  .footer-links a {
+    font-size: 9px; letter-spacing: 2px; color: var(--muted);
+    text-decoration: none; text-transform: uppercase; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+  .footer-copy { font-size: 9px; letter-spacing: 1px; color: #2a2a2a; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .r1-nav { padding: 16px 20px; }
+    .hero { padding: 48px 20px 40px; }
+    .featured-wrap { padding: 0 20px; }
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-visual { display: none; }
+    .featured-text { padding: 28px; }
+    .filter-wrap { padding: 0 20px; }
+    .grid-wrap { padding: 40px 20px 60px; }
+    .email-strip { padding: 40px 20px; }
+    .email-strip-inner { grid-template-columns: 1fr; gap: 32px; }
+    .email-form { flex-direction: column; }
+    .email-input { border-right: 1px solid var(--border); border-bottom: none; }
+    .email-btn { padding: 14px; text-align: center; }
+    footer { flex-direction: column; text-align: center; padding: 32px 20px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
+    #footer-right { text-align: center !important; align-items: center !important; }
+  }
+
+  /* ── HAMBURGER ── */
+  .r1-hamburger {
+    display: none; flex-direction: column; justify-content: center;
+    gap: 5px; width: 36px; height: 36px;
+    background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0;
+  }
+  .r1-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: #e8e8e8; transition: all 0.25s ease; transform-origin: center;
+  }
+  .r1-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .r1-hamburger.open span:nth-child(2) { opacity: 0; }
+  .r1-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .r1-mobile-menu {
+    display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 199;
+    background: rgba(8,8,8,0.98); border-bottom: 1px solid #2a2a2a;
+    backdrop-filter: blur(10px); padding: 8px 0; flex-direction: column;
+  }
+  .r1-mobile-menu.open { display: flex; }
+  .r1-mobile-menu a {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: #666666; text-decoration: none;
+    padding: 16px 24px; border-bottom: 1px solid #1a1a1a;
+    transition: color 0.2s, background 0.2s;
+  }
+  .r1-mobile-menu a:last-child { border-bottom: none; }
+  .r1-mobile-menu a:hover { color: #f5f5f5; background: rgba(255,255,255,0.03); }
+  .r1-mobile-menu a.active { color: #e5281a; }
+  @media (max-width: 640px) { .r1-hamburger { display: flex; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="r1-nav">
+  <a class="r1-nav-logo" href="/index">
+    <img src="logo-white.png" alt="RUN1%">
+  </a>
+  <ul class="r1-nav-links">
+    <li><a href="/#tools">Tools</a></li>
+    <li><a href="/field-notes" class="active">Field Notes</a></li>
+    <li><a href="/gear">Gear</a></li>
+    <li><a href="/#about">About</a></li>
+  </ul>
+  <button class="r1-hamburger" id="r1Hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="r1-mobile-menu" id="r1MobileMenu">
+  <a href="/#tools">Tools</a>
+  <a href="/field-notes" class="active">Field Notes</a>
+  <a href="/gear">Gear</a>
+  <a href="/#about">About</a>
+</div>
+<div class="r1-spacer"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">From the Road</div>
+  <h1>Field<br>Notes</h1>
+  <p class="hero-sub">Real observations from training and racing — pacing strategy, gear that works, the mental side of distance running. Written by a runner, for runners.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="hero-meta-num" id="totalCount">8</div>
+      <div class="hero-meta-label">Notes Published</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-num">4×</div>
+      <div class="hero-meta-label">Half Marathons</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-num">1:52</div>
+      <div class="hero-meta-label">PR</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED NOTE -->
+<div class="featured-wrap">
+  <div class="featured-inner">
+    <div class="featured-label">Latest Note</div>
+    <a href="field-note-newborn-stage" class="featured-card" id="featuredCard">
+      <div class="featured-text">
+        <div>
+          <div class="featured-category" id="featuredCategory">Lifestyle</div>
+          <div class="featured-title" id="featuredTitle">Running Through the Newborn Stage</div>
+          <div class="featured-excerpt" id="featuredExcerpt">The newborn stage doesn't end your running story. It writes a harder chapter — and here's how to get through it without losing the habit that matters to you.</div>
+        </div>
+        <div class="featured-footer">
+          <div class="featured-date" id="featuredDate">Jun 2026</div>
+          <div class="featured-arrow">Read the note →</div>
+        </div>
+      </div>
+      <div class="featured-visual">
+        <div class="featured-bg-word" id="featuredBgWord">NEWBORN<br>STAGE</div>
+        <div class="featured-visual-label" id="featuredVisualLabel">Jun 2026 · Lifestyle</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterNotes('all', this)">All Notes</button>
+    <button class="filter-btn" onclick="filterNotes('Training', this)">Training</button>
+    <button class="filter-btn" onclick="filterNotes('Race Strategy', this)">Race Strategy</button>
+    <button class="filter-btn" onclick="filterNotes('Lifestyle', this)">Lifestyle</button>
+    <button class="filter-btn" onclick="filterNotes('Gear', this)">Gear</button>
+  </div>
+</div>
+
+<!-- NOTES GRID -->
+<div class="grid-wrap">
+  <div class="grid-inner">
+    <div class="grid-header">
+      <div class="grid-count" id="gridCount">8 Notes</div>
+      <div class="grid-active-filter" id="gridActiveFilter"></div>
+    </div>
+    <div class="notes-grid" id="notesGrid"></div>
+    <div class="empty-state" id="emptyState">
+      <div class="empty-state-icon">◎</div>
+      <p>No notes in this category yet</p>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL STRIP -->
+<div class="email-strip" id="emailStrip">
+  <div class="email-strip-inner">
+    <div>
+      <div class="email-eyebrow">Free Download</div>
+      <div class="email-heading">Race Week<br>Checklist</div>
+      <p class="email-sub">7 days. One page per day. Every gear check, nutrition call, and focus cue you need to arrive at the starting line ready. Free — just drop your email.</p>
+    </div>
+    <div>
+      <form
+        action="https://run1percent.us2.list-manage.com/subscribe/post?u=f809ff35918af058829744da2&id=c9575877c0&f_id=003ac2e1f0"
+        method="post"
+        target="hidden_iframe"
+        onsubmit="document.getElementById('emailStrip').classList.add('submitted')"
+      >
+        <div aria-hidden="true" style="position:absolute; left:-5000px;">
+          <input type="text" name="b_f809ff35918af058829744da2_c9575877c0" tabindex="-1" value="">
+        </div>
+        <div class="email-form">
+          <input type="email" class="email-input" name="EMAIL" placeholder="Email" required>
+          <button type="submit" class="email-btn">Get the Checklist</button>
+        </div>
+      </form>
+      <iframe name="hidden_iframe" style="display:none;"></iframe>
+      <div class="email-success">Check your inbox — the checklist is on its way.</div>
+      <div class="email-note">No spam. Unsubscribe any time.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="logo-white.png" alt="RUN1%" style="height:40px; opacity:0.4;">
+  <ul class="footer-links">
+    <li><a href="/#tools">Tools</a></li>
+    <li><a href="/field-notes">Field Notes</a></li>
+    <li><a href="/gear">Gear</a></li>
+    <li><a href="/#about">About</a></li>
+  </ul>
+  <div id="footer-right" style="text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+    <div style="display:flex; gap:14px; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; opacity:0.75;">
+      <a href="https://x.com/run1pct" target="_blank" rel="noopener"
+         style="color:var(--muted); text-decoration:none;"
+         onmouseover="this.style.color='#f5f5f5'" onmouseout="this.style.color='var(--muted)'">X</a>
+      <a href="https://instagram.com/run1pct" target="_blank" rel="noopener"
+         style="color:var(--muted); text-decoration:none;"
+         onmouseover="this.style.color='#f5f5f5'" onmouseout="this.style.color='var(--muted)'">Instagram</a>
+    </div>
+    <div class="footer-copy">© 2026 RUN1PERCENT.COM · EUGENE, OR<br>FOR INFORMATIONAL USE ONLY · NOT MEDICAL ADVICE</div>
+  </div>
+</footer>
+
+<script>
+// ── DATA ──
+// Keep this in sync with the fieldNotes array in index.html
+// Add new notes to the TOP. category must match a filter button exactly.
+const fieldNotes = [
+  {
+    url: "field-note-newborn-stage",
+    date: "Jun 2026",
+    category: "Lifestyle",
+    title: "Running Through the Newborn Stage",
+    excerpt: "The newborn stage doesn't end your running story. It writes a harder chapter — and here's how to get through it without losing the habit.",
+    bgWord: "NEWBORN\nSTAGE"
+  },
+  {
+    url: "field-note-taper",
+    date: "Mar 2026",
+    category: "Training",
+    title: "The Taper Paranoia Is Real — And Normal",
+    excerpt: "Flat legs, phantom injuries, the urge to Google your training at 2am. Everything you're feeling is normal. Here's how to manage it.",
+    bgWord: "TAPER"
+  },
+  {
+    url: "field-note-running-paces",
+    date: "Nov 2025",
+    category: "Training",
+    title: "Decoding Running Paces",
+    excerpt: "Most runners think in two gears: fast and slow. The 1% think in six. A breakdown of every training pace and when to actually use them.",
+    bgWord: "PACES"
+  },
+  {
+    url: "field-note-running-data",
+    date: "Aug 2025",
+    category: "Training",
+    title: "Finding Where You Lie in the Data",
+    excerpt: "A 1:52 half marathon feels solid until you see the percentile data. Context turns good into elite — and turns vague ambition into direction.",
+    bgWord: "DATA"
+  },
+  {
+    url: "field-note-first-mile",
+    date: "May 2025",
+    category: "Race Strategy",
+    title: "Why Your First Mile Is Lying to You",
+    excerpt: "Your watch says 7:45 and you feel like a god. By mile 8 you're questioning everything. The first mile is a notorious liar — here's why.",
+    bgWord: "MILE\nONE"
+  },
+  {
+    url: "field-note-watch-metric",
+    date: "Jan 2025",
+    category: "Gear",
+    title: "One Watch Metric That Actually Matters",
+    excerpt: "Pace lies on hills. Heart rate lags behind effort. There's one metric that gives you an honest, real-time read regardless of conditions.",
+    bgWord: "POWER"
+  },
+  {
+    url: "field-note-mph-to-pace",
+    date: "Nov 2024",
+    category: "Training",
+    title: "A Simple MPH to Pace Chart",
+    excerpt: "Serious runners don't guess their pace on the treadmill. They know exactly what 7.8 mph means. Here's the clean reference chart.",
+    bgWord: "MPH"
+  },
+  {
+    url: "field-note-running-start",
+    date: "Aug 2024",
+    category: "Lifestyle",
+    title: "My Running Start",
+    excerpt: "I started running in August 2024 and genuinely hated it. Less than a year later I'd finished two half marathons. Here's what changed.",
+    bgWord: "START"
+  }
+];
+
+// ── FEATURED NOTE (always the first in the array) ──
+function renderFeatured() {
+  const note = fieldNotes[0];
+  document.getElementById('featuredCard').href = note.url;
+  document.getElementById('featuredCategory').textContent = note.category;
+  document.getElementById('featuredTitle').textContent = note.title;
+  document.getElementById('featuredExcerpt').textContent = note.excerpt;
+  document.getElementById('featuredDate').textContent = note.date;
+  document.getElementById('featuredBgWord').innerHTML = note.bgWord.replace('\n', '<br>');
+  document.getElementById('featuredVisualLabel').textContent = note.date + ' · ' + note.category;
+}
+
+// ── GRID ──
+let activeFilter = 'all';
+
+function renderGrid() {
+  const grid = document.getElementById('notesGrid');
+  const emptyState = document.getElementById('emptyState');
+  const gridCount = document.getElementById('gridCount');
+  const gridActiveFilter = document.getElementById('gridActiveFilter');
+
+  // Skip index 0 — it's the featured note
+  const remaining = fieldNotes.slice(1);
+  const filtered = activeFilter === 'all'
+    ? remaining
+    : remaining.filter(n => n.category === activeFilter);
+
+  grid.innerHTML = '';
+
+  if (filtered.length === 0) {
+    grid.style.display = 'none';
+    emptyState.classList.add('visible');
+  } else {
+    grid.style.display = 'grid';
+    emptyState.classList.remove('visible');
+    filtered.forEach((note, i) => {
+      const card = document.createElement('a');
+      card.href = note.url;
+      card.className = 'note-card';
+      card.style.animationDelay = `${i * 0.04}s`;
+      card.innerHTML = `
+        <div class="note-category">${note.category}</div>
+        <div class="note-date">${note.date}</div>
+        <div class="note-title">${note.title}</div>
+        <div class="note-excerpt">${note.excerpt}</div>
+        <span class="note-arrow">Read →</span>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  const total = filtered.length;
+  gridCount.textContent = total + (total === 1 ? ' Note' : ' Notes');
+  gridActiveFilter.textContent = activeFilter === 'all' ? '' : activeFilter;
+  document.getElementById('totalCount').textContent = fieldNotes.length;
+}
+
+function filterNotes(category, btn) {
+  activeFilter = category;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+// ── INIT ──
+renderFeatured();
+renderGrid();
+
+// ── HAMBURGER ──
+(function() {
+  var btn = document.getElementById('r1Hamburger');
+  var menu = document.getElementById('r1MobileMenu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  document.addEventListener('click', function(e) {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+    }
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+    });
+  });
+})();
+</script>
+</body>
+</html>
