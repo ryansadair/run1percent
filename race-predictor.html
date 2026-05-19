@@ -33,18 +33,75 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Race Time Predictor",
-  "description": "Enter any race result and get predicted finish times across every major distance using the Riegel formula.",
-  "url": "https://run1percent.com/race-predictor",
-  "applicationCategory": "SportsApplication",
-  "operatingSystem": "All",
-  "isAccessibleForFree": true,
-  "publisher": {
-    "@type": "Organization",
-    "name": "RUN1%",
-    "url": "https://run1percent.com"
-  }
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Race Time Predictor",
+      "description": "Enter any race result and get predicted finish times across every major distance using the Riegel formula.",
+      "url": "https://run1percent.com/race-predictor",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "All",
+      "isAccessibleForFree": true,
+      "publisher": {
+        "@type": "Organization",
+        "name": "RUN1%",
+        "url": "https://run1percent.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How accurate is the Riegel formula for predicting race times?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Riegel formula is highly accurate for trained runners predicting across similar distances — typically within 2–5% for comparable race types. It becomes less accurate the larger the distance gap (predicting a marathon from a 5K, for example) and for runners who are significantly undertrained at the longer distance. It also assumes equivalent conditions: similar terrain, similar weather, and full taper for both races."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does my 10K time predict for a half marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Using the Riegel formula at the standard 1.06 exponent: a 45-minute 10K predicts a half marathon of approximately 1:40. A 50-minute 10K predicts roughly 1:52. A 55-minute 10K predicts roughly 2:04. These are fitness-equivalent predictions — they assume you're properly trained for the half marathon distance, not just fit enough to run a fast 10K."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I predict my marathon time from a half marathon result?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and this is one of the most reliable uses of the Riegel formula. A common rule of thumb is to double your half marathon time and add 10–20 minutes — the Riegel formula is more precise. A 1:52 half marathon predicts roughly a 3:55 marathon. Note that marathon-specific training matters enormously: the Riegel prediction assumes equivalent preparation for both distances."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Riegel fatigue factor and should I change it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Riegel fatigue factor (exponent) models how pace slows as distance increases. The standard value of 1.06 works for most trained runners. Use 1.07 if you consistently fade more than average at longer distances or have limited endurance-specific training. Use 1.05 if you have a strong aerobic base and tend to hold pace well at long distances. Most runners should leave it at 1.06."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does the race predictor give a faster time than I actually ran?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most common reason is training specificity — your source race reflects fitness you haven't yet translated to the longer distance. A fast 10K time built primarily through track work won't fully transfer to a half marathon if you haven't done the long runs. Other factors: poor pacing in the longer race, heat, hills, or nutrition issues. The Riegel prediction is your ceiling with optimal training, not a guaranteed outcome."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How recent does my race result need to be for an accurate prediction?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Within 8 weeks is ideal. Fitness changes meaningfully over longer periods — a 5K from 6 months ago doesn't reflect your current shape if you've been training hard since then. For the most accurate prediction, use a result from a recent tune-up race or a well-executed time trial on a flat course."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -450,6 +507,10 @@
   @media (max-width: 640px) {
     .r1-hamburger { display: flex; }
   }
+
+  @media (max-width: 768px) {
+    #faqOuterPredictor { grid-template-columns: 1fr !important; gap: 32px !important; }
+  }
 </style>
 </head>
 <body>
@@ -557,6 +618,81 @@
   </div>
 </div>
 
+<!-- FAQ SECTION -->
+<div style="border-top:1px solid var(--border); padding:64px 40px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div id="faqOuterPredictor" style="display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:start;">
+      <div>
+        <div style="font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Common Questions</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,3vw,40px); letter-spacing:1px; color:var(--white); line-height:1;">The Riegel<br>Formula</div>
+      </div>
+      <div style="border-top:1px solid var(--border);">
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">How accurate is the Riegel formula for predicting race times?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            The Riegel formula is highly accurate for trained runners predicting across similar distances — typically within 2–5%. It becomes less accurate the larger the distance gap (predicting a marathon from a 5K, for example) and for runners who are significantly undertrained at the longer distance. It assumes equivalent conditions: similar terrain, similar weather, and a proper taper for both races.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">What does my 10K time predict for a half marathon?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            Using the Riegel formula at the standard 1.06 exponent: a 45-minute 10K predicts a half marathon of approximately 1:40. A 50-minute 10K predicts roughly 1:52. A 55-minute 10K predicts roughly 2:04. These are fitness-equivalent predictions — they assume you're properly trained for the half marathon distance, not just fit enough to run a fast 10K.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">Can I predict my marathon time from a half marathon result?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            Yes, and this is one of the most reliable uses of the Riegel formula. A 1:52 half marathon predicts roughly a 3:55 marathon. Note that marathon-specific training matters enormously: the Riegel prediction assumes equivalent preparation for both distances — not just half marathon fitness applied to 26.2 miles.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">What is the Riegel fatigue factor and should I change it?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            The fatigue factor (exponent) models how pace naturally slows as distance increases. The standard value of 1.06 works for most trained runners. Use 1.07 if you consistently fade at longer distances or have limited endurance-specific training. Use 1.05 if you have a strong aerobic base and hold pace well over long efforts. Most runners should leave it at 1.06.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">Why does the predictor give a faster time than I actually ran?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            The most common reason is training specificity — your source race reflects fitness you haven't yet translated to the longer distance. A fast 10K built through track work won't fully transfer to a half if you haven't logged the long runs. Other factors: poor pacing, heat, hills, or nutrition issues on race day. The Riegel prediction is your ceiling with optimal preparation, not a guarantee.
+          </div>
+        </div>
+
+        <div>
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">How recent does my race result need to be for an accurate prediction?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            Within 8 weeks is ideal. Fitness changes meaningfully over longer periods — a 5K from 6 months ago doesn't reflect your current shape if you've been training hard since then. For the most accurate prediction, use a result from a recent tune-up race or a well-executed time trial on a flat course.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FIELD NOTE CALLOUT -->
 <div style="border-top:1px solid var(--border); padding:40px;">
   <div style="max-width:1200px; margin:0 auto;">
@@ -608,6 +744,14 @@
 </footer>
 
 <script>
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('span:last-child');
+    const isOpen = answer.style.display === 'block';
+    answer.style.display = isOpen ? 'none' : 'block';
+    icon.textContent = isOpen ? '+' : '−';
+  }
+
   const DISTANCES = [
     { key: '1mile',    label: '1 Mile',        meters: 1609   },
     { key: '5k',       label: '5K',            meters: 5000   },

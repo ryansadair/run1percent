@@ -33,18 +33,75 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Training Plan Generator",
-  "description": "Generate a free half marathon or marathon training plan built around your race date and current fitness. Day-by-day schedule, no generic templates.",
-  "url": "https://run1percent.com/training-plan-generator",
-  "applicationCategory": "SportsApplication",
-  "operatingSystem": "All",
-  "isAccessibleForFree": true,
-  "publisher": {
-    "@type": "Organization",
-    "name": "RUN1%",
-    "url": "https://run1percent.com"
-  }
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Training Plan Generator",
+      "description": "Generate a free half marathon or marathon training plan built around your race date and current fitness. Day-by-day schedule, no generic templates.",
+      "url": "https://run1percent.com/training-plan-generator",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "All",
+      "isAccessibleForFree": true,
+      "publisher": {
+        "@type": "Organization",
+        "name": "RUN1%",
+        "url": "https://run1percent.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many weeks do I need to train for a half marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The minimum is 10 weeks for runners with an existing base of 15+ miles per week. The ideal is 16 weeks, which gives enough time to build mileage safely, include quality tempo and race-pace work, and taper properly. If you have less than 10 weeks, the plan will adapt but your expectations should adjust — finishing strong matters more than hitting a time goal with an abbreviated build."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between a finish goal and a time goal training plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A finish plan focuses on consistent mileage and easy effort — it builds the aerobic base and endurance needed to cover the distance. A time goal plan adds tempo runs and race-pace sessions, which train your body to sustain a specific pace under fatigue. If this is your first half marathon, a finish plan is almost always the better choice regardless of how fit you are."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I pick my training days per week?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pick the number you can genuinely commit to for the full training cycle — not the number you'd run in a perfect week. Three days per week is enough to finish a half marathon. Four days builds more fitness with manageable recovery. Five days is appropriate for intermediate runners targeting a time goal. More is not always better: consistency over weeks and months matters more than heroic individual training weeks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What fitness level should I select for the training plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Beginner means you're currently running under 15 miles per week or have been running for less than a year. Intermediate means 15–30 miles per week with a consistent routine. Advanced means 30+ miles per week with multiple races in your history. When in doubt, select one level below where you think you are — it's far better to build from a manageable base than to start too ambitious and get injured."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a cutback week and why is it in my training plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A cutback week is a planned reduction in weekly mileage — typically to about 80% of your previous week — that appears every third or fourth week in the plan. It isn't a rest week. You still run, but at lower volume to let your body absorb the preceding weeks of training stress. Skipping cutback weeks is one of the most common causes of overuse injuries in half marathon training."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this plan for a marathon, 10K, or 5K?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The generator supports all four distances: 5K, 10K, half marathon, and marathon. The plan length, long run distances, and workout structure all adjust automatically based on your selected distance and fitness level. Marathon plans require a minimum of 14 weeks; 16–20 is ideal. For 5K and 10K plans, the emphasis shifts toward speed work and shorter long runs."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -425,6 +482,10 @@
   @media (max-width: 640px) {
     .r1-hamburger { display: flex; }
   }
+
+  @media (max-width: 768px) {
+    #faqOuterPlan { grid-template-columns: 1fr !important; gap: 32px !important; }
+  }
 </style>
 </head>
 <body>
@@ -556,6 +617,81 @@
   </div>
 </div>
 
+<!-- FAQ SECTION -->
+<div style="border-top:1px solid var(--border); padding:64px 40px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div id="faqOuterPlan" style="display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:start;">
+      <div>
+        <div style="font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Common Questions</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,3vw,40px); letter-spacing:1px; color:var(--white); line-height:1;">Building<br>Your Plan</div>
+      </div>
+      <div style="border-top:1px solid var(--border);">
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">How many weeks do I need to train for a half marathon?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            The minimum is 10 weeks for runners with an existing base of 15+ miles per week. The ideal is 16 weeks, which gives enough time to build mileage safely, include quality tempo and race-pace work, and taper properly. If you have less than 10 weeks, the plan will adapt — but finishing strong should take priority over hitting a time goal with an abbreviated build.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">What is the difference between a finish goal and a time goal training plan?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            A finish plan focuses on consistent mileage and easy effort — building the aerobic base needed to cover the distance. A time goal plan adds tempo runs and race-pace sessions to train your body to sustain a specific pace under fatigue. If this is your first half marathon, a finish plan is almost always the better choice regardless of how fit you feel.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">How do I pick my training days per week?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            Pick the number you can genuinely commit to for the full training cycle — not your ideal week. Three days is enough to finish a half marathon. Four days builds meaningful fitness with manageable recovery. Five days suits intermediate runners targeting a time goal. Consistency across the full cycle matters far more than cramming extra days into peak weeks.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">What fitness level should I select?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            Beginner: under 15 miles per week or less than a year of consistent running. Intermediate: 15–30 miles per week with a regular routine. Advanced: 30+ miles per week with multiple races in your history. When in doubt, select one level below your instinct — starting too ambitious is the single most common path to injury.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">What is a cutback week and why is it in my plan?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            A cutback week is a planned mileage reduction — typically to about 80% of the previous week — built in every third or fourth week. It isn't a rest week; you still run, but at lower volume so your body absorbs the accumulated training load. Skipping cutback weeks is one of the most common causes of overuse injuries in half marathon training.
+          </div>
+        </div>
+
+        <div>
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">Can I use this plan for a marathon, 10K, or 5K?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            Yes. The generator supports 5K, 10K, half marathon, and marathon. Plan length, long run distances, and workout structure all adjust automatically based on your selected distance and fitness level. Marathon plans require a minimum of 14 weeks with 16–20 being ideal. For 5K and 10K, the emphasis shifts toward speed work and shorter long runs.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FIELD NOTE CALLOUT -->
 <div style="border-top:1px solid var(--border); padding:40px;">
   <div style="max-width:1200px; margin:0 auto;">
@@ -609,6 +745,14 @@
 <script>
   let goal = 'finish';
   let daysPerWeek = 5;
+
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('span:last-child');
+    const isOpen = answer.style.display === 'block';
+    answer.style.display = isOpen ? 'none' : 'block';
+    icon.textContent = isOpen ? '+' : '−';
+  }
 
   // Default race date ~16 weeks out
   const def = new Date();

@@ -33,18 +33,75 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Average Pace Calculator",
-  "description": "Log your mile splits mid-race and instantly see the pace you need across every remaining distance to hit your target average.",
-  "url": "https://run1percent.com/average-pace",
-  "applicationCategory": "SportsApplication",
-  "operatingSystem": "All",
-  "isAccessibleForFree": true,
-  "publisher": {
-    "@type": "Organization",
-    "name": "RUN1%",
-    "url": "https://run1percent.com"
-  }
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Average Pace Calculator",
+      "description": "Log your mile splits mid-race and instantly see the pace you need across every remaining distance to hit your target average.",
+      "url": "https://run1percent.com/average-pace",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "All",
+      "isAccessibleForFree": true,
+      "publisher": {
+        "@type": "Organization",
+        "name": "RUN1%",
+        "url": "https://run1percent.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What pace do I need to run a sub-2 hour half marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To finish a half marathon in under 2 hours, you need to average faster than 9:09 per mile across all 13.1 miles. A safe approach is to target 9:00/mi — giving you a small buffer for hills, crowding, and the inevitable slowdown in the final miles. Use this calculator to adjust in real time if your early splits come in faster or slower than planned."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate the pace I need for remaining miles mid-race?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The formula is: Required pace = (Goal total time − Time already spent) ÷ Miles remaining. In practice this is hard to compute mid-run. That's what this tool does — enter your goal pace and logged splits, and it shows you the exact required pace for every remaining mile distance in real time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are negative splits in running and why do they matter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Negative splits means running the second half of a race faster than the first. It's the pacing strategy used by nearly every elite runner in distance events. Going out conservatively allows you to run faster when others are fading — most runners who blow up in the final miles ran their first miles too fast. This calculator shows you exactly when you're ahead or behind a negative split pace."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does going out too fast hurt your half marathon time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Running the first mile 30 seconds per mile too fast can cost you 2–4 minutes in the final 5K as glycogen depletion and lactate accumulation compound. The physiological debt is disproportionate to the time 'banked' early. Studies on marathon pacing consistently show that the fastest finishing times come from even or slightly negative splits — not from banking time early."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this calculator for distances other than a half marathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The calculator supports 5K, 10K, half marathon, full marathon, and custom distances. Select your race distance from the dropdown, enter your goal pace, and log splits as you complete each mile. The required pace projection updates for whatever distance you've selected."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's a realistic half marathon pace for a beginner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a first half marathon, anything between 10:00 and 12:00 per mile is a solid finishing pace depending on your training base. A 10:00/mi pace finishes in about 2:11. A 12:00/mi pace finishes in about 2:37. The goal for a first half should be to finish strong — start conservatively at a pace that feels almost too easy for the first 4 miles."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -434,8 +491,13 @@
   .r1-mobile-menu a:hover { color: #f5f5f5; background: rgba(255,255,255,0.03); }
   .r1-mobile-menu a.active { color: #e5281a; }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     .r1-hamburger { display: flex; }
+  }
+
+  /* FAQ responsive */
+  @media (max-width: 768px) {
+    #faqOuter { grid-template-columns: 1fr !important; gap: 32px !important; }
   }
 </style>
 </head>
@@ -525,6 +587,81 @@
   </div>
 </div>
 
+<!-- FAQ SECTION -->
+<div style="border-top:1px solid var(--border); padding:64px 40px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div id="faqOuter" style="display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:start;">
+      <div>
+        <div style="font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Common Questions</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,3vw,40px); letter-spacing:1px; color:var(--white); line-height:1;">Pacing<br>Explained</div>
+      </div>
+      <div style="border-top:1px solid var(--border);">
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">What pace do I need to run a sub-2 hour half marathon?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; transition:transform 0.2s; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            To finish a half marathon in under 2 hours, you need to average faster than 9:09 per mile across all 13.1 miles. A safe target is 9:00/mi — giving you a small buffer for hills, crowding, and the inevitable slowdown in the final miles. Use this calculator to adjust in real time if your early splits come in faster or slower than planned.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">How do I calculate the pace I need for remaining miles mid-race?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; transition:transform 0.2s; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            The formula is: Required pace = (Goal total time − Time already spent) ÷ Miles remaining. In practice this is hard to compute mid-run. That's what this tool does — enter your goal pace and logged splits, and it shows you the exact required pace for every remaining mile distance in real time.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">What are negative splits in running and why do they matter?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; transition:transform 0.2s; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            Negative splits means running the second half of a race faster than the first. It's the pacing strategy used by nearly every elite runner in distance events. Going out conservatively allows you to run faster when others are fading — most runners who blow up in the final miles ran their first miles too fast. This calculator shows you exactly when you're ahead or behind a negative split pace.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">How much does going out too fast hurt your half marathon time?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; transition:transform 0.2s; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            Running the first mile 30 seconds per mile too fast can cost you 2–4 minutes in the final 5K as glycogen depletion and lactate accumulation compound. The physiological debt is disproportionate to the time "banked" early. Research on marathon pacing consistently shows the fastest finishing times come from even or slightly negative splits — not from banking time at the start.
+          </div>
+        </div>
+
+        <div style="border-bottom:1px solid var(--border);">
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">Can I use this calculator for distances other than a half marathon?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; transition:transform 0.2s; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            Yes. The calculator supports 5K, 10K, half marathon, full marathon, and custom distances. Select your race distance from the dropdown, enter your goal pace, and log splits as you complete each mile. The required pace projection updates automatically for whatever distance you've selected.
+          </div>
+        </div>
+
+        <div>
+          <button onclick="toggleFaq(this)" style="width:100%; text-align:left; background:none; border:none; padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--white); letter-spacing:0.3px; line-height:1.5;">What's a realistic half marathon pace for a beginner?</span>
+            <span style="color:var(--red); font-size:18px; flex-shrink:0; transition:transform 0.2s; line-height:1;">+</span>
+          </button>
+          <div style="display:none; padding-bottom:20px; font-size:11px; line-height:1.9; color:var(--text-dim);">
+            For a first half marathon, anywhere between 10:00 and 12:00 per mile is a solid finishing pace depending on your training base. A 10:00/mi pace finishes in about 2:11. A 12:00/mi pace finishes in about 2:37. The goal for a first half should be finishing strong — start conservatively at a pace that feels almost too easy for the first four miles.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FIELD NOTE CALLOUT -->
 <div style="border-top:1px solid var(--border); padding:40px;">
   <div style="max-width:1200px; margin:0 auto;">
@@ -576,6 +713,15 @@
 </footer>
 
 <script>
+// FAQ ACCORDION
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const icon = btn.querySelector('span:last-child');
+  const isOpen = answer.style.display === 'block';
+  answer.style.display = isOpen ? 'none' : 'block';
+  icon.textContent = isOpen ? '+' : '−';
+}
+
 // STATE
 let miles = [];
 let goalDistance = 13.1;
